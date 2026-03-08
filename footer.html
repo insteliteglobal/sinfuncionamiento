@@ -12,6 +12,7 @@
 <style>
 
 /* RESET */
+
 *{
 margin:0;
 padding:0;
@@ -19,11 +20,18 @@ box-sizing:border-box;
 font-family:Segoe UI, Arial;
 }
 
+html,body{
+overflow-x:hidden;
+}
+
 /* FOOTER */
+
 .footer{
 background:#1f3565;
 color:#cfd7ec;
 padding:50px 20px;
+width:100%;
+overflow:hidden;
 }
 
 .footer-grid{
@@ -32,6 +40,7 @@ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:30px;
 max-width:1200px;
 margin:auto;
+width:100%;
 }
 
 .footer h4{
@@ -42,6 +51,7 @@ margin-bottom:10px;
 .footer p{
 font-size:14px;
 margin-bottom:6px;
+word-break:break-word;
 }
 
 .footer a{
@@ -57,6 +67,7 @@ text-decoration:underline;
 display:flex;
 gap:10px;
 margin-top:10px;
+flex-wrap:wrap;
 }
 
 .social-icons a{
@@ -72,6 +83,7 @@ margin-top:20px;
 }
 
 /* RESPONSIVE CELULAR */
+
 @media (max-width:768px){
 
 .footer-grid{
@@ -112,6 +124,7 @@ grid-template-columns:1fr;
 <p>✉️ insteliteglobal@gmail.com</p>
 
 <div class="social-icons">
+
 <a href="https://www.facebook.com/profile.php?id=61585452936651" target="_blank">
 <i class="fab fa-facebook-f"></i>
 </a>
@@ -119,6 +132,7 @@ grid-template-columns:1fr;
 <a href="https://www.instagram.com/institutotecnicoelite/" target="_blank">
 <i class="fab fa-instagram"></i>
 </a>
+
 </div>
 
 </div>
