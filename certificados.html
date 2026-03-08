@@ -7,6 +7,8 @@
 
 <title>Instituto Técnico Élite</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 
 /* RESET */
@@ -43,7 +45,14 @@ font-weight:600;
 font-size:18px;
 }
 
-.navbar nav a{
+/* MENU */
+
+.nav-links{
+display:flex;
+align-items:center;
+}
+
+.nav-links a{
 color:white;
 text-decoration:none;
 margin-left:20px;
@@ -56,6 +65,14 @@ color:#1f3565 !important;
 padding:6px 14px;
 border-radius:6px;
 font-weight:600;
+}
+
+/* HAMBURGUESA */
+
+.menu-toggle{
+display:none;
+font-size:24px;
+cursor:pointer;
 }
 
 /* PORTADA */
@@ -196,6 +213,47 @@ text-decoration:none;
 box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.menu-toggle{
+display:block;
+}
+
+.nav-links{
+position:absolute;
+top:65px;
+left:0;
+background:#1f3565;
+width:100%;
+flex-direction:column;
+display:none;
+padding:20px 0;
+}
+
+.nav-links a{
+margin:10px 0;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.navbar{
+padding:15px 20px;
+}
+
+.certificados{
+padding:30px 20px;
+}
+
+.cert-card{
+width:100%;
+}
+
+}
+
 </style>
 
 </head>
@@ -209,7 +267,11 @@ box-shadow:0 4px 10px rgba(0,0,0,0.3);
 Instituto Técnico Élite
 </div>
 
-<nav>
+<div class="menu-toggle" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
+<nav class="nav-links" id="menu">
 
 <a href="inicio.html">Inicio</a>
 <a href="oferta-academica.html">Oferta Académica</a>
@@ -265,6 +327,10 @@ Consulta y descarga tu certificado académico de forma rápida y segura.
 </a>
 
 <script>
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
 
 function consultar(){
 
