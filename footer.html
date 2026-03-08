@@ -20,7 +20,9 @@ box-sizing:border-box;
 font-family:Segoe UI, Arial;
 }
 
-html,body{
+html, body{
+width:100%;
+max-width:100%;
 overflow-x:hidden;
 }
 
@@ -31,7 +33,8 @@ background:#1f3565;
 color:#cfd7ec;
 padding:50px 20px;
 width:100%;
-overflow:hidden;
+max-width:100%;
+overflow-x:hidden;
 }
 
 .footer-grid{
@@ -80,14 +83,20 @@ text-align:center;
 font-size:13px;
 opacity:0.9;
 margin-top:20px;
+padding:0 10px;
 }
 
 /* RESPONSIVE CELULAR */
 
 @media (max-width:768px){
 
+.footer{
+padding:40px 15px;
+}
+
 .footer-grid{
 grid-template-columns:1fr;
+gap:25px;
 }
 
 }
