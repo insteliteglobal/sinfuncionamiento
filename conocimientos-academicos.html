@@ -7,6 +7,9 @@
 
 <title>Conocimientos Académicos | Instituto Técnico Élite</title>
 
+<!-- ICONOS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 
 *{
@@ -40,6 +43,13 @@ font-weight:600;
 font-size:18px;
 }
 
+/* MENU */
+
+.navbar nav{
+display:flex;
+align-items:center;
+}
+
 .navbar nav a{
 color:white;
 text-decoration:none;
@@ -53,6 +63,14 @@ color:#1f3565 !important;
 padding:6px 14px;
 border-radius:6px;
 font-weight:600;
+}
+
+/* MENU HAMBURGUESA */
+
+.menu-toggle{
+display:none;
+font-size:26px;
+cursor:pointer;
 }
 
 /* HERO */
@@ -115,7 +133,6 @@ border-radius:12px;
 overflow:hidden;
 box-shadow:0 4px 14px rgba(0,0,0,0.08);
 text-align:center;
-
 display:flex;
 flex-direction:column;
 }
@@ -238,6 +255,41 @@ justify-content:center;
 font-size:26px;
 text-decoration:none;
 box-shadow:0 4px 10px rgba(0,0,0,0.3);
+z-index:999;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:768px){
+
+.navbar{
+padding:15px 20px;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.navbar nav{
+display:none;
+flex-direction:column;
+position:absolute;
+top:60px;
+left:0;
+width:100%;
+background:#1f3565;
+padding:20px;
+}
+
+.navbar nav a{
+display:block;
+margin:10px 0;
+}
+
+.navbar nav.active{
+display:flex;
+}
+
 }
 
 </style>
@@ -252,7 +304,11 @@ box-shadow:0 4px 10px rgba(0,0,0,0.3);
 Instituto Técnico Élite
 </div>
 
-<nav>
+<div class="menu-toggle" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
+<nav id="menu">
 
 <a href="inicio.html">Inicio</a>
 <a href="oferta-academica.html">Oferta Académica</a>
@@ -261,11 +317,10 @@ Instituto Técnico Élite
 <a href="contacto.html">Contacto</a>
 <a href="certificados.html">Certificados</a>
 
-
-
 <a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">
 Inscribirse
 </a>
+
 <a class="btn-blanco" href="https://institutoelite.q10.com">
 Campus Virtual
 </a>
@@ -273,8 +328,6 @@ Campus Virtual
 </nav>
 
 </header>
-
-
 
 <section class="hero">
 
@@ -290,8 +343,6 @@ Formación académica orientada al fortalecimiento de competencias profesionales
 
 </section>
 
-
-
 <section class="seccion-programas">
 
 <h2 class="titulo-programas">
@@ -301,168 +352,101 @@ Nuestros Programas
 <div class="grid-programas">
 
 <!-- PROGRAMA 1 -->
-
 <div class="card-programa">
-
 <img src="imagenes/gestion de proyectos.jpg">
-
 <div class="card-content">
-
 <h3>Gestión de proyectos</h3>
-
-<p>
-Planeación, ejecución y evaluación de proyectos en contextos organizacionales.
-</p>
-
-<a href="CAformulacion-y-gestion-de-proyectos.html" class="btn-programa">
-Ver programa
-</a>
-
-<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">
-Inscribirse
-</a>
-
+<p>Planeación, ejecución y evaluación de proyectos en contextos organizacionales.</p>
+<a href="CAformulacion-y-gestion-de-proyectos.html" class="btn-programa">Ver programa</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">Inscribirse</a>
 </div>
-
 </div>
 
 <!-- PROGRAMA 2 -->
-
 <div class="card-programa">
-
 <img src="imagenes/gestion documental.jpg">
-
 <div class="card-content">
-
 <h3>Gestión documental</h3>
-
-<p>
-Organización, conservación y administración de documentos físicos y electrónicos.
-</p>
-
-<a href="CAgestion-documental.html" class="btn-programa">
-Ver programa
-</a>
-
-<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">
-Inscribirse
-</a>
-
+<p>Organización, conservación y administración de documentos físicos y electrónicos.</p>
+<a href="CAgestion-documental.html" class="btn-programa">Ver programa</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">Inscribirse</a>
 </div>
-
 </div>
 
 <!-- PROGRAMA 3 -->
-
 <div class="card-programa">
-
 <img src="imagenes/gestion educativa.jpg">
-
 <div class="card-content">
-
 <h3>Gestión educativa</h3>
-
-<p>
-Planeación institucional, administración escolar y calidad educativa.
-</p>
-
-<a href="CAgestion-educativa.html" class="btn-programa">
-Ver programa
-</a>
-
-<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">
-Inscribirse
-</a>
-
+<p>Planeación institucional, administración escolar y calidad educativa.</p>
+<a href="CAgestion-educativa.html" class="btn-programa">Ver programa</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">Inscribirse</a>
 </div>
-
 </div>
 
 <!-- PROGRAMA 4 -->
-
 <div class="card-programa">
-
 <img src="imagenes/finanzas publicas.jpg">
-
 <div class="card-content">
-
 <h3>Finanzas públicas</h3>
-
-<p>
-Gestión y análisis del presupuesto y recursos del Estado.
-</p>
-
-<a href="CAfinanzas-publicas.html" class="btn-programa">
-Ver programa
-</a>
-
-<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">
-Inscribirse
-</a>
-
+<p>Gestión y análisis del presupuesto y recursos del Estado.</p>
+<a href="CAfinanzas-publicas.html" class="btn-programa">Ver programa</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">Inscribirse</a>
 </div>
-
 </div>
 
 <!-- PROGRAMA 5 -->
-
 <div class="card-programa">
-
 <img src="imagenes/administracion publica.jpg">
-
 <div class="card-content">
-
 <h3>Administración pública</h3>
-
-<p>
-Fundamentos de organización estatal y gestión gubernamental.
-</p>
-
-<a href="CAadministracion-publica.html" class="btn-programa">
-Ver programa
-</a>
-
-<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">
-Inscribirse
-</a>
-
+<p>Fundamentos de organización estatal y gestión gubernamental.</p>
+<a href="CAadministracion-publica.html" class="btn-programa">Ver programa</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">Inscribirse</a>
+</div>
 </div>
 
-</div>
 <!-- PROGRAMA 6 -->
 <div class="card-programa">
-  <img src="imagenes/servicio al cliente.jpg" alt="Servicio al Cliente">
-  <div class="card-content">
-    <h3>Servicio al cliente</h3>
-    <p>Estrategias y técnicas para la atención efectiva y satisfactoria al usuario o cliente.</p>
-    <a href="CAservicio-al-cliente.html" class="btn-programa">Ver programa</a>
-    <a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">Inscribirse</a>
-  </div>
+<img src="imagenes/servicio al cliente.jpg">
+<div class="card-content">
+<h3>Servicio al cliente</h3>
+<p>Estrategias y técnicas para la atención efectiva y satisfactoria al usuario.</p>
+<a href="CAservicio-al-cliente.html" class="btn-programa">Ver programa</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">Inscribirse</a>
+</div>
 </div>
 
 <!-- PROGRAMA 7 -->
 <div class="card-programa">
-  <img src="imagenes/derechos humanos.jpg">
-  <div class="card-content">
-    <h3>Derechos humanos</h3>
-    <p>Conocimiento y aplicación de los principios y normativas de derechos humanos en distintos contextos.</p>
-    <a href="CAderechos-humanos.html" class="btn-programa">Ver programa</a>
-    <a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">Inscribirse</a>
-  </div>
+<img src="imagenes/derechos humanos.jpg">
+<div class="card-content">
+<h3>Derechos humanos</h3>
+<p>Aplicación de principios y normativas de derechos humanos en distintos contextos.</p>
+<a href="CAderechos-humanos.html" class="btn-programa">Ver programa</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">Inscribirse</a>
+</div>
 </div>
 
 </div>
 
 </section>
 
-
-
 <iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
 
-<!-- Botón WhatsApp flotante con icono real -->
+<!-- BOTON WHATSAPP -->
+
 <a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
 <i class="fab fa-whatsapp"></i>
 </a>
+
+<script>
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+</script>
 
 </body>
 </html>
