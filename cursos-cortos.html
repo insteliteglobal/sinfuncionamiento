@@ -7,6 +7,8 @@
 
 <title>Cursos Cortos | Instituto Técnico Élite</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 
 /* RESET */
@@ -41,6 +43,18 @@ flex-wrap:wrap;
 .logo{
 font-weight:600;
 font-size:18px;
+}
+
+.menu-toggle{
+display:none;
+font-size:24px;
+cursor:pointer;
+}
+
+.navbar nav{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
 }
 
 .navbar nav a{
@@ -219,10 +233,7 @@ text-decoration:none;
 box-shadow:0 4px 10px rgba(0,0,0,0.3);
 }
 
-
-/* ============================= */
-/* OPTIMIZACIÓN PARA CELULARES  */
-/* ============================= */
+/* RESPONSIVE */
 
 @media (max-width:1000px){
 
@@ -233,23 +244,29 @@ padding:40px;
 
 }
 
-@media (max-width:700px){
+@media (max-width:768px){
+
+.menu-toggle{
+display:block;
+}
 
 .navbar{
 padding:15px 20px;
-flex-direction:column;
-align-items:flex-start;
 }
 
 .navbar nav{
+display:none;
+flex-direction:column;
+width:100%;
 margin-top:10px;
+}
+
+.navbar nav.active{
 display:flex;
-flex-wrap:wrap;
-gap:10px;
 }
 
 .navbar nav a{
-margin-left:0;
+margin:10px 0;
 }
 
 .hero{
@@ -286,11 +303,13 @@ grid-template-columns:1fr;
 
 <body>
 
-<!-- MENU -->
-
 <header class="navbar">
 
 <div class="logo">Instituto Técnico Élite</div>
+
+<div class="menu-toggle">
+<i class="fas fa-bars"></i>
+</div>
 
 <nav>
 <a href="inicio.html">Inicio</a>
@@ -306,9 +325,6 @@ grid-template-columns:1fr;
 
 </header>
 
-
-<!-- PORTADA -->
-
 <section class="hero">
 
 <div>
@@ -317,9 +333,6 @@ grid-template-columns:1fr;
 </div>
 
 </section>
-
-
-<!-- CATALOGO CURSOS -->
 
 <section class="catalogo">
 
@@ -336,18 +349,141 @@ grid-template-columns:1fr;
 </div>
 </div>
 
-<!-- (todo tu catálogo queda EXACTAMENTE igual, no se modificó nada) -->
+<!-- 2 -->
+
+<div class="card">
+<h3>Primeros Auxilios psicológicos</h3>
+<div class="horas">40 horas</div>
+<p>Herramientas para brindar apoyo inicial a personas que atraviesan situaciones de crisis emocional.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCprimeros-auxilios-psicológicos.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 3 -->
+
+<div class="card">
+<h3>Promoción y mantenimiento de la salud</h3>
+<div class="horas">40 horas</div>
+<p>Fortalece conocimientos para fomentar hábitos saludables y prevenir enfermedades.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCpromoción-y-mantenimiento-de-la-salud.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 4 -->
+
+<div class="card">
+<h3>Promoción de la salud</h3>
+<div class="horas">40 horas</div>
+<p>Curso orientado a promover estilos de vida saludables y bienestar en la comunidad.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCpromoción-de-la-salud.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 5 -->
+
+<div class="card">
+<h3>Salud mental</h3>
+<div class="horas">40 horas</div>
+<p>Promoción del bienestar emocional y prevención de factores de riesgo psicosocial.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCsalud-mental.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 6 -->
+
+<div class="card">
+<h3>Manejo de herramientas digitales e inteligencia artificial</h3>
+<div class="horas">40 horas</div>
+<p>Uso de herramientas digitales modernas e introducción a la inteligencia artificial aplicada al trabajo.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCmanejo-de-herramientas-digitales-e-inteligencia-artificial.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 7 -->
+
+<div class="card">
+<h3>Fundamentos del derecho administrativo</h3>
+<div class="horas">80 horas</div>
+<p>Conceptos fundamentales que regulan la organización y funcionamiento de la administración pública.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCfundamentos-del-derecho-administrativo.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 8 -->
+
+<div class="card">
+<h3>Fundamentos del derecho laboral y seguridad social</h3>
+<div class="horas">80 horas</div>
+<p>Principios básicos del derecho laboral colombiano y del sistema de seguridad social.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCfundamentos-del-derecho-laboral-y-seguridad-social.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 9 -->
+
+<div class="card">
+<h3>Fundamentos del derecho civil</h3>
+<div class="horas">80 horas</div>
+<p>Introducción a los principios del derecho civil y su aplicación en la vida jurídica cotidiana.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCfundamentos-del-derecho-civil.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 10 -->
+
+<div class="card">
+<h3>Fundamentos de salud ocupacional y salud en el trabajo</h3>
+<div class="horas">40 horas</div>
+<p>Conceptos básicos sobre seguridad y salud en el trabajo orientados a la prevención de riesgos laborales y promoción de ambientes de trabajo seguros.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCsst.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
 
 </section>
-
-
-<!-- FOOTER -->
 
 <iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
 
 <a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
 <i class="fab fa-whatsapp"></i>
 </a>
+
+<script>
+
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.navbar nav');
+
+menuToggle.addEventListener('click', () => {
+nav.classList.toggle('active');
+});
+
+</script>
 
 </body>
 </html>
