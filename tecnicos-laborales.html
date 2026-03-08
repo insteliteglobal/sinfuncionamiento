@@ -7,6 +7,9 @@
 
 <title>Técnicos Laborales | Instituto Técnico Élite</title>
 
+<!-- ICONOS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 
 *{
@@ -40,6 +43,11 @@ font-weight:600;
 font-size:18px;
 }
 
+.navbar nav{
+display:flex;
+align-items:center;
+}
+
 .navbar nav a{
 color:white;
 text-decoration:none;
@@ -53,6 +61,14 @@ color:#1f3565 !important;
 padding:6px 14px;
 border-radius:6px;
 font-weight:600;
+}
+
+/* MENU HAMBURGUESA */
+
+.menu-toggle{
+display:none;
+font-size:26px;
+cursor:pointer;
 }
 
 /* HERO */
@@ -115,7 +131,6 @@ border-radius:12px;
 overflow:hidden;
 box-shadow:0 4px 14px rgba(0,0,0,0.08);
 text-align:center;
-
 display:flex;
 flex-direction:column;
 }
@@ -238,6 +253,58 @@ justify-content:center;
 font-size:26px;
 text-decoration:none;
 box-shadow:0 4px 10px rgba(0,0,0,0.3);
+z-index:999;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:768px){
+
+.navbar{
+padding:15px 20px;
+}
+
+.menu-toggle{
+display:block;
+color:white;
+}
+
+.navbar nav{
+display:none;
+flex-direction:column;
+position:absolute;
+top:60px;
+left:0;
+width:100%;
+background:#1f3565;
+padding:20px;
+}
+
+.navbar nav a{
+display:block;
+margin:10px 0;
+}
+
+.navbar nav.active{
+display:flex;
+}
+
+.hero h1{
+font-size:30px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.seccion-programas{
+padding:40px 20px;
+}
+
+.grid-programas{
+grid-template-columns:1fr;
+}
+
 }
 
 </style>
@@ -252,7 +319,11 @@ box-shadow:0 4px 10px rgba(0,0,0,0.3);
 Instituto Técnico Élite
 </div>
 
-<nav>
+<div class="menu-toggle" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+
+<nav id="menu">
 
 <a href="inicio.html">Inicio</a>
 <a href="oferta-academica.html">Oferta Académica</a>
@@ -261,10 +332,10 @@ Instituto Técnico Élite
 <a href="contacto.html">Contacto</a>
 <a href="certificados.html">Certificados</a>
 
-
 <a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">
 Inscribirse
 </a>
+
 <a class="btn-blanco" href="https://institutoelite.q10.com">
 Campus Virtual
 </a>
@@ -272,7 +343,6 @@ Campus Virtual
 </nav>
 
 </header>
-
 
 
 <section class="hero">
@@ -288,7 +358,6 @@ Formación técnica orientada al desarrollo de competencias laborales
 </div>
 
 </section>
-
 
 
 <section class="seccion-programas">
@@ -360,10 +429,18 @@ Inscribirse
 
 <iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
 
-<!-- Botón WhatsApp flotante con icono real -->
 <a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
 <i class="fab fa-whatsapp"></i>
 </a>
 
+<script>
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+</script>
+
 </body>
 </html>
+```
