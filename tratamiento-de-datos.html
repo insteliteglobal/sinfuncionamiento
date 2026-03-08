@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tratamiento de Datos Personales | Instituto Técnico Élite</title>
+
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial;
+}
+
+body{
+background:#f3f5f8;
+color:#1f2a44;
+}
+
+/* NAVBAR */
+.navbar{
+background:#1f3565;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+position:sticky;
+top:0;
+z-index:1000;
+flex-wrap:wrap;
+}
+
+.logo{
+font-weight:600;
+font-size:18px;
+color:white;
+}
+
+.menu-toggle{
+display:none;
+font-size:24px;
+color:white;
+cursor:pointer;
+}
+
+/* NAV LINKS */
+.navbar nav{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+}
+
+.navbar nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+margin-top:0;
+font-size:15px;
+}
+
+.btn-blanco{
+background:white;
+color:#1f3565 !important;
+padding:6px 14px;
+border-radius:6px;
+font-weight:600;
+margin-left:10px;
+margin-top:0;
+}
+
+/* HERO */
+.hero{
+height:420px;
+background:
+linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.80)),
+url("imagenes/legal 1.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:38px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:25px;
+}
+
+/* CONTENIDO */
+.contenido{
+padding:40px 20px;
+max-width:900px;
+margin:auto;
+line-height:1.7;
+font-size:16px;
+}
+
+.contenido h3{
+margin-top:25px;
+margin-bottom:10px;
+}
+
+.contenido p{
+margin-bottom:18px;
+}
+
+/* FOOTER */
+.footer{
+background:#1f3565;
+color:#cfd7ec;
+padding:50px 20px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:15px;
+}
+
+.footer h4{
+color:white;
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.footer .social-icons{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.footer .social-icons a{
+color:white;
+font-size:18px;
+text-decoration:none;
+}
+
+/* COPYRIGHT */
+.copyright{
+text-align:center;
+font-size:13px;
+opacity:0.9;
+margin-top:10px;
+}
+
+.legal{
+text-align:center;
+margin-top:15px;
+font-size:13px;
+}
+
+.legal a{
+color:#cfd7ec;
+text-decoration:none;
+margin:0 5px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .navbar nav{
+    display:none;
+    flex-direction:column;
+    width:100%;
+    margin-top:10px;
+  }
+
+  .navbar nav.active{
+    display:flex;
+  }
+
+  .navbar nav a, .btn-blanco{
+    margin: 10px 0;
+  }
+
+  .hero {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .footer-grid{
+    grid-template-columns: 1fr;
+  }
+
+}
+</style>
+
+</head>
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+  Instituto Técnico Élite
+</div>
+
+<div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+<nav>
+<a href="inicio.html">Inicio</a>
+<a href="oferta-academica.html">Oferta Académica</a>
+<a href="pagos-en-linea.html">Pagos en línea</a>
+<a href="quienes-somos.html">Quiénes somos</a>
+<a href="contacto.html">Contacto</a>
+<a href="certificados.html">Certificados</a>
+
+<a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirse</a>
+<a class="btn-blanco" href="https://institutoelite.q10.com">Campus Virtual</a>
+</nav>
+
+</header>
+
+<section class="hero">
+<div>
+<h1>Tratamiento de Datos Personales</h1>
+<p>Política institucional de manejo y protección de la información</p>
+</div>
+</section>
+
+<section class="contenido">
+<p>
+El Instituto Técnico Élite, en cumplimiento de la Ley 1581 de 2012 y el Decreto 1377 de 2013 sobre protección de datos personales en Colombia, informa que los datos personales recolectados a través de formularios, procesos de inscripción, contacto institucional o cualquier otro medio serán tratados de manera responsable, segura y conforme a la normativa vigente.
+</p>
+
+<h3>Finalidad del tratamiento de datos</h3>
+<p>
+Los datos personales suministrados por los usuarios, estudiantes o interesados serán utilizados únicamente para fines institucionales relacionados con:
+</p>
+<p>
+• Procesos de inscripción y matrícula.<br>
+• Gestión académica y administrativa.<br>
+• Información institucional y académica.<br>
+• Comunicaciones oficiales del Instituto Técnico Élite.<br>
+• Seguimiento a solicitudes, consultas o requerimientos realizados por los usuarios.
+</p>
+
+<h3>Protección de la información</h3>
+<p>
+El Instituto Técnico Élite adopta medidas de seguridad administrativas, técnicas y tecnológicas con el fin de proteger la información personal contra pérdida, uso indebido, acceso no autorizado o alteración.
+</p>
+
+<h3>Derechos del titular de los datos</h3>
+<p>
+De acuerdo con la legislación vigente, el titular de los datos personales tiene derecho a:
+</p>
+<p>
+• Conocer, actualizar y rectificar sus datos personales.<br>
+• Solicitar prueba de la autorización otorgada para el tratamiento de datos.<br>
+• Solicitar la eliminación de su información cuando considere que no se están respetando sus derechos.<br>
+• Revocar la autorización otorgada para el tratamiento de sus datos personales.<br>
+• Presentar consultas o reclamos relacionados con el uso de su información.
+</p>
+
+<h3>Procedimiento para consultas o solicitudes</h3>
+<p>
+Las solicitudes relacionadas con datos personales podrán enviarse a través de los canales oficiales del Instituto Técnico Élite. Estas serán atendidas conforme a los términos establecidos por la legislación colombiana en materia de protección de datos personales.
+</p>
+
+<h3>Compromiso institucional</h3>
+<p>
+El Instituto Técnico Élite garantiza la confidencialidad, seguridad y uso adecuado de la información personal suministrada por los usuarios y estudiantes, utilizándola únicamente para los fines autorizados y dentro del marco legal vigente.
+</p>
+</section>
+
+<iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
+
+<!-- Botón WhatsApp flotante con icono real -->
+<a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+// Toggle menú hamburguesa
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.navbar nav');
+menuToggle.addEventListener('click', () => {
+  nav.classList.toggle('active');
+});
+</script>
+
+</body>
+</html>

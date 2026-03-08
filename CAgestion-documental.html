@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestión Documental | Instituto Técnico Élite</title>
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, Arial;}
+body{background:#f3f5f8;color:#1f2a44;}
+
+/* NAVBAR */
+.navbar{background:#1f3565;color:white;display:flex;justify-content:space-between;align-items:center;padding:15px 20px;position:sticky;top:0;z-index:1000;flex-wrap:wrap;}
+.logo{font-weight:600;font-size:18px;color:white;}
+.menu-toggle{display:none;font-size:24px;color:white;cursor:pointer;}
+.navbar nav{display:flex;flex-wrap:wrap;align-items:center;}
+.navbar nav a{color:white;text-decoration:none;margin-left:20px;margin-top:0;font-size:15px;}
+.btn-blanco{background:white;color:#1f3565 !important;padding:6px 14px;border-radius:6px;font-weight:600;margin-left:10px;margin-top:0;}
+
+/* PORTADA */
+.hero{
+height:420px;
+background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.80)),
+url("imagenes/gestion documental.jpg");
+background-size:cover;background-position:center;
+display:flex;align-items:center;justify-content:center;text-align:center;color:white;
+}
+.hero h1{font-size:36px;margin-bottom:8px;}
+.hero p{font-size:18px;margin-bottom:15px;}
+.btn-principal{background:white;color:#1f3565;padding:10px 22px;border-radius:6px;text-decoration:none;margin-right:10px;}
+.btn-secundario{background:#1f3565;color:white;padding:10px 22px;border-radius:6px;text-decoration:none;}
+
+/* Buscador */
+.main-search{display:flex;justify-content:flex-start;margin:20px 0 40px 0;}
+.main-search form{display:flex;width:300px;}
+.main-search input{flex:1;padding:8px;border-radius:6px 0 0 6px;border:1px solid #ccc;font-size:14px;}
+.main-search button{background:#1f3565;border:none;color:white;padding:8px 12px;border-radius:0 6px 6px 0;cursor:pointer;}
+
+/* SECCIONES */
+.seccion{padding:22px 20px;max-width:1100px;margin:auto;}
+.seccion h2{margin-bottom:10px;font-size:24px;}
+.seccion p{margin-bottom:15px;line-height:1.6;}
+
+/* GRID TARJETAS */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:10px;}
+.card{background:white;padding:18px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,0.08);}
+.card h3{margin-bottom:4px;}
+
+/* LISTAS */
+ul{padding-left:20px;line-height:1.5;margin-top:6px;}
+li{margin-bottom:3px;}
+
+/* CTA */
+.cta{background:#1f3565;color:white;text-align:center;padding:60px 30px;}
+.cta h2{margin-bottom:15px;}
+.cta p{margin-bottom:25px;line-height:1.6;}
+.cta a.btn-principal{display:inline-block;margin-top:10px;padding:12px 28px;font-size:16px;text-decoration:none;}
+
+/* FOOTER */
+.footer{background:#1f3565;color:#cfd7ec;padding:50px 20px;}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-bottom:20px;}
+.footer h4{color:white;margin-bottom:6px;}
+.footer p{font-size:14px;margin-bottom:4px;}
+.footer .social-icons{display:flex;gap:10px;margin-top:10px;}
+.footer .social-icons a{color:white;font-size:18px;text-decoration:none;}
+.copyright{text-align:center;font-size:13px;opacity:0.9;margin-top:10px;}
+
+/* WHATSAPP */
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:55px;height:55px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 4px 10px rgba(0,0,0,0.3);}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+  .menu-toggle{display:block;}
+  .navbar nav{display:none;flex-direction:column;width:100%;margin-top:10px;}
+  .navbar nav.active{display:flex;}
+  .navbar nav a, .btn-blanco{margin:10px 0;}
+  .hero {height:auto;padding:40px 20px;}
+  .grid {grid-template-columns:1fr;}
+  .main-search form{width:250px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+<div class="logo">Instituto Técnico Élite</div>
+<div class="menu-toggle"><i class="fas fa-bars"></i></div>
+<nav>
+<a href="inicio.html">Inicio</a>
+<a href="oferta-academica.html">Oferta Académica</a>
+<a href="pagos-en-linea.html">Pagos en línea</a>
+<a href="quienes-somos.html">Quiénes somos</a>
+<a href="contacto.html">Contacto</a>
+<a href="certificados.html">Certificados</a>
+<a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirse</a>
+<a class="btn-blanco" href="https://institutoelite.q10.com">Campus Virtual</a>
+</nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+<div>
+<h1>Conocimientos académicos en Gestión documental</h1>
+<p>Fortalece competencias académicas en administración, organización, conservación y control de documentos físicos y electrónicos.</p>
+<a class="btn-principal" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirme</a>
+</div>
+</section>
+
+<!-- Buscador -->
+<div class="main-search">
+  <form action="#" method="GET">
+    <input type="text" placeholder="Buscar..." name="q">
+    <button type="submit"><i class="fas fa-search"></i></button>
+  </form>
+</div>
+
+<!-- Secciones -->
+<section class="seccion">
+<h2>Información general del programa</h2>
+<div class="grid" style="margin-top:10px;">
+  <div class="card"><h3>Modalidad</h3><p>Virtual</p></div>
+  <div class="card"><h3>Tipo de programa</h3><p>Académico</p></div>
+  <div class="card"><h3>Duración</h3><p>180 horas</p></div>
+  <div class="card"><h3>Certificación</h3><p>Conocimientos Académicos en Gestión Documental</p></div>
+  <div class="card"><h3>Área de formación</h3><p>Administración</p></div>
+</div>
+</section>
+
+<section class="seccion">
+<h2>Objetivo del Programa</h2>
+<p>Formar participantes con conocimientos teórico-prácticos en gestión documental, capaces de apoyar procesos archivísticos conforme a lineamientos normativos básicos y principios de calidad, ética y confidencialidad.</p>
+</section>
+
+<section class="seccion">
+<h2>Perfil de ingreso</h2>
+<ul>
+<li>Básica secundaria aprobada</li>
+<li>Presentar documento de identidad</li>
+<li>Modalidad virtual bajo condiciones de seguridad y salud para estudio en casa</li>
+</ul>
+</section>
+
+<section class="seccion">
+<h2>Perfil del egresado</h2>
+<ul>
+<li>Organizar y clasificar documentos conforme a lineamientos archivísticos básicos</li>
+<li>Aplicar principios del ciclo vital del documento en procesos administrativos</li>
+<li>Manejar documentos físicos y electrónicos con responsabilidad y confidencialidad</li>
+<li>Utilizar herramientas tecnológicas básicas para la gestión documental</li>
+<li>Apoyar procesos administrativos relacionados con la gestión de la información</li>
+<li>Actuar con ética y calidad en el manejo documental y atención al usuario</li>
+</ul>
+</section>
+
+<section class="seccion">
+<h2>Perfil ocupacional</h2>
+<ul>
+<li>Auxiliar de archivo</li>
+<li>Auxiliar administrativo</li>
+<li>Apoyo en gestión documental</li>
+<li>Auxiliar de gestión de información</li>
+</ul>
+</section>
+
+<section class="seccion">
+<h2>Estructura curricular</h2>
+<ul>
+<li>Fundamentos de la Gestión Documental (30 horas)</li>
+<li>Normatividad Archivística y Administrativa (30 horas)</li>
+<li>Clasificación y Organización de Archivos (30 horas)</li>
+<li>Ciclo Vital del Documento (30 horas)</li>
+<li>Gestión de Documentos Electrónicos y Digitalización (30 horas)</li>
+<li>Ética, Calidad y Servicio en la Gestión Documental (30 horas)</li>
+</ul>
+<p><strong>Duración total:</strong> 180 horas</p>
+</section>
+
+<section class="seccion">
+<h2>Sistema de evaluación</h2>
+<ul>
+<li>Talleres y actividades prácticas: 40%</li>
+<li>Evaluaciones parciales: 40%</li>
+<li>Proyecto final integrador: 20%</li>
+</ul>
+<p>Total: 100%</p>
+</section>
+
+<section class="cta">
+<h2>Inscripción</h2>
+<p>Fortalece tus conocimientos en gestión documental y mejora tu perfil académico y administrativo.</p>
+<a class="btn-principal" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirme ahora</a>
+</section>
+
+<section class="seccion">
+<h2>Soporte Legal del Programa</h2>
+<p>El programa Conocimientos Academicos en Gestion Documental cuenta con registro y aprobación oficial otorgados por la Secretaría de Educación, Cultura y Deporte del Municipio de Santa Cruz de Lorica.</p>
+<p>Resolución No. 3583 del 23 de diciembre de 2025, conforme a la normativa vigente para la educación para el trabajo y el desarrollo humano.</p>
+<a class="btn-secundario" href="documentos/Licencia de funcionamiento Gestion Documental.pdf">Descargar Resolución Oficial (PDF)</a>
+</section>
+
+<!-- Footer -->
+
+<iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
+
+<!-- Botón WhatsApp flotante con icono real -->
+<a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+// Toggle menú hamburguesa
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.navbar nav');
+menuToggle.addEventListener('click', () => { nav.classList.toggle('active'); });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cursos Cortos | Instituto Técnico Élite</title>
+
+<style>
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial;
+}
+
+body{
+background:#f3f5f8;
+color:#1f2a44;
+}
+
+/* NAVBAR */
+
+.navbar{
+background:#1f3565;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 60px;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-weight:600;
+font-size:18px;
+}
+
+.navbar nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-size:15px;
+}
+
+.btn-blanco{
+background:white;
+color:#1f3565 !important;
+padding:6px 14px;
+border-radius:6px;
+font-weight:600;
+}
+
+/* PORTADA */
+
+.hero{
+height:300px;
+background:
+linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:36px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+/* CURSOS */
+
+.catalogo{
+padding:60px;
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 6px 14px rgba(0,0,0,0.08);
+display:flex;
+flex-direction:column;
+}
+
+.card h3{
+margin-bottom:8px;
+color:#1f3565;
+}
+
+.horas{
+color:#3b5cb8;
+font-weight:600;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:14px;
+margin-bottom:15px;
+flex-grow:1;
+}
+
+.precio{
+font-weight:bold;
+color:#1f3565;
+margin-bottom:15px;
+}
+
+.botones{
+display:flex;
+gap:10px;
+}
+
+.btn{
+flex:1;
+padding:8px;
+text-align:center;
+border-radius:6px;
+text-decoration:none;
+font-size:14px;
+}
+
+.info{
+background:#e3e8fb;
+color:#1f3565;
+}
+
+.inscribirse{
+background:#1f3565;
+color:white;
+}
+
+/* FOOTER */
+
+.footer{
+background:#1f3565;
+color:#cfd7ec;
+padding:50px 60px;
+margin-top:60px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:25px;
+}
+
+.footer h4{
+color:white;
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.copyright{
+text-align:center;
+font-size:13px;
+opacity:0.9;
+margin-top:10px;
+}
+
+.legal{
+text-align:center;
+margin-top:15px;
+font-size:13px;
+}
+
+.legal a{
+color:#cfd7ec;
+text-decoration:none;
+margin:0 8px;
+}
+
+.legal a:hover{
+text-decoration:underline;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- MENU -->
+
+<header class="navbar">
+
+<div class="logo">Instituto Técnico Élite</div>
+
+<nav>
+<a href="inicio.html">Inicio</a>
+<a href="oferta-academica.html">Oferta Académica</a>
+<a href="pagos-en-linea.html">Pagos en línea</a>
+<a href="quienes-somos.html">Quiénes somos</a>
+<a href="contacto.html">Contacto</a>
+<a href="certificados.html">Certificados</a>
+
+<a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirse</a>
+<a class="btn-blanco" href="https://institutoelite.q10.com">Campus Virtual</a>
+</nav>
+
+</header>
+
+
+<!-- PORTADA -->
+
+<section class="hero">
+
+<div>
+<h1>Cursos Cortos</h1>
+<p>Programas diseñados para fortalecer competencias laborales y profesionales</p>
+</div>
+
+</section>
+
+
+<!-- CATALOGO CURSOS -->
+
+<section class="catalogo">
+
+<!-- 1 -->
+
+<div class="card">
+<h3>Bioseguridad</h3>
+<div class="horas">40 horas</div>
+<p>Actualización en normas y protocolos de bioseguridad aplicables en diferentes entornos laborales.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCbioseguridad.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 2 -->
+
+<div class="card">
+<h3>Primeros Auxilios psicológicos</h3>
+<div class="horas">40 horas</div>
+<p>Herramientas para brindar apoyo inicial a personas que atraviesan situaciones de crisis emocional.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCprimeros-auxilios-psicológicos.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 3 -->
+
+<div class="card">
+<h3>Promoción y mantenimiento de la salud</h3>
+<div class="horas">40 horas</div>
+<p>Fortalece conocimientos para fomentar hábitos saludables y prevenir enfermedades.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCpromoción-y-mantenimiento-de-la-salud.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 4 -->
+
+<div class="card">
+<h3>Promoción de la salud</h3>
+<div class="horas">40 horas</div>
+<p>Curso orientado a promover estilos de vida saludables y bienestar en la comunidad.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCpromoción-de-la-salud.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 5 -->
+
+<div class="card">
+<h3>Salud mental</h3>
+<div class="horas">40 horas</div>
+<p>Promoción del bienestar emocional y prevención de factores de riesgo psicosocial.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCsalud-mental.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 6 -->
+
+<div class="card">
+<h3>Manejo de herramientas digitales e inteligencia artificial</h3>
+<div class="horas">40 horas</div>
+<p>Uso de herramientas digitales modernas e introducción a la inteligencia artificial aplicada al trabajo.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCmanejo-de-herramientas-digitales-e-inteligencia-artificial.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 7 -->
+
+<div class="card">
+<h3>Fundamentos del derecho administrativo</h3>
+<div class="horas">80 horas</div>
+<p>Conceptos fundamentales que regulan la organización y funcionamiento de la administración pública.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCfundamentos-del-derecho-administrativo.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 8 -->
+
+<div class="card">
+<h3>Fundamentos del derecho laboral y seguridad social</h3>
+<div class="horas">80 horas</div>
+<p>Principios básicos del derecho laboral colombiano y del sistema de seguridad social.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCfundamentos-del-derecho-laboral-y-seguridad-social.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 9 -->
+
+<div class="card">
+<h3>Fundamentos del derecho civil</h3>
+<div class="horas">80 horas</div>
+<p>Introducción a los principios del derecho civil y su aplicación en la vida jurídica cotidiana.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCfundamentos-del-derecho-civil.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+<!-- 10 -->
+
+<div class="card">
+<h3>Fundamentos de salud ocupacional y salud en el trabajo</h3>
+<div class="horas">40 horas</div>
+<p>Conceptos básicos sobre seguridad y salud en el trabajo orientados a la prevención de riesgos laborales y promoción de ambientes de trabajo seguros.</p>
+<div class="precio">$100.000</div>
+<div class="botones">
+<a href="CCsst.html" class="btn info">Más información</a>
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn inscribirse">Inscribirse</a>
+</div>
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
+
+<!-- Botón WhatsApp flotante con icono real -->
+<a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+</body>
+</html>

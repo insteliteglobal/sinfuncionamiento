@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Curso Corto en Primeros Auxilios Psicológicos | Instituto Técnico Élite</title>
+
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial;
+}
+
+body{
+background:#f3f5f8;
+color:#1f2a44;
+}
+
+/* NAVBAR */
+.navbar{
+background:#1f3565;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+position:sticky;
+top:0;
+z-index:1000;
+flex-wrap:wrap;
+}
+
+.logo{
+font-weight:600;
+font-size:18px;
+color:white;
+}
+
+.menu-toggle{
+display:none;
+font-size:24px;
+color:white;
+cursor:pointer;
+}
+
+.navbar nav{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+}
+
+.navbar nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+margin-top:0;
+font-size:15px;
+}
+
+.btn-blanco{
+background:white;
+color:#1f3565 !important;
+padding:6px 14px;
+border-radius:6px;
+font-weight:600;
+margin-left:10px;
+margin-top:0;
+}
+
+/* PORTADA */
+.hero{
+height:420px;
+background:
+linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.80)),
+url("imagenes/mental 2.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:36px;
+margin-bottom:8px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:15px;
+}
+
+.btn-principal{
+background:white;
+color:#1f3565;
+padding:10px 22px;
+border-radius:6px;
+text-decoration:none;
+margin-right:10px;
+}
+
+.btn-secundario{
+background:#1f3565;
+color:white;
+padding:10px 22px;
+border-radius:6px;
+text-decoration:none;
+}
+
+/* Buscador */
+.main-search{
+display:flex;
+justify-content:flex-start;
+margin:20px 0 40px 0;
+}
+
+.main-search form{
+display:flex;
+width:300px;
+}
+
+.main-search input{
+flex:1;
+padding:8px;
+border-radius:6px 0 0 6px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+.main-search button{
+background:#1f3565;
+border:none;
+color:white;
+padding:8px 12px;
+border-radius:0 6px 6px 0;
+cursor:pointer;
+}
+
+/* SECCIONES */
+.seccion{
+padding:22px 20px;
+max-width:1100px;
+margin:auto;
+}
+
+.seccion h2{
+margin-bottom:10px;
+font-size:24px;
+}
+
+.seccion p{
+margin-bottom:15px;
+line-height:1.6;
+}
+
+ul{
+padding-left:20px;
+line-height:1.5;
+margin-top:6px;
+}
+
+li{
+margin-bottom:3px;
+}
+
+/* CTA */
+.cta{
+background:#e0e0e0; /* fondo gris neutro */
+color:#1f2a44;
+text-align:center;
+padding:60px 30px;
+}
+
+.cta h2{
+margin-bottom:15px;
+}
+
+.cta p{
+margin-bottom:25px;
+line-height:1.6;
+}
+
+.cta a.btn-principal{
+display:inline-block;
+margin-top:10px;
+padding:12px 28px;
+font-size:16px;
+text-decoration:none;
+}
+
+/* FOOTER */
+.footer{
+background:#1f3565;
+color:#cfd7ec;
+padding:50px 20px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:15px;
+}
+
+.footer h4{
+color:white;
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.footer .social-icons{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.footer .social-icons a{
+color:white;
+font-size:18px;
+text-decoration:none;
+}
+
+.copyright{
+text-align:center;
+font-size:13px;
+opacity:0.9;
+margin-top:10px;
+}
+
+.legal{
+text-align:center;
+margin-top:15px;
+font-size:13px;
+}
+
+.legal a{
+color:#cfd7ec;
+text-decoration:none;
+margin:0 5px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+.menu-toggle{
+display:block;
+}
+
+.navbar nav{
+display:none;
+flex-direction:column;
+width:100%;
+margin-top:10px;
+}
+
+.navbar nav.active{
+display:flex;
+}
+
+.navbar nav a, .btn-blanco{
+margin: 10px 0;
+}
+
+.hero {
+height:auto;
+padding:40px 20px;
+}
+}
+</style>
+
+</head>
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+Instituto Técnico Élite
+</div>
+
+<div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+<nav>
+<a href="inicio.html">Inicio</a>
+<a href="oferta-academica.html">Oferta Académica</a>
+<a href="pagos-en-linea.html">Pagos en línea</a>
+<a href="quienes-somos.html">Quiénes somos</a>
+<a href="contacto.html">Contacto</a>
+<a href="certificados.html">Certificados</a>
+
+<a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirse</a>
+<a class="btn-blanco" href="https://institutoelite.q10.com">Campus Virtual</a>
+</nav>
+
+</header>
+
+<section class="hero">
+<div>
+<h1>Curso en Primeros auxilios psicológicos</h1>
+<p>Aprende a identificar, intervenir y acompañar emocionalmente en situaciones de crisis.</p>
+<a class="btn-principal" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirme</a>
+</div>
+</section>
+
+<div class="main-search">
+<form action="#" method="GET">
+<input type="text" placeholder="Buscar..." name="q">
+<button type="submit"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+<section class="seccion">
+<h2>Descripción del curso</h2>
+<p>El curso de Primeros Auxilios Psicológicos capacita a los participantes para brindar apoyo inicial ante situaciones de crisis emocional, estrés agudo o trauma, aplicando estrategias de contención, escucha activa y derivación adecuada a profesionales de salud mental.</p>
+</section>
+
+<section class="seccion">
+<h2>Información general del curso</h2>
+<ul>
+<li>Modalidad: Virtual</li>
+<li>Tipo de curso: Corto</li>
+<li>Duración: 40 horas</li>
+<li>Certificación: Curso Corto en Primeros Auxilios Psicológicos</li>
+<li>Área de formación: Salud y Bienestar</li>
+<li>Vigencia: Curso activo</li>
+</ul>
+</section>
+
+<section class="seccion">
+<h2>¿A quién va dirigido?</h2>
+<p>Docentes, profesionales de la salud, personal de organizaciones sociales, líderes comunitarios y público general interesado en intervenir ante crisis emocionales y psicológicas.</p>
+</section>
+
+<section class="seccion">
+<h2>Perfil del egresado</h2>
+<p>Al finalizar, el participante será capaz de identificar situaciones de crisis emocional, aplicar técnicas básicas de primeros auxilios psicológicos, brindar apoyo emocional inmediato y derivar a especialistas según sea necesario.</p>
+</section>
+
+<section class="seccion">
+<h2>Competencias que desarrollarás</h2>
+<ul>
+<li>Aplicación de técnicas de contención emocional y escucha activa</li>
+<li>Identificación de crisis psicológicas y factores de riesgo</li>
+<li>Derivación a profesionales de salud mental</li>
+<li>Promoción de la salud mental y prevención del estrés</li>
+<li>Gestión de situaciones de emergencia psicológica en entornos educativos y laborales</li>
+</ul>
+</section>
+
+<section class="seccion">
+<h2>Plan de estudios</h2>
+<ul>
+<li>Introducción a los primeros auxilios psicológicos (4 horas)</li>
+<li>Identificación de crisis y factores de riesgo (6 horas)</li>
+<li>Técnicas de contención emocional (6 horas)</li>
+<li>Comunicación efectiva y escucha activa (6 horas)</li>
+<li>Protocolos de intervención en situaciones de emergencia (6 horas)</li>
+<li>Casos prácticos y role play (6 horas)</li>
+<li>Proyecto integrador y evaluación final (6 horas)</li>
+</ul>
+<p><strong>Duración total:</strong> 40 horas</p>
+</section>
+
+<section class="seccion">
+<h2>Requisitos de ingreso</h2>
+<ul>
+<li>Básica secundaria aprobada</li>
+<li>Acceso a internet</li>
+<li>Disposición para aprendizaje virtual</li>
+</ul>
+</section>
+
+<section class="seccion">
+<h2>Sistema de evaluación</h2>
+<ul>
+<li>Actividades prácticas y talleres: 40%</li>
+<li>Evaluaciones parciales: 30%</li>
+<li>Proyecto final integrador: 30%</li>
+</ul>
+<p><strong>Total:</strong> 100%</p>
+</section>
+
+<section class="seccion">
+<h2>Campo de desempeño</h2>
+<ul>
+<li>Instituciones educativas</li>
+<li>Organizaciones sociales y comunitarias</li>
+<li>Empresas con programas de bienestar laboral</li>
+<li>Centros de salud y atención psicosocial</li>
+<li>Gestión de crisis y apoyo emocional en emergencias</li>
+</ul>
+</section>
+
+<section class="cta">
+<h2>Inscríbete hoy</h2>
+<p>Da el siguiente paso en tu formación en Primeros Auxilios Psicológicos.</p>
+<a class="btn-principal" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirme ahora</a>
+</section>
+
+<iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
+
+<!-- Botón WhatsApp flotante con icono real -->
+<a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+// Toggle menú hamburguesa
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.navbar nav');
+menuToggle.addEventListener('click', () => {
+nav.classList.toggle('active');
+});
+</script>
+
+</body>
+</html>

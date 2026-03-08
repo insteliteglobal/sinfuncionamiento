@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Oferta Académica | Instituto Técnico Élite</title>
+
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial;
+}
+
+body{
+background:#f3f5f8;
+color:#1f2a44;
+}
+
+/* NAVBAR */
+.navbar{
+background:#1f3565;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+position:sticky;
+top:0;
+z-index:1000;
+flex-wrap:wrap;
+}
+
+.logo{
+font-weight:600;
+font-size:18px;
+color:white;
+}
+
+.menu-toggle{
+display:none;
+font-size:24px;
+color:white;
+cursor:pointer;
+}
+
+.navbar nav{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+}
+
+.navbar nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+margin-top:0;
+font-size:15px;
+}
+
+.btn-blanco{
+background:white;
+color:#1f3565 !important;
+padding:6px 14px;
+border-radius:6px;
+font-weight:600;
+margin-left:10px;
+margin-top:0;
+}
+
+/* PORTADA */
+.hero{
+height:400px;
+background:
+linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.80)),
+url("imagenes/cursos virtuales.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:36px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:17px;
+margin-bottom:25px;
+}
+
+/* Buscador */
+.main-search{
+display:flex;
+justify-content:flex-start;
+margin:5px 0 10px 0; /* margen reducido */
+}
+
+.main-search form{
+display:flex;
+width:300px;
+}
+
+.main-search input{
+flex:1;
+padding:8px;
+border-radius:6px 0 0 6px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+.main-search button{
+background:#1f3565;
+border:none;
+color:white;
+padding:8px 12px;
+border-radius:0 6px 6px 0;
+cursor:pointer;
+}
+
+/* TARJETAS PRINCIPALES */
+.programas{
+padding:40px 20px 40px 20px;
+text-align:center;
+}
+
+.programas h2{
+margin-bottom:30px;
+color:#1f3565;
+}
+
+.grid-programas{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+transition: transform 0.3s;
+height:100%;
+}
+
+.card:hover{
+transform: translateY(-5px);
+}
+
+.card h3{
+margin-bottom:10px;
+color:#1f3565;
+}
+
+.card p{
+margin-bottom:15px;
+flex-grow:1;
+}
+
+.btn-card{
+display:block;
+background:#1f3565;
+color:white;
+padding:8px 20px;
+border-radius:6px;
+text-decoration:none;
+margin:0 auto;
+text-align:center;
+}
+
+/* FOOTER */
+.footer{
+background:#1f3565;
+color:#cfd7ec;
+padding:50px 20px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:15px;
+}
+
+.footer h4{
+color:white;
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.footer .social-icons{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.footer .social-icons a{
+color:white;
+font-size:18px;
+text-decoration:none;
+}
+
+.copyright{
+text-align:center;
+font-size:13px;
+opacity:0.9;
+margin-top:10px;
+}
+
+.legal{
+text-align:center;
+margin-top:15px;
+font-size:13px;
+}
+
+.legal a{
+color:#cfd7ec;
+text-decoration:none;
+margin:0 5px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+
+.menu-toggle{
+display:block;
+}
+
+.navbar nav{
+display:none;
+flex-direction:column;
+width:100%;
+margin-top:10px;
+}
+
+.navbar nav.active{
+display:flex;
+}
+
+.navbar nav a, .btn-blanco{
+margin: 10px 0;
+}
+
+.hero {
+height: auto;
+padding: 40px 20px;
+}
+
+.grid-programas {
+grid-template-columns: 1fr;
+}
+
+.main-search{
+margin:5px 0 10px 0;
+}
+
+.main-search form{
+width:250px;
+}
+
+.main-search input, .main-search button{
+font-size:13px;
+}
+
+.footer-grid{
+grid-template-columns: 1fr;
+}
+}
+
+</style>
+
+</head>
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+  Instituto Técnico Élite
+</div>
+
+<div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+<nav>
+<a href="inicio.html">Inicio</a>
+<a href="oferta-academica.html">Oferta Académica</a>
+<a href="pagos-en-linea.html">Pagos en línea</a>
+<a href="quienes-somos.html">Quiénes somos</a>
+<a href="contacto.html">Contacto</a>
+<a href="certificados.html">Certificados</a>
+
+<a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirse</a>
+<a class="btn-blanco" href="https://institutoelite.q10.com">Campus Virtual</a>
+</nav>
+
+</header>
+
+<section class="hero">
+<div>
+<h1>Explora Nuestra Oferta Académica</h1>
+<p>Descubre los programas y cursos que tenemos para ti.</p>
+</div>
+</section>
+
+<!-- Buscador -->
+<div class="main-search">
+  <form action="#" method="GET">
+    <input type="text" placeholder="Buscar programa..." name="q">
+    <button type="submit"><i class="fas fa-search"></i></button>
+  </form>
+</div>
+
+<section class="programas">
+<h2>Conoce Nuestros Programas</h2>
+<div class="grid-programas">
+
+<div class="card">
+<h3>Conocimientos Académicos</h3>
+<p>Accede a la información detallada de los conocimientos académicos ofrecidos.</p>
+<a class="btn-card" href="conocimientos-academicos.html">Ver Todos</a>
+</div>
+
+<div class="card">
+<h3>Técnicos Laborales</h3>
+<p>Formación orientada al desarrollo de competencias específicas para el sector productivo.</p>
+<a class="btn-card" href="tecnicos-laborales.html">Ver Todos</a>
+</div>
+
+<div class="card">
+<h3>Cursos Cortos</h3>
+<p>Capacitación rápida y práctica para mejorar tus habilidades profesionales.</p>
+<a class="btn-card" href="cursos-cortos.html">Ver Todos</a>
+</div>
+
+</div>
+</section>
+
+<iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
+
+<!-- Botón WhatsApp flotante con icono real -->
+<a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+// Toggle menú hamburguesa
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.navbar nav');
+
+menuToggle.addEventListener('click', () => {
+  nav.classList.toggle('active');
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Instituto Técnico Élite</title>
+
+<style>
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial;
+}
+
+body{
+background:#f3f5f8;
+color:#1f2a44;
+}
+
+/* NAVBAR */
+
+.navbar{
+background:#1f3565;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 60px;
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:3px solid #0a3d6b;
+}
+
+.logo{
+font-weight:600;
+font-size:18px;
+}
+
+.navbar nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-size:15px;
+}
+
+.btn-blanco{
+background:white;
+color:#1f3565 !important;
+padding:6px 14px;
+border-radius:6px;
+font-weight:600;
+}
+
+/* PORTADA */
+
+.hero{
+
+height:260px;
+
+background:
+linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.80)),
+url("imagenes/graduacion.jpg");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+color:white;
+
+}
+
+.hero h1{
+font-size:34px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:17px;
+opacity:0.95;
+}
+
+/* FORMULARIO CERTIFICADO */
+
+.certificados{
+padding:60px;
+display:flex;
+justify-content:center;
+}
+
+.cert-card{
+background:white;
+padding:40px;
+border-radius:10px;
+width:400px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.cert-card h2{
+margin-bottom:20px;
+}
+
+.cert-card input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.cert-card button{
+width:100%;
+padding:12px;
+background:#1f3565;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-size:15px;
+}
+
+.cert-card button:hover{
+background:#16325c;
+}
+
+#resultado{
+margin-top:15px;
+font-size:14px;
+}
+
+/* FOOTER */
+
+.footer{
+background:#1f3565;
+color:#cfd7ec;
+padding:50px 60px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:25px;
+}
+
+.footer h4{
+color:white;
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.copyright{
+text-align:center;
+font-size:13px;
+opacity:0.9;
+margin-top:10px;
+}
+
+.legal{
+text-align:center;
+margin-top:15px;
+font-size:13px;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="navbar">
+
+<div class="logo">
+Instituto Técnico Élite
+</div>
+
+<nav>
+
+<a href="inicio.html">Inicio</a>
+<a href="oferta-academica.html">Oferta Académica</a>
+<a href="pagos-en-linea.html">Pagos en línea</a>
+<a href="quienes-somos.html">Quiénes somos</a>
+<a href="contacto.html">Contacto</a>
+<a href="certificados.html">Certificados</a>
+
+<a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirse</a>
+<a class="btn-blanco" href="https://institutoelite.q10.com">Campus Virtual</a>
+
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<div>
+
+<h1>Descargar certificado</h1>
+
+<p>
+Consulta y descarga tu certificado académico de forma rápida y segura.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="certificados">
+
+<div class="cert-card">
+
+<h2>Consultar certificado</h2>
+
+<input type="text" id="cedula" placeholder="Ingrese su cédula">
+
+<button onclick="consultar()">Consultar</button>
+
+<div id="resultado"></div>
+
+</div>
+
+</section>
+
+<iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
+
+<!-- Botón WhatsApp flotante con icono real -->
+<a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+
+function consultar(){
+
+var cedula = document.getElementById("cedula").value.trim();
+var resultado = document.getElementById("resultado");
+
+resultado.innerHTML = "Consultando...";
+
+google.script.run
+.withSuccessHandler(function(res){
+
+if(res.error){
+resultado.innerHTML="<p style='color:red'>"+res.error+"</p>";
+}else{
+resultado.innerHTML="<p style='color:green'>Certificado encontrado</p><a href='"+res.link+"' target='_blank'>Descargar certificado</a>";
+}
+
+})
+.buscarCertificado(cedula);
+
+}
+
+</script>
+
+</body>
+</html>

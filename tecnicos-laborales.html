@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Técnicos Laborales | Instituto Técnico Élite</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial;
+}
+
+body{
+background:#f3f5f8;
+color:#1f2a44;
+}
+
+/* NAVBAR */
+
+.navbar{
+background:#1f3565;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 60px;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-weight:600;
+font-size:18px;
+}
+
+.navbar nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-size:15px;
+}
+
+.btn-blanco{
+background:white;
+color:#1f3565 !important;
+padding:6px 14px;
+border-radius:6px;
+font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+height:360px;
+
+background:
+linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+url("https://images.unsplash.com/photo-1523580494863-6f3031224c94");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:38px;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+/* SECCION */
+
+.seccion-programas{
+padding:60px;
+}
+
+.titulo-programas{
+text-align:center;
+font-size:30px;
+margin-bottom:40px;
+color:#1f3565;
+}
+
+/* GRID */
+
+.grid-programas{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+max-width:1200px;
+margin:auto;
+}
+
+/* TARJETAS */
+
+.card-programa{
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 4px 14px rgba(0,0,0,0.08);
+text-align:center;
+
+display:flex;
+flex-direction:column;
+}
+
+.card-programa img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card-content{
+padding:18px;
+display:flex;
+flex-direction:column;
+flex-grow:1;
+}
+
+.card-programa h3{
+color:#1f3565;
+margin-bottom:10px;
+}
+
+.card-programa p{
+font-size:14px;
+line-height:1.5;
+margin-bottom:20px;
+flex-grow:1;
+}
+
+/* BOTONES */
+
+.btn-programa{
+display:block;
+background:#1f3565;
+color:white;
+padding:10px;
+border-radius:6px;
+text-decoration:none;
+font-size:14px;
+margin-bottom:8px;
+}
+
+.btn-programa:hover{
+background:#15284e;
+}
+
+.btn-inscribirse{
+display:block;
+background:white;
+color:#1f3565;
+border:2px solid #1f3565;
+padding:10px;
+border-radius:6px;
+text-decoration:none;
+font-size:14px;
+}
+
+/* FOOTER */
+
+.footer{
+background:#1f3565;
+color:#cfd7ec;
+padding:40px 60px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-bottom:20px;
+}
+
+.footer h4{
+color:white;
+margin-bottom:6px;
+}
+
+.footer p{
+font-size:14px;
+margin-bottom:4px;
+}
+
+.footer-links{
+text-align:center;
+margin-top:10px;
+}
+
+.footer-links a{
+color:#cfd7ec;
+text-decoration:none;
+margin:0 8px;
+font-size:13px;
+}
+
+.footer-links a:hover{
+text-decoration:underline;
+}
+
+.copyright{
+text-align:center;
+font-size:13px;
+opacity:0.9;
+margin-top:10px;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+Instituto Técnico Élite
+</div>
+
+<nav>
+
+<a href="inicio.html">Inicio</a>
+<a href="oferta-academica.html">Oferta Académica</a>
+<a href="pagos-en-linea.html">Pagos en línea</a>
+<a href="quienes-somos.html">Quiénes somos</a>
+<a href="contacto.html">Contacto</a>
+<a href="certificados.html">Certificados</a>
+
+
+<a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">
+Inscribirse
+</a>
+<a class="btn-blanco" href="https://institutoelite.q10.com">
+Campus Virtual
+</a>
+
+</nav>
+
+</header>
+
+
+
+<section class="hero">
+
+<div>
+
+<h1>Técnicos Laborales</h1>
+
+<p>
+Formación técnica orientada al desarrollo de competencias laborales
+</p>
+
+</div>
+
+</section>
+
+
+
+<section class="seccion-programas">
+
+<h2 class="titulo-programas">
+Nuestros Programas
+</h2>
+
+<div class="grid-programas">
+
+<!-- PROGRAMA 1 -->
+
+<div class="card-programa">
+
+<img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c">
+
+<div class="card-content">
+
+<h3>Auxiliar Contable</h3>
+
+<p>
+Formación en procesos contables, registro de operaciones financieras
+y apoyo administrativo en organizaciones.
+</p>
+
+<a href="TLauxiliar-contable.html" class="btn-programa">
+Ver programa
+</a>
+
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">
+Inscribirse
+</a>
+
+</div>
+
+</div>
+
+<!-- PROGRAMA 2 -->
+
+<div class="card-programa">
+
+<img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9">
+
+<div class="card-content">
+
+<h3>Belleza Integral</h3>
+
+<p>
+Formación en estética, cuidado personal, maquillaje,
+tratamientos capilares y servicios de belleza.
+</p>
+
+<a href="TLbelleza-integral.html" class="btn-programa">
+Ver programa
+</a>
+
+<a href="https://INSTITUTOELITE.q10.com/Preinscripcion" class="btn-inscribirse">
+Inscribirse
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
+
+<!-- Botón WhatsApp flotante con icono real -->
+<a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+</body>
+</html>

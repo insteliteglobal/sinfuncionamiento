@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aviso Legal | Instituto Técnico Élite</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial;
+}
+
+body{
+background:#f3f5f8;
+color:#1f2a44;
+}
+
+/* NAVBAR */
+.navbar{
+background:#1f3565;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+position:sticky;
+top:0;
+z-index:1000;
+flex-wrap:wrap;
+}
+
+.logo{
+font-weight:600;
+font-size:18px;
+color:white;
+}
+
+.menu-toggle{
+display:none;
+font-size:24px;
+color:white;
+cursor:pointer;
+}
+
+/* NAV LINKS */
+.navbar nav{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+}
+
+.navbar nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-size:15px;
+}
+
+.btn-blanco{
+background:white;
+color:#1f3565 !important;
+padding:6px 14px;
+border-radius:6px;
+font-weight:600;
+margin-left:10px;
+}
+
+/* HERO */
+.hero{
+height:420px;
+background:
+linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.80)),
+url("imagenes/legal 3.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:38px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:25px;
+}
+
+/* CONTENIDO */
+.contenido{
+padding:40px 20px;
+max-width:900px;
+margin:auto;
+line-height:1.7;
+font-size:16px;
+}
+
+.contenido h3{
+margin-top:25px;
+margin-bottom:10px;
+}
+
+.contenido p{
+margin-bottom:18px;
+}
+
+/* FOOTER */
+.footer{
+background:#1f3565;
+color:#cfd7ec;
+padding:50px 20px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+max-width:1200px;
+margin:auto;
+}
+
+.footer h4{
+color:white;
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.footer a{
+color:#cfd7ec;
+text-decoration:none;
+}
+
+.footer a:hover{
+text-decoration:underline;
+}
+
+.social-icons{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.social-icons a{
+color:white;
+font-size:18px;
+}
+
+.copyright{
+text-align:center;
+font-size:13px;
+opacity:0.9;
+margin-top:20px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+
+.menu-toggle{
+display:block;
+}
+
+.navbar nav{
+display:none;
+flex-direction:column;
+width:100%;
+margin-top:10px;
+}
+
+.navbar nav.active{
+display:flex;
+}
+
+.navbar nav a, .btn-blanco{
+margin:10px 0;
+}
+
+.hero{
+height:auto;
+padding:40px 20px;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+Instituto Técnico Élite
+</div>
+
+<div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+<nav>
+<a href="inicio.html">Inicio</a>
+<a href="oferta-academica.html">Oferta Académica</a>
+<a href="pagos-en-linea.html">Pagos en línea</a>
+<a href="quienes-somos.html">Quiénes somos</a>
+<a href="contacto.html">Contacto</a>
+<a href="certificados.html">Certificados</a>
+
+<a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirse</a>
+<a class="btn-blanco" href="https://institutoelite.q10.com">Campus Virtual</a>
+</nav>
+
+</header>
+
+<section class="hero">
+<div>
+<h1>Aviso Legal</h1>
+<p>Información legal sobre el uso del sitio web institucional</p>
+</div>
+</section>
+
+<section class="contenido">
+
+<p>
+El presente sitio web es operado por el <strong>Instituto Técnico Élite</strong>, institución dedicada a la formación académica y educativa bajo modalidad virtual. Este portal tiene fines educativos, informativos y académicos.
+</p>
+
+<h3>Finalidad de la información</h3>
+
+<p>
+Toda la información contenida en este sitio web tiene como propósito brindar orientación sobre nuestros programas académicos, servicios institucionales, procesos de inscripción, actividades educativas y demás información relacionada con la institución.
+</p>
+
+<p>
+La información publicada busca facilitar el acceso a contenidos institucionales y orientar a los usuarios interesados en nuestros programas de formación.
+</p>
+
+<h3>Responsabilidad sobre los contenidos</h3>
+
+<p>
+El Instituto Técnico Élite realiza esfuerzos para garantizar que la información publicada sea clara, actualizada y correcta. Sin embargo, la institución no se responsabiliza por posibles errores u omisiones en los contenidos, ni por interpretaciones incorrectas que puedan realizar los usuarios.
+</p>
+
+<p>
+Asimismo, el Instituto Técnico Élite no se hace responsable por el uso indebido de la información contenida en este sitio web.
+</p>
+
+<h3>Uso del sitio web</h3>
+
+<p>
+El usuario se compromete a utilizar este sitio web de manera responsable y conforme a la ley. El acceso a la plataforma no implica el establecimiento de una relación contractual directa con la institución, salvo en los casos en que se realicen procesos formales de inscripción o matrícula.
+</p>
+
+<h3>Propiedad institucional</h3>
+
+<p>
+Los contenidos, textos, diseño, estructura y elementos gráficos presentes en este sitio web pertenecen al Instituto Técnico Élite o se utilizan con autorización correspondiente. Su reproducción total o parcial sin autorización previa está prohibida.
+</p>
+
+<h3>Aceptación de políticas</h3>
+
+<p>
+El uso de este sitio web implica la aceptación de nuestras políticas institucionales, incluyendo términos de uso, política de privacidad y demás disposiciones publicadas en el portal.
+</p>
+
+<h3>Contacto institucional</h3>
+
+<p>
+Para mayor información o consultas relacionadas con la información publicada en este sitio web, puedes comunicarte a través de nuestros canales oficiales de contacto.
+</p>
+
+</section>
+
+<iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
+
+<!-- Botón WhatsApp flotante con icono real -->
+<a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.navbar nav');
+
+menuToggle.addEventListener('click', () => {
+nav.classList.toggle('active');
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Instituto Técnico Élite</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial;
+}
+
+body{
+background:#f3f5f8;
+color:#1f2a44;
+}
+
+/* NAVBAR */
+.navbar{
+background:#1f3565;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+position:sticky;
+top:0;
+z-index:1000;
+flex-wrap:wrap;
+}
+
+.logo{
+font-weight:600;
+font-size:18px;
+color:white;
+}
+
+/* Botón hamburguesa */
+.menu-toggle{
+display:none;
+font-size:24px;
+color:white;
+cursor:pointer;
+}
+
+/* NAV LINKS */
+.navbar nav{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+}
+
+.navbar nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+margin-top:0;
+font-size:15px;
+}
+
+.btn-blanco{
+background:white;
+color:#1f3565 !important;
+padding:6px 14px;
+border-radius:6px;
+font-weight:600;
+margin-left:10px;
+margin-top:0;
+}
+
+/* PORTADA */
+.hero{
+height:420px;
+background:
+linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.80)),
+url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:38px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:25px;
+}
+
+.btn-principal{
+background:white;
+color:#1f3565;
+padding:10px 22px;
+border-radius:6px;
+text-decoration:none;
+margin-right:10px;
+}
+
+.btn-secundario{
+background:#1f3565;
+color:white;
+padding:10px 22px;
+border-radius:6px;
+text-decoration:none;
+}
+/* TARJETA BIENVENIDA */
+
+.bienvenida{
+padding:40px 20px;
+display:flex;
+justify-content:center;
+}
+
+.bienvenida-card{
+background:linear-gradient(135deg,#1f3565,#2c4c91);
+color:white;
+max-width:1000px;
+width:100%;
+padding:35px;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+flex-wrap:wrap;
+gap:20px;
+}
+
+.bienvenida-texto{
+flex:1;
+min-width:260px;
+}
+
+.bienvenida-texto h2{
+font-size:26px;
+margin-bottom:10px;
+}
+
+.bienvenida-texto p{
+font-size:16px;
+margin-bottom:20px;
+opacity:0.9;
+}
+
+.bienvenida-boton{
+background:white;
+color:#1f3565;
+padding:12px 22px;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+}
+
+.bienvenida-boton:hover{
+background:#ffd43b;
+color:#000;
+}
+
+.bienvenida-icono{
+font-size:65px;
+opacity:0.3;
+}
+
+/* Buscador */
+.main-search{
+display:flex;
+justify-content:flex-start;
+margin:15px 0 20px 0;
+}
+
+.main-search form{
+display:flex;
+width:300px;
+}
+
+.main-search input{
+flex:1;
+padding:8px;
+border-radius:6px 0 0 6px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+.main-search button{
+background:#1f3565;
+border:none;
+color:white;
+padding:8px 12px;
+border-radius:0 6px 6px 0;
+cursor:pointer;
+}
+
+/* PROGRAMAS */
+.programas{
+padding:35px 20px;
+text-align:center;
+}
+
+.programas h2{
+margin-bottom:30px;
+}
+
+.grid-programas{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+display:flex;
+flex-direction:column;
+height:100%;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+margin-bottom:20px;
+flex-grow:1;
+}
+
+.btn-card{
+display:inline-block;
+background:#1f3565;
+color:white;
+padding:8px 20px;
+border-radius:6px;
+text-decoration:none;
+margin-top:auto;
+}
+
+/* INSCRIPCION */
+.inscripcion{
+padding:35px 20px;
+text-align:center;
+}
+
+.inscripcion h2{
+margin-bottom:25px;
+}
+
+.grid-pasos{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+}
+
+.paso{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+border-left:6px solid #1f3565;
+text-align:left;
+}
+
+.paso h4{
+margin-bottom:8px;
+}
+
+/* FOOTER */
+.footer{
+background:#1f3565;
+color:#cfd7ec;
+padding:50px 20px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+margin-bottom:15px;
+}
+
+.footer h4{
+color:white;
+margin-bottom:10px;
+}
+
+.footer p{
+font-size:14px;
+margin-bottom:6px;
+}
+
+.footer .social-icons{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.footer .social-icons a{
+color:white;
+font-size:18px;
+text-decoration:none;
+}
+
+/* COPYRIGHT */
+.copyright{
+text-align:center;
+font-size:13px;
+opacity:0.9;
+margin-top:10px;
+}
+
+.legal{
+text-align:center;
+margin-top:15px;
+font-size:13px;
+}
+
+.legal a{
+color:#cfd7ec;
+text-decoration:none;
+margin:0 5px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+
+.menu-toggle{
+display:block;
+}
+
+.navbar nav{
+display:none;
+flex-direction:column;
+width:100%;
+margin-top:10px;
+}
+
+.navbar nav.active{
+display:flex;
+}
+
+.navbar nav a, .btn-blanco{
+margin:10px 0;
+}
+
+.hero{
+height:auto;
+padding:40px 20px;
+}
+
+.grid-programas{
+grid-template-columns:1fr;
+}
+
+.grid-pasos{
+grid-template-columns:1fr;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+.main-search{
+margin:15px 0;
+}
+
+.main-search form{
+width:250px;
+}
+
+.main-search input{
+font-size:13px;
+}
+
+.main-search button{
+font-size:13px;
+}
+}
+
+</style>
+
+</head>
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+Instituto Técnico Élite
+</div>
+
+<div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+<nav>
+<a href="inicio.html">Inicio</a>
+<a href="oferta-academica.html">Oferta Académica</a>
+<a href="pagos-en-linea.html">Pagos en línea</a>
+<a href="quienes-somos.html">Quiénes somos</a>
+<a href="contacto.html">Contacto</a>
+<a href="certificados.html">Certificados</a>
+
+<a class="btn-blanco" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirse</a>
+<a class="btn-blanco" href="https://institutoelite.q10.com">Campus Virtual</a>
+</nav>
+
+</header>
+
+<section class="hero">
+<div>
+<h1>Educación virtual con respaldo institucional</h1>
+<p>Programas diseñados para impulsar tu crecimiento profesional desde cualquier lugar</p>
+<a class="btn-principal" href="https://INSTITUTOELITE.q10.com/Preinscripcion">Inscribirme</a>
+<a class="btn-secundario" href="oferta-academica.html">Ver todos</a>
+</div>
+</section>
+<section class="bienvenida">
+
+<div class="bienvenida-card">
+
+<div class="bienvenida-texto">
+
+<h2>¡Bienvenido al Instituto Técnico Élite!</h2>
+
+<p>
+Impulsa tu futuro profesional con nuestros programas académicos,
+técnicos laborales y cursos cortos diseñados para brindarte
+formación de calidad desde cualquier lugar.
+</p>
+
+<a class="bienvenida-boton"
+href="https://INSTITUTOELITE.q10.com/Preinscripcion">
+Inscribirme ahora
+</a>
+
+</div>
+
+<div class="bienvenida-icono">
+<i class="fas fa-graduation-cap"></i>
+</div>
+
+</div>
+
+</section>
+<div class="main-search">
+<form action="#" method="GET">
+<input type="text" placeholder="Buscar..." name="q">
+<button type="submit"><i class="fas fa-search"></i></button>
+</form>
+</div>
+
+<section class="programas">
+<h2>Programas Destacados</h2>
+
+<div class="grid-programas">
+
+<div class="card">
+<h3>Conocimientos académicos en derechos humanos</h3>
+<p>Programa orientado al fortalecimiento del conocimiento en derechos humanos, ciudadanía y participación social.</p>
+<a class="btn-card" href="conocimientos-academicos.html">Ver todos</a>
+</div>
+
+<div class="card">
+<h3>Técnico laboral en auxiliar contable</h3>
+<p>Formación técnica para desarrollar habilidades en procesos contables, registro de operaciones financieras y apoyo administrativo en organizaciones..</p>
+<a class="btn-card" href="tecnicos-laborales.html">Ver todos</a>
+</div>
+
+<div class="card">
+<h3>Curso Corto en Bioseguridad</h3>
+<p>Capacitación práctica en normas y protocolos de bioseguridad aplicables en entornos laborales y comunitarios.</p>
+<a class="btn-card" href="cursos-cortos.html">Ver todos</a>
+</div>
+
+</div>
+
+</section>
+
+<section class="inscripcion">
+<h2>¿Cómo inscribirte en el Instituto Técnico Élite?</h2>
+
+<div class="grid-pasos">
+
+<div class="paso">
+<h4>1. Regístrate en línea</h4>
+<p>Completa el formulario con tus datos personales y elige tu programa.</p>
+</div>
+
+<div class="paso">
+<h4>2. Te contacta un asesor</h4>
+<p>Un asesor académico te llamará o escribirá en menos de 24 horas.</p>
+</div>
+
+<div class="paso">
+<h4>3. Envía tus documentos</h4>
+<p>Te indicamos cómo enviar tus requisitos de forma sencilla y segura.</p>
+</div>
+
+<div class="paso">
+<h4>4. Comienza tu formación</h4>
+<p>Accede a tus clases virtuales y empieza tu proceso educativo.</p>
+</div>
+
+</div>
+
+</section>
+
+<iframe src="footer.html" width="100%" height="340" style="border:none;"></iframe>
+
+<!-- Botón WhatsApp flotante con icono real -->
+<a href="https://wa.me/573045778728" class="whatsapp" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.navbar nav');
+
+menuToggle.addEventListener('click', () => {
+nav.classList.toggle('active');
+});
+
+</script>
+
+</body>
+</html>
