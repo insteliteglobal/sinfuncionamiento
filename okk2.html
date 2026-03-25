@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiamsaNova IA | Ventas y Reservas Automáticas 24/7</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+/* Variables de Color */
+:root{
+  --primario:#6a00ff;
+  --secundario:#00e0ff;
+  --oscuro:#0b0b1f;
+  --claro:#ffffff;
+  --gris:#b0bec5;
+  --fondo-card:rgba(255,255,255,.06);
+}
+
+/* Reset y Estilos Generales */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+  background:var(--oscuro);
+  color:var(--claro);
+  line-height:1.7;
+  overflow-x:hidden; /* Previene scroll horizontal */
+}
+
+/* TRANSICIONES PARA ANIMACIONES DE SCROLL */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* BARRA SUPERIOR (HEADER) - PARA DESKTOP */
+.header-desktop{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:18px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(11,11,31,.9); /* Fondo semi-transparente */
+  backdrop-filter:blur(15px); /* Efecto blur */
+  z-index:1000;
+  border-bottom: 1px solid rgba(106,0,255,.2); /* Borde sutil */
+}
+
+.logo{
+  font-size:1.8rem;
+  font-weight:800;
+  color:var(--claro);
+}
+.logo span{
+  color:var(--secundario); /* El IA en color secundario */
+}
+
+.header-desktop nav a{
+  color:var(--gris); /* Color de enlaces normal */
+  text-decoration:none;
+  margin-left:30px;
+  font-weight:500;
+  font-size:1rem;
+  transition:.3s ease;
+}
+.header-desktop nav a:hover{
+  color:var(--secundario); /* Color al pasar el ratón */
+}
+
+/* Botón principal en el header (Probar en WhatsApp) */
+.btn-header{
+  padding:12px 25px;
+  border-radius:25px; /* Bordes redondeados */
+  background:linear-gradient(90deg,var(--primario),var(--secundario));
+  color:white !important; /* Importante para sobrescribir gris */
+  font-weight:600;
+  transition:.3s ease;
+  margin-left: 20px; /* Separación extra */
+  box-shadow: 0 5px 15px rgba(0,224,255,.3);
+  position: relative; /* Para el efecto de brillo */
+  overflow: hidden; /* Asegura que el brillo no se salga */
+}
+.btn-header::before { /* Efecto de brillo */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.4s ease;
+}
+.btn-header:hover::before {
+  left: 100%;
+}
+.btn-header:hover{
+  transform:scale(1.05);
+  box-shadow: 0 0 20px rgba(0,224,255,.4);
+}
+
+/* OCULTAR HEADER EN MÓVIL */
+@media(max-width:768px){
+  .header-desktop{display:none;}
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  height:70vh; /* Altura reducida pero impactante */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding-top: 70px; /* Espacio para el header fijo */
+}
+
+.hero video{
+  position:absolute;
+  inset:0; /* Cubre toda la sección */
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.3); /* Oscurece el video para que el texto resalte */
+}
+
+.hero-content{
+  z-index:2;
+  max-width:900px;
+  padding:20px;
+}
+
+.hero h1{
+  font-size:3.5rem; /* Más grande para impacto */
+  font-weight:800;
+  background:linear-gradient(90deg,var(--secundario),var(--primario));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow: 0 0 20px rgba(106,0,255,.3); /* Sombra sutil */
+}
+
+.hero p{
+  margin:15px 0 25px;
+  color:var(--gris);
+  font-size:1.2rem;
+  font-weight:300;
+}
+
+/* Botones generales (para Hero, CTA, etc.) */
+.btn{
+  padding:14px 34px;
+  border-radius:30px;
+  background:linear-gradient(90deg,var(--primario),var(--secundario));
+  color:white !important;
+  text-decoration:none;
+  font-weight:600;
+  margin:5px;
+  display:inline-block;
+  transition:.3s ease;
+  box-shadow: 0 5px 20px rgba(0,224,255,.2); /* Sombra atractiva */
+}
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow: 0 8px 25px rgba(0,224,255,.4);
+}
+
+/* SECCIONES GENERALES */
+section{
+  padding:100px 10%; /* Espacio vertical generoso */
+  position:relative;
+  overflow:hidden; /* Para contener animaciones */
+}
+.titulo{
+  text-align:center;
+  margin-bottom:60px;
+  padding-bottom:20px; /* Espacio debajo del título */
+  border-bottom: 1px solid rgba(255,255,255,.1); /* Separador sutil */
+}
+.titulo h2{
+  font-size:2.8rem;
+  font-weight:800;
+  margin-bottom:15px;
+}
+.titulo p{
+  color:var(--gris);
+  font-size:1.1rem;
+}
+
+/* Grid para Cards */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:35px;
+}
+
+/* Estilo de las Cards */
+.card{
+  background:var(--fondo-card);
+  padding:35px;
+  border-radius:22px;
+  backdrop-filter:blur(12px);
+  transition:.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animación suave */
+  border: 1px solid rgba(255,255,255,.05); /* Borde delgado */
+}
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 15px 40px rgba(0,224,255,.25); /* Sombra más pronunciada */
+}
+.card h3{
+  margin-bottom:15px;
+  color:var(--secundario); /* Títulos de card en secundario */
+  font-size:1.4rem;
+}
+.card p{
+  color:var(--gris);
+  font-size:1rem;
+}
+
+/* SECCIÓN CÓMO FUNCIONA */
+.card.como-funciona-item{
+  text-align:center;
+  background: linear-gradient(145deg, #0a0a1f, #12123a); /* Gradiente en las cards */
+  border: 1px solid rgba(0,224,255,.1);
+}
+.card.como-funciona-item h3{
+  font-size:1.8rem;
+  color:var(--secundario);
+  position:relative;
+  display:inline-block;
+  margin-bottom:20px;
+}
+.card.como-funciona-item h3::after{
+  content:'';
+  position:absolute;
+  bottom:-5px;
+  left:50%;
+  transform:translateX(-50%);
+  width:40px;
+  height:4px;
+  background:linear-gradient(90deg,var(--primario),var(--secundario));
+  border-radius:2px;
+}
+.card.como-funciona-item p{
+  font-size:1rem;
+  color:var(--gris);
+}
+
+/* SECCIÓN DEMO CHAT */
+#demo-chat .card{
+  background:rgba(26,26,58,.5); /* Fondo oscuro para el chat */
+  border: 1px solid rgba(0,224,255,.1);
+}
+#demo-chat .card p{
+  margin-bottom:10px;
+  font-size:0.95rem;
+  color:#e0e0e0;
+}
+#demo-chat .card p:last-of-type{
+  margin-bottom:0;
+}
+#demo-chat .card strong{
+  color:var(--primario);
+}
+#demo-chat .card h3{
+  color:var(--secundario);
+  font-size:1.4rem;
+  margin-bottom:15px;
+}
+
+/* SECCIÓN PLANES */
+.precio{
+  font-size:2.5rem;
+  font-weight:800;
+  color:var(--secundario);
+  margin:15px 0;
+}
+.card.plan-card h3{
+  color:var(--claro);
+}
+.card.plan-card p{
+  margin-bottom:20px;
+  font-size:1rem;
+  color:var(--gris);
+}
+.card.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+  text-align: left; /* Alineación a la izquierda para la lista */
+  color: var(--gris);
+}
+.card.plan-card li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+}
+.card.plan-card li::before {
+  content: '✅'; /* Emoji de check */
+  color: var(--secundario);
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+/* SECCIÓN DE TESTIMONIOS */
+.testimonio-text{
+  font-style:italic;
+  font-size:1.1rem;
+  color:var(--gris);
+  margin-bottom:15px;
+}
+.testimonio-autor{
+  font-weight:600;
+  color:var(--claro);
+}
+
+/* SECCIÓN DE CONFIANZA / LOGOS */
+.icon-list{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:25px;
+}
+.icon-card{
+  background:var(--fondo-card);
+  padding:20px 30px;
+  border-radius:15px;
+  backdrop-filter:blur(10px);
+  font-size:1.1rem;
+  font-weight:600;
+  color:var(--gris);
+  border: 1px solid rgba(255,255,255,.05);
+  transition:.3s;
+}
+.icon-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(0,224,255,.2);
+  color:var(--secundario);
+}
+
+/* BOTÓN WHATSAPP FLOTANTE ADICIONAL */
+.whatsapp-float {
+  position: fixed;
+  bottom: 100px; /* Ajusta esta posición si interfiere con el menú tortuga */
+  right: 30px;
+  z-index: 998; /* Debajo del menú tortuga */
+  display: block;
+}
+.whatsapp-float a {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(90deg, #25d366, #128c7e); /* Verde WhatsApp */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.whatsapp-float a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 35px rgba(37, 211, 102, 1);
+}
+.whatsapp-float svg {
+  width: 35px;
+  height: 35px;
+  fill: white;
+}
+
+/* MENÚ TORTUGA (SOLO MÓVIL) */
+.menu-tortuga{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  z-index:999; /* Encima de todo */
+  display:block;
+}
+
+@media(min-width:769px){
+  .menu-tortuga{display:none;} /* Oculto en desktop */
+}
+
+.menu-btn{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:linear-gradient(90deg,var(--primario),var(--secundario));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  cursor:pointer;
+  box-shadow: 0 0 25px rgba(106,0,255,.5);
+  transition:.3s;
+}
+.menu-btn:hover{
+  transform:scale(1.1);
+  box-shadow: 0 0 35px rgba(0,224,255,.7);
+}
+
+.menu-items{
+  position:absolute;
+  bottom:85px; /* Posición por encima del botón */
+  right:10px;
+  display:none; /* Inicialmente oculto */
+  flex-direction:column;
+  gap:12px;
+  animation: fadeIn 0.5s ease-out forwards; /* Animación de aparición */
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.menu-items a{
+  background:rgba(26,26,58,.8); /* Fondo oscuro y transparente */
+  padding:15px 25px;
+  border-radius:25px;
+  color:white;
+  text-decoration:none;
+  font-size:15px;
+  text-align:center;
+  font-weight:500;
+  transition:.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,.2);
+}
+.menu-items a:hover{
+  background:linear-gradient(90deg,var(--primario),var(--secundario));
+  color:white;
+  transform:translateX(-5px);
+}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(180deg, rgba(11,11,31,.8), #050514); /* Gradiente suave */
+  padding:70px 10%;
+  text-align:center;
+  color:var(--gris);
+  font-size:0.95rem;
+  border-top: 1px solid rgba(106,0,255,.2);
+}
+footer p{
+  margin-bottom:10px;
+}
+footer a{
+  color:var(--secundario);
+  text-decoration:none;
+  transition:.3s;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+/* 🔥 Alinear y bajar botones en planes */
+.card.plan-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.card.plan-card .btn{
+  margin-top:auto;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER DESKTOP - SE MUESTRA SOLO EN WEB -->
+<header class="header-desktop">
+  <div class="logo">LiamsaNova <span>IA</span></div>
+  <nav>
+    <a href="#home">Inicio</a>
+    <a href="#como-funciona">Cómo Funciona</a>
+    <a href="#demo-chat">Demo Chat</a>
+    <a href="#planes">Planes</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="https://wa.me/0000000000" class="btn-header">Probar en WhatsApp</a>
+  </nav>
+</header>
+
+<!-- HERO SECTION -->
+<div class="hero" id="home">
+  <video autoplay muted loop>
+    <!-- Video de tecnología/IA - puedes cambiar el source -->
+    <source src="https://www.pexels.com/es-es/download/video/34279721/" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <h1>LiamsaNova IA</h1>
+    <p>Transforma tu WhatsApp en un vendedor, recepcionista y cobrador automático 24/7.</p>
+    <a href="#planes" class="btn">Ver Planes</a>
+    <a href="#demo-chat" class="btn">Ver Demo</a>
+  </div>
+</div>
+
+<!-- SECCIÓN DE BENEFICIOS -->
+<section id="beneficios">
+  <div class="titulo">
+    <h2>Beneficios Clave de LiamsaNova IA</h2>
+    <p>Maximiza tu negocio sin esfuerzo</p>
+  </div>
+  <div class="grid">
+    <div class="card beneficio animate-on-scroll">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQ iPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIxLjAxOSAyMGwtMS40MDUtNy45MjVsLTEuNTM4LTguMDM1Yy0wLjM2OC0xLjkyNi0yLjA3NS0zLjMwMS00LjE5Ni0zLjMwMUg3LjY3MWMtMi4xMjEgMC0zLjgyOCAxLjM3NS00LjE5NiAzLjMwNUwzLjk4MSAyMGwtLjAwMSAxLjA4OWMtLjAzIDEuOTg4LjQ2NyA0LjAwOCAyLjAzMyA0LjkyMmwtMTIuOTU0IDUuMDQxYy0xLjM0LjU4Mi0yLjA1OSAxLjU3Ny0yLjA1OSAyLjU1N2MwIDEtLjcxNyAyLjQxIDMuNjQ0IDQuNzY4bDEyLjk1My01LjA0MWMtLjAzIDEuOTg4LjQ2NyA0LjAwOCAyLjAzMy A0LjkyMmwtMTIuOTU0IDUuMDRjLTEuMzQuNTgyLTIuMDU5IDEuNTc3LTIuMDU5IDIuNTU3YzAgMS0uNzE3IDIuNDE0IDMuNjQ0IDQuNzY4bDEyLjk1NC01LjA0MWMuMDMgMS45ODcuNDY3IDQuMDA4IDIuMDMzIDQuOTIybDEyLjk1NC01LjA0MWMxLjM0LS41ODIgMi4wNi0xLjU3NyAyLjA2LTIuNTU3YzAtMS0uNzE3LTIuNDE0LTMuNjQ0LTQuNzY4WiIvPjwvcGF0aD48L3N2Zz4=" alt="Icono Atención"/>
+      <h3>Atención 24/7</h3>
+      <p>Responde consultas, agenda citas y toma pedidos automáticamente, sin importar la hora.</p>
+    </div>
+    <div class="card beneficio animate-on-scroll">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQ iPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIxLjcgNS40MjljLjcuNjY4LjMuNzQ1LTEuMjMxIDEuNTYxLTIuMDgyLjI3LTEuMDMxLjUyNi0xLjk2Ny43NDMtMi40MTctLjExNS0uMjAxLS4xMjUtLjM0LS4xNzUtLjcwMS01NjUtLjgxNy0xLjcwNC0xLjQ2LTIuNjY0LTIuNjY0LTEuMzU1LTEuNTE1LTIuMjY1LTIuMjU0LTIuNTU4LTMuMDQ3aC0wLjAwMWMtLjMzMS0uODM2LTEuMjA1LTEuNTkxLTIuMTE2LTIuMDk3LTEuMTY3LS42NjItMS43NC0uNTA5LTEuOTMzLS40MDFzLTQuNjA3LTEuODM2Yy0xLjIwMy0uNzExLTIuNDk z03.MDAxLjYwNi4yNjggMS4yOTMuODE0IDEuOTYzYy43MjQgLjkgMS44NTQgMS40NzcgMy4wMTggMi4wOTJjMS4xNjQgLjYxNiAyLjU2IDEuMTEyIDQuMTE0IDEuNDIyYy4xOTUuMDI0LjM5NC.MzA0LjU5NC.MzA0NmMxLjQ1Ny0uMDA3IDIuODg1LS4yMTQgNC4wMTctLjYzOGMuNzUzLS4yODcgMS4zMS0uNzI3IDEuODMzLTEuMzI2LS41NjEtLjk5My0uMTkxLTIuNjA4LS4yMDEtMy43NTctLjAyNC0uNzA3LS4xODctMS43NTctLjQwNS0yLjA0NS0uNTY2LTEuNjU3LTEuMzQtMS45OTUtMS45NTItMS45OTVzLTQuMzcgMy43NDVjLTEuNDIyLjY4My0yLjk4OCAxLjE3Ny00LjU4OSAxLjQ2NWMtLjQ5IC.MTE4IDEuODU b4.MTM0Ny4yNjFjLS41NDQuMTE4LTEuMTUzLjE5Mi0xLjgyNy4xOTNjLS40MjcgMC0uODU0LS4wMjMtMS4yNzctLjA3MWMtLjc5OS0uMDc0LTEuNTk2LS4xODQtMi4zOTMtLjMzNmMtMi4zNjktLjQ1LTQuNjE3LTEuMDQ0LTQuNjE3LTEuMTk5LS43NTUtMS4yOTQtMS4xOTktMi43MTktMS41NDgtMi43MTljMC0xLjUzNy43LTEuMTQyLTQuMjE3aDEuODdjMS4xMDMuMDEyIDIuMTE3LjIxNiAzLjEzNC.MzA0MWMuNjg5LjI0NSAxLjc1Ny41MTUgMS45OTEuNjcxYy40MDUuMTYuMDguMjk L.MzA0Mi4yMTItMzk1Yy44MzMuMjA4IDEuNjY2LjMxNiAyLjUwNy4zMTZjLjc5NiAwIDEuNTk0LS4xMDIgMi4zOTEtLjQwNmMxLjI0OS0uNDc0IDIuNDk3LS45NTQgMy43NDYtMS40NDRjLjM2Ni04LjM0NS0uMjg2LTEyLjIyNS0uMzA2LTEzLjgzMWMwLTEuMjIyLjU4My0yLjQzNyAxLjQ4My0zLjMxMWMtLjAxNS45MzYuMDU0IDEuOTQ2LS4zNDQgMi45MjQtLjMwNS43NjUtLjczMSAxLjI1NS0xLjEyIDEuODQyYy0xLjEwMSAxLjQzNC0yLjYxOCA3LjM4NyAyMS4xOTEgNC43NDZjLjczNi.MzA0LjI2NyAxLjMwMSAuNzQzIDEuMjA5IDEuMzUy<bos>1.NzUxLjUzNGMxLjA0NS.MzA0LjkyMyAxLjQ1NSAyLjUxOSAxLjE0Mi 0.MzA0LjAwOS0uMjcxLjExOS0uNjAyLjIwNy0uOTY0LjI4N3oiLz48L3BhdGg+PC9zdmc+">
+      <h3>Automatización</h3>
+      <p>Deja que la IA gestione citas, pedidos y pagos para que te enfoques en tu negocio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN CÓMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="titulo">
+    <h2>¿Cómo funciona LiamsaNova IA?</h2>
+    <p>Tu negocio en piloto automático en 3 pasos sencillos</p>
+  </div>
+  <div class="grid">
+    <div class="card como-funciona-item animate-on-scroll">
+      <h3><span>1️⃣</span> El cliente escribe</h3>
+      <p>El usuario contacta tu WhatsApp desde anuncios, redes o web, y la IA recibe la conversación.</p>
+    </div>
+    <div class="card como-funciona-item animate-on-scroll">
+      <h3><span>2️⃣</span> La IA interactúa</h3>
+      <p>Nuestra IA conversa, agenda citas, toma pedidos, responde FAQs y procesa pagos al instante.</p>
+    </div>
+    <div class="card como-funciona-item animate-on-scroll">
+      <h3><span>3️⃣</span> Tú ganas</h3>
+      <p>Disfruta de ventas y atenciones automatizadas 24/7, aumentando ingresos y fidelizando clientes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DEMO CHAT -->
+<section id="demo-chat">
+  <div class="titulo">
+    <h2>Así conversa tu WhatsApp con LiamsaNova IA</h2>
+    <p>Simulación de una interacción real para que veas la magia</p>
+  </div>
+  <div class="grid">
+    <div class="card animate-on-scroll">
+      <p><strong>Cliente:</strong> Hola, ¿tienen mesas para 2 personas hoy a las 8pm?</p>
+      <p><strong>LiamsaNova IA:</strong> ✅ ¡Hola! Claro que sí. Confirmamos tu reserva para 2 personas hoy a las 8:00 PM.</p>
+      <p><strong>Cliente:</strong> ¡Genial, gracias!</p>
+      <p><strong>LiamsaNova IA:</strong> 🚀 Tu reserva está lista. ¿Deseas añadir algún extra o realizar un pago anticipado?</p>
+      <p><strong>Cliente:</strong> Pago anticipado del 20%</p>
+      <p><strong>LiamsaNova IA:</strong> 💳 En breve recibirás el enlace de pago seguro. ¡Gracias!</p>
+    </div>
+    <div class="card animate-on-scroll">
+      <h3>✅ Diálogos Inteligentes</h3>
+      <p>Respuestas naturales y contextualmente correctas que encantan a tus clientes.</p>
+      <h3>✅ Gestión Completa</h3>
+      <p>Desde la primera pregunta hasta el cobro final, todo automatizado.</p>
+      <p style="margin-top: 20px;">La IA se adapta a tu negocio: Restaurante, Clínica, Tienda, ¡lo que necesites!</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE PLANES -->
+<section id="planes">
+  <div class="titulo">
+    <h2>Planes Diseñados para Crecer</h2>
+    <p>Elige la opción que mejor se ajuste a tu negocio</p>
+  </div>
+  <div class="grid">
+    <div class="card plan-card animate-on-scroll">
+      <h3>Básico</h3>
+      <p class="precio">$29<span>/mes</span></p>
+      <p>Ideal para iniciar la automatización.</p>
+      <ul>
+        <li>✅ Respuesta a FAQs</li>
+        <li>✅ Captura de leads</li>
+        <li>✅ Soporte por chat</li>
+      </ul>
+      <a href="https://wa.me/0000000000" class="btn">Empezar Ahora</a>
+    </div>
+    <div class="card plan-card animate-on-scroll" style="border: 2px solid var(--secundario);"> <!-- Plan destacado -->
+      <h3>Pro</h3>
+      <p class="precio">$59<span>/mes</span></p>
+      <p>La solución completa para ventas y reservas.</p>
+      <ul>
+        <li>✅ Todo de Básico</li>
+        <li>✅ Gestión de citas/reservas</li>
+        <li>✅ Toma de pedidos</li>
+        <li>✅ Pagos integrados</li>
+      </ul>
+      <a href="https://wa.me/0000000000" class="btn">El Más Vendido</a>
+    </div>
+    <div class="card plan-card animate-on-scroll">
+      <h3>Empresa</h3>
+      <p class="precio">$99<span>/mes</span></p>
+      <p>Automatización avanzada con soporte dedicado.</p>
+      <ul>
+        <li>✅ Todo de Pro</li>
+        <li>✅ IA Personalizada</li>
+        <li>✅ Soporte premium 24/7</li>
+        <li>✅ Reportes avanzados</li>
+      </ul>
+      <a href="https://wa.me/0000000000" class="btn">Contratar</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE TESTIMONIOS -->
+<section id="testimonios">
+  <div class="titulo">
+    <h2>Lo que nuestros clientes dicen</h2>
+    <p>Historias de éxito que inspiran</p>
+  </div>
+  <div class="grid">
+    <div class="card animate-on-scroll">
+      <p class="testimonio-text">“LiamsaNova IA es un game-changer. Las reservas se gestionan solas y mis clientes están encantados con la rapidez.”</p>
+      <p class="testimonio-autor"><strong>- Ana García, Dueña de "Spa Bienestar"</strong></p>
+    </div>
+    <div class="card animate-on-scroll">
+      <p class="testimonio-text">“Hemos visto un aumento del 40% en ventas directas desde que integramos la IA. ¡Impresionante!”</p>
+      <p class="testimonio-autor"><strong>- Carlos López, Gerente de "Gourmet Express"</strong></p>
+    </div>
+    <div class="card animate-on-scroll">
+      <p class="testimonio-text">“La automatización de pagos ha sido la clave. Cobramos todo sin fricción y los clientes lo agradecen.”</p>
+      <p class="testimonio-autor"><strong>- Sofía Martínez, Directora de "TechStore Online"</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE CONFIANZA / LOGOS -->
+<section>
+  <div class="titulo">
+    <h2>Confía en LiamsaNova IA</h2>
+    <p>Somos la solución elegida por líderes en diversos sectores</p>
+  </div>
+  <div class="icon-list">
+    <div class="icon-card animate-on-scroll">🏥 Clínicas y Doctores</div>
+    <div class="icon-card animate-on-scroll">🍽 Restaurantes y Cafeterías</div>
+    <div class="icon-card animate-on-scroll">🛒 Tiendas Online y E-commerce</div>
+    <div class="icon-card animate-on-scroll">🏢 Agencias y Servicios</div>
+    <div class="icon-card animate-on-scroll">🚗 Talleres y Servicios Automotrices</div>
+    <div class="icon-card animate-on-scroll">💄 Salones de Belleza y Estética</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 LiamsaNova IA – Automatización Inteligente de WhatsApp</p>
+  <p>Hecho con ❤️ por el equipo de LiamsaNova IA</p>
+  <p>Contacto: <a href="mailto:info@liamsanova.com">info@liamsanova.com</a> | <a href="#">Política de Privacidad</a> | <a href="#">Términos del Servicio</a></p>
+</footer>
+
+<!-- BOTÓN WHATSAPP FLOTANTE ADICIONAL -->
+<div class="whatsapp-float">
+  <a href="https://wa.me/0000000000?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20LiamsaNova%20IA." target="_blank" aria-label="Chat en WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="35px" height="35px">
+      <path d="M20.1 7.9c-2.1-2.2-4.7-3.5-7.7-3.5-5.6 0-10 4.4-10 10s4.4 10 10 10c3.1 0 5.7-1.3 7.7-3.5l-2.1-2.1c-1.1 1-2.4 1.6-3.9 1.6-3.3 0-6-2.7-6-6s2.7-6 6-6c1.5 0 2.8.6 3.9 1.6l2.1-2.1z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- MENÚ TORTUGA (SOLO MÓVIL) -->
+<div class="menu-tortuga">
+  <div class="menu-items" id="menu">
+    <a href="#home">Inicio</a>
+    <a href="#beneficios">Beneficios</a>
+    <a href="#como-funciona">Cómo Funciona</a>
+    <a href="#demo-chat">Demo</a>
+    <a href="#planes">Planes</a>
+    <a href="#testimonios">Testimonios</a>
+  </div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</div>
+
+<script>
+// Script para el Menú Tortuga
+function toggleMenu(){
+  const menu = document.getElementById("menu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}
+
+// Script para las animaciones de Scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.1 }); // Ajusta el umbral si quieres que aparezca antes/después
+
+  const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+  elementsToAnimate.forEach(element => {
+    observer.observe(element);
+  });
+});
+</script>
+
+</body>
+</html>
