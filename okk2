@@ -1,706 +1,445 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LiamsaNova IA | Ventas y Reservas Automáticas 24/7</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liamsanova IA | Tu WhatsApp en Piloto Automático 24/7</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        
+        :root {
+            --bg-dark: #030712; /* Slate 950 */
+            --primary: #7c3aed; /* Violet 600 */
+            --secondary: #06b6d4; /* Cyan 500 */
+            --accent: #10b981; /* Emerald 500 */
+        }
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: #ffffff; 
+            overflow-x: hidden;
+        }
 
-<style>
-/* Variables de Color */
-:root{
-  --primario:#6a00ff;
-  --secundario:#00e0ff;
-  --oscuro:#0b0b1f;
-  --claro:#ffffff;
-  --gris:#b0bec5;
-  --fondo-card:rgba(255,255,255,.06);
-}
+        /* --- EFECTOS GLOW (COMO EN TU IMAGEN) --- */
+        .glow-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 35px rgba(6, 182, 212, 0.7);
+            transform: scale(1.05) translateY(-2px);
+        }
 
-/* Reset y Estilos Generales */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{
-  background:var(--oscuro);
-  color:var(--claro);
-  line-height:1.7;
-  overflow-x:hidden; /* Previene scroll horizontal */
-}
+        .glow-text {
+            text-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
+        }
 
-/* TRANSICIONES PARA ANIMACIONES DE SCROLL */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.animate-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+        /* --- EFECTOS VISUALES MODERNOS --- */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-/* BARRA SUPERIOR (HEADER) - PARA DESKTOP */
-.header-desktop{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  padding:18px 8%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(11,11,31,.9); /* Fondo semi-transparente */
-  backdrop-filter:blur(15px); /* Efecto blur */
-  z-index:1000;
-  border-bottom: 1px solid rgba(106,0,255,.2); /* Borde sutil */
-}
+        .text-gradient {
+            background: linear-gradient(to right, #a78bfa, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.logo{
-  font-size:1.8rem;
-  font-weight:800;
-  color:var(--claro);
-}
-.logo span{
-  color:var(--secundario); /* El IA en color secundario */
-}
+        /* Video Background */
+        .video-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .video-container video {
+            min-width: 100%; min-height: 100%;
+            object-fit: cover;
+            opacity: 0.12;
+        }
 
-.header-desktop nav a{
-  color:var(--gris); /* Color de enlaces normal */
-  text-decoration:none;
-  margin-left:30px;
-  font-weight:500;
-  font-size:1rem;
-  transition:.3s ease;
-}
-.header-desktop nav a:hover{
-  color:var(--secundario); /* Color al pasar el ratón */
-}
+        .card-premium {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.3), rgba(15, 23, 42, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-premium:hover {
+            border-color: rgba(124, 58, 237, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
 
-/* Botón principal en el header (Probar en WhatsApp) */
-.btn-header{
-  padding:12px 25px;
-  border-radius:25px; /* Bordes redondeados */
-  background:linear-gradient(90deg,var(--primario),var(--secundario));
-  color:white !important; /* Importante para sobrescribir gris */
-  font-weight:600;
-  transition:.3s ease;
-  margin-left: 20px; /* Separación extra */
-  box-shadow: 0 5px 15px rgba(0,224,255,.3);
-  position: relative; /* Para el efecto de brillo */
-  overflow: hidden; /* Asegura que el brillo no se salga */
-}
-.btn-header::before { /* Efecto de brillo */
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.4s ease;
-}
-.btn-header:hover::before {
-  left: 100%;
-}
-.btn-header:hover{
-  transform:scale(1.05);
-  box-shadow: 0 0 20px rgba(0,224,255,.4);
-}
-
-/* OCULTAR HEADER EN MÓVIL */
-@media(max-width:768px){
-  .header-desktop{display:none;}
-}
-
-/* HERO */
-.hero{
-  position:relative;
-  height:70vh; /* Altura reducida pero impactante */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding-top: 70px; /* Espacio para el header fijo */
-}
-
-.hero video{
-  position:absolute;
-  inset:0; /* Cubre toda la sección */
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(.3); /* Oscurece el video para que el texto resalte */
-}
-
-.hero-content{
-  z-index:2;
-  max-width:900px;
-  padding:20px;
-}
-
-.hero h1{
-  font-size:3.5rem; /* Más grande para impacto */
-  font-weight:800;
-  background:linear-gradient(90deg,var(--secundario),var(--primario));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow: 0 0 20px rgba(106,0,255,.3); /* Sombra sutil */
-}
-
-.hero p{
-  margin:15px 0 25px;
-  color:var(--gris);
-  font-size:1.2rem;
-  font-weight:300;
-}
-
-/* Botones generales (para Hero, CTA, etc.) */
-.btn{
-  padding:14px 34px;
-  border-radius:30px;
-  background:linear-gradient(90deg,var(--primario),var(--secundario));
-  color:white !important;
-  text-decoration:none;
-  font-weight:600;
-  margin:5px;
-  display:inline-block;
-  transition:.3s ease;
-  box-shadow: 0 5px 20px rgba(0,224,255,.2); /* Sombra atractiva */
-}
-.btn:hover{
-  transform:scale(1.05);
-  box-shadow: 0 8px 25px rgba(0,224,255,.4);
-}
-
-/* SECCIONES GENERALES */
-section{
-  padding:60px 10%; /* Espacio vertical generoso */
-  position:relative;
-  overflow:hidden; /* Para contener animaciones */
-}
-.titulo{
-  text-align:center;
-  margin-bottom:60px;
-  padding-bottom:20px; /* Espacio debajo del título */
-  border-bottom: 1px solid rgba(255,255,255,.1); /* Separador sutil */
-}
-.titulo h2{
-  font-size:2.8rem;
-  font-weight:800;
-  margin-bottom:15px;
-}
-.titulo p{
-  color:var(--gris);
-  font-size:1.1rem;
-}
-
-/* Grid para Cards */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:35px;
-}
-
-/* Estilo de las Cards */
-.card{
-  background:var(--fondo-card);
-  padding:35px;
-  border-radius:22px;
-  backdrop-filter:blur(12px);
-  transition:.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animación suave */
-  border: 1px solid rgba(255,255,255,.05); /* Borde delgado */
-}
-.card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 15px 40px rgba(0,224,255,.25); /* Sombra más pronunciada */
-}
-.card h3{
-  margin-bottom:15px;
-  color:var(--secundario); /* Títulos de card en secundario */
-  font-size:1.4rem;
-}
-.card p{
-  color:var(--gris);
-  font-size:1rem;
-}
-
-/* SECCIÓN CÓMO FUNCIONA */
-.card.como-funciona-item{
-  text-align:center;
-  background: linear-gradient(145deg, #0a0a1f, #12123a); /* Gradiente en las cards */
-  border: 1px solid rgba(0,224,255,.1);
-}
-.card.como-funciona-item h3{
-  font-size:1.8rem;
-  color:var(--secundario);
-  position:relative;
-  display:inline-block;
-  margin-bottom:20px;
-}
-.card.como-funciona-item h3::after{
-  content:'';
-  position:absolute;
-  bottom:-5px;
-  left:50%;
-  transform:translateX(-50%);
-  width:40px;
-  height:4px;
-  background:linear-gradient(90deg,var(--primario),var(--secundario));
-  border-radius:2px;
-}
-.card.como-funciona-item p{
-  font-size:1rem;
-  color:var(--gris);
-}
-
-/* SECCIÓN DEMO CHAT */
-#demo-chat .card{
-  background:rgba(26,26,58,.5); /* Fondo oscuro para el chat */
-  border: 1px solid rgba(0,224,255,.1);
-}
-#demo-chat .card p{
-  margin-bottom:10px;
-  font-size:0.95rem;
-  color:#e0e0e0;
-}
-#demo-chat .card p:last-of-type{
-  margin-bottom:0;
-}
-#demo-chat .card strong{
-  color:var(--primario);
-}
-#demo-chat .card h3{
-  color:var(--secundario);
-  font-size:1.4rem;
-  margin-bottom:15px;
-}
-
-/* SECCIÓN PLANES */
-.precio{
-  font-size:2.5rem;
-  font-weight:800;
-  color:var(--secundario);
-  margin:15px 0;
-}
-.card.plan-card h3{
-  color:var(--claro);
-}
-.card.plan-card p{
-  margin-bottom:20px;
-  font-size:1rem;
-  color:var(--gris);
-}
-.card.plan-card ul {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 25px;
-  text-align: left; /* Alineación a la izquierda para la lista */
-  color: var(--gris);
-}
-.card.plan-card li {
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-}
-.card.plan-card li::before {
-  content: '✅'; /* Emoji de check */
-  color: var(--secundario);
-  margin-right: 10px;
-  font-size: 1.1em;
-}
-
-/* SECCIÓN DE TESTIMONIOS */
-.testimonio-text{
-  font-style:italic;
-  font-size:1.1rem;
-  color:var(--gris);
-  margin-bottom:15px;
-}
-.testimonio-autor{
-  font-weight:600;
-  color:var(--claro);
-}
-
-/* SECCIÓN DE CONFIANZA / LOGOS */
-.icon-list{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:25px;
-}
-.icon-card{
-  background:var(--fondo-card);
-  padding:20px 30px;
-  border-radius:15px;
-  backdrop-filter:blur(10px);
-  font-size:1.1rem;
-  font-weight:600;
-  color:var(--gris);
-  border: 1px solid rgba(255,255,255,.05);
-  transition:.3s;
-}
-.icon-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 10px 25px rgba(0,224,255,.2);
-  color:var(--secundario);
-}
-
-/* BOTÓN WHATSAPP FLOTANTE ADICIONAL */
-.whatsapp-float {
-  position: fixed;
-  bottom: 100px; /* Ajusta esta posición si interfiere con el menú tortuga */
-  right: 30px;
-  z-index: 998; /* Debajo del menú tortuga */
-  display: block;
-}
-.whatsapp-float a {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(90deg, #25d366, #128c7e); /* Verde WhatsApp */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 25px rgba(37, 211, 102, 0.7);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.whatsapp-float a:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 35px rgba(37, 211, 102, 1);
-}
-.whatsapp-float svg {
-  width: 35px;
-  height: 35px;
-  fill: white;
-}
-
-/* MENÚ TORTUGA (SOLO MÓVIL) */
-.menu-tortuga{
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  z-index:999; /* Encima de todo */
-  display:block;
-}
-
-@media(min-width:769px){
-  .menu-tortuga{display:none;} /* Oculto en desktop */
-}
-
-.menu-btn{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  background:linear-gradient(90deg,var(--primario),var(--secundario));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  cursor:pointer;
-  box-shadow: 0 0 25px rgba(106,0,255,.5);
-  transition:.3s;
-}
-.menu-btn:hover{
-  transform:scale(1.1);
-  box-shadow: 0 0 35px rgba(0,224,255,.7);
-}
-
-.menu-items{
-  position:absolute;
-  bottom:85px; /* Posición por encima del botón */
-  right:10px;
-  display:none; /* Inicialmente oculto */
-  flex-direction:column;
-  gap:12px;
-  animation: fadeIn 0.5s ease-out forwards; /* Animación de aparición */
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.menu-items a{
-  background:rgba(26,26,58,.8); /* Fondo oscuro y transparente */
-  padding:15px 25px;
-  border-radius:25px;
-  color:white;
-  text-decoration:none;
-  font-size:15px;
-  text-align:center;
-  font-weight:500;
-  transition:.3s;
-  box-shadow: 0 5px 15px rgba(0,0,0,.2);
-}
-.menu-items a:hover{
-  background:linear-gradient(90deg,var(--primario),var(--secundario));
-  color:white;
-  transform:translateX(-5px);
-}
-
-/* FOOTER */
-footer{
-  background:linear-gradient(180deg, rgba(11,11,31,.8), #050514); /* Gradiente suave */
-  padding:70px 10%;
-  text-align:center;
-  color:var(--gris);
-  font-size:0.95rem;
-  border-top: 1px solid rgba(106,0,255,.2);
-}
-footer p{
-  margin-bottom:10px;
-}
-footer a{
-  color:var(--secundario);
-  text-decoration:none;
-  transition:.3s;
-}
-footer a:hover{
-  text-decoration:underline;
-}
-/* 🔥 Alinear y bajar botones en planes */
-.card.plan-card{
-  display:flex;
-  flex-direction:column;
-}
-
-.card.plan-card .btn{
-  margin-top:auto;
-}
-</style>
+        /* Animaciones */
+        .floating { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Ajuste para FAQ details */
+        details summary::-webkit-details-marker { display:none; }
+    </style>
 </head>
+<body class="antialiased">
 
-<body>
+    <nav class="fixed w-full z-[100] glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl font-extrabold tracking-tighter uppercase italic glow-text">Liamsanova <span class="text-secondary">IA</span></span>
+            </div>
+            
+            <div class="hidden lg:flex gap-8 text-xs font-bold uppercase tracking-widest text-gray-400">
+                <a href="#inicio" class="hover:text-white transition">Inicio</a>
+                <a href="#funciones" class="hover:text-white transition">Funciones</a>
+                <a href="#demo" class="hover:text-white transition">Demo</a>
+                <a href="#planes" class="hover:text-white transition">Planes</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
+            </div>
 
-<!-- HEADER DESKTOP - SE MUESTRA SOLO EN WEB -->
-<header class="header-desktop">
-  <div class="logo">LiamsaNova <span>IA</span></div>
-  <nav>
-    <a href="#home">Inicio</a>
-    <a href="#como-funciona">Cómo Funciona</a>
-    <a href="#demo-chat">Demo Chat</a>
-    <a href="#planes">Planes</a>
-    <a href="#testimonios">Testimonios</a>
-    <a href="https://wa.me/0000000000" class="btn-header">Probar en WhatsApp</a>
-  </nav>
-</header>
+            <div class="flex items-center gap-4">
+                <a href="https://panel.liamsanova.com" class="hidden sm:block text-xs font-bold text-gray-300 hover:text-white tracking-widest uppercase">INGRESAR</a>
+                <a href="#planes" class="glow-button px-6 py-2.5 rounded-full text-xs font-black text-white uppercase tracking-widest shadow-lg">
+                    Probar Gratis
+                </a>
+                <button id="menu-btn" class="lg:hidden text-2xl text-white focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
 
-<!-- HERO SECTION -->
-<div class="hero" id="home">
-  <video autoplay muted loop>
-    <!-- Video de tecnología/IA - puedes cambiar el source -->
-    <source src="https://www.pexels.com/es-es/download/video/34279721/" type="video/mp4">
-  </video>
-  <div class="hero-content">
-    <h1>LiamsaNova IA</h1>
-    <p>Transforma tu WhatsApp en un vendedor, recepcionista y cobrador automático 24/7.</p>
-    <a href="#planes" class="btn">Ver Planes</a>
-    <a href="#demo-chat" class="btn">Ver Demo</a>
-  </div>
-</div>
+        <div id="mobile-nav" class="hidden lg:hidden bg-slate-950/95 backdrop-blur-sm border-t border-white/5 p-6 space-y-4 shadow-xl">
+            <a href="#inicio" class="block text-lg font-bold hover:text-secondary">Inicio</a>
+            <a href="#funciones" class="block text-lg font-bold hover:text-secondary">Cómo Funciona</a>
+            <a href="#planes" class="block text-lg font-bold hover:text-secondary">Planes</a>
+            <a href="https://panel.liamsanova.com" class="block bg-secondary text-white text-center py-3 rounded-xl font-bold">Panel de Control</a>
+        </div>
+    </nav>
 
-<!-- SECCIÓN DE BENEFICIOS -->
-<section id="beneficios">
-  <div class="titulo">
-    <h2>Beneficios Clave de LiamsaNova IA</h2>
-    <p>Maximiza tu negocio sin esfuerzo</p>
-  </div>
-  <div class="grid">
-    <div class="card beneficio animate-on-scroll">
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQ iPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIxLjAxOSAyMGwtMS40MDUtNy45MjVsLTEuNTM4LTguMDM1Yy0wLjM2OC0xLjkyNi0yLjA3NS0zLjMwMS00LjE5Ni0zLjMwMUg3LjY3MWMtMi4xMjEgMC0zLjgyOCAxLjM3NS00LjE5NiAzLjMwNUwzLjk4MSAyMGwtLjAwMSAxLjA4OWMtLjAzIDEuOTg4LjQ2NyA0LjAwOCAyLjAzMyA0LjkyMmwtMTIuOTU0IDUuMDQxYy0xLjM0LjU4Mi0yLjA1OSAxLjU3Ny0yLjA1OSAyLjU1N2MwIDEtLjcxNyAyLjQxIDMuNjQ0IDQuNzY4bDEyLjk1My01LjA0MWMtLjAzIDEuOTg4LjQ2NyA0LjAwOCAyLjAzMy A0LjkyMmwtMTIuOTU0IDUuMDRjLTEuMzQuNTgyLTIuMDU5IDEuNTc3LTIuMDU5IDIuNTU3YzAgMS0uNzE3IDIuNDE0IDMuNjQ0IDQuNzY4bDEyLjk1NC01LjA0MWMuMDMgMS45ODcuNDY3IDQuMDA4IDIuMDMzIDQuOTIybDEyLjk1NC01LjA0MWMxLjM0LS41ODIgMi4wNi0xLjU3NyAyLjA2LTIuNTU3YzAtMS0uNzE3LTIuNDE0LTMuNjQ0LTQuNzY4WiIvPjwvcGF0aD48L3N2Zz4=" alt="Icono Atención"/>
-      <h3>Atención 24/7</h3>
-      <p>Responde consultas, agenda citas y toma pedidos automáticamente, sin importar la hora.</p>
-    </div>
-    <div class="card beneficio animate-on-scroll">
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQ iPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTIxLjcgNS40MjljLjcuNjY4LjMuNzQ1LTEuMjMxIDEuNTYxLTIuMDgyLjI3LTEuMDMxLjUyNi0xLjk2Ny43NDMtMi40MTctLjExNS0uMjAxLS4xMjUtLjM0LS4xNzUtLjcwMS01NjUtLjgxNy0xLjcwNC0xLjQ2LTIuNjY0LTIuNjY0LTEuMzU1LTEuNTE1LTIuMjY1LTIuMjU0LTIuNTU4LTMuMDQ3aC0wLjAwMWMtLjMzMS0uODM2LTEuMjA1LTEuNTkxLTIuMTE2LTIuMDk3LTEuMTY3LS42NjItMS43NC0uNTA5LTEuOTMzLS40MDFzLTQuNjA3LTEuODM2Yy0xLjIwMy0uNzExLTIuNDk z03.MDAxLjYwNi4yNjggMS4yOTMuODE0IDEuOTYzYy43MjQgLjkgMS44NTQgMS40NzcgMy4wMTggMi4wOTJjMS4xNjQgLjYxNiAyLjU2IDEuMTEyIDQuMTE0IDEuNDIyYy4xOTUuMDI0LjM5NC.MzA0LjU5NC.MzA0NmMxLjQ1Ny0uMDA3IDIuODg1LS4yMTQgNC4wMTctLjYzOGMuNzUzLS4yODcgMS4zMS0uNzI3IDEuODMzLTEuMzI2LS41NjEtLjk5My0uMTkxLTIuNjA4LS4yMDEtMy43NTctLjAyNC0uNzA3LS4xODctMS43NTctLjQwNS0yLjA0NS0uNTY2LTEuNjU3LTEuMzQtMS45OTUtMS45NTItMS45OTVzLTQuMzcgMy43NDVjLTEuNDIyLjY4My0yLjk4OCAxLjE3Ny00LjU4OSAxLjQ2NWMtLjQ5IC.MTE4IDEuODU b4.MTM0Ny4yNjFjLS41NDQuMTE4LTEuMTUzLjE5Mi0xLjgyNy4xOTNjLS40MjcgMC0uODU0LS4wMjMtMS4yNzctLjA3MWMtLjc5OS0uMDc0LTEuNTk2LS4xODQtMi4zOTMtLjMzNmMtMi4zNjktLjQ1LTQuNjE3LTEuMDQ0LTQuNjE3LTEuMTk5LS43NTUtMS4yOTQtMS4xOTktMi43MTktMS41NDgtMi43MTljMC0xLjUzNy43LTEuMTQyLTQuMjE3aDEuODdjMS4xMDMuMDEyIDIuMTE3LjIxNiAzLjEzNC.MzA0MWMuNjg5LjI0NSAxLjc1Ny41MTUgMS45OTEuNjcxYy40MDUuMTYuMDguMjk L.MzA0Mi4yMTItMzk1Yy44MzMuMjA4IDEuNjY2LjMxNiAyLjUwNy4zMTZjLjc5NiAwIDEuNTk0LS4xMDIgMi4zOTEtLjQwNmMxLjI0OS0uNDc0IDIuNDk3LS45NTQgMy43NDYtMS40NDRjLjM2Ni04LjM0NS0uMjg2LTEyLjIyNS0uMzA2LTEzLjgzMWMwLTEuMjIyLjU4My0yLjQzNyAxLjQ4My0zLjMxMWMtLjAxNS45MzYuMDU0IDEuOTQ2LS4zNDQgMi45MjQtLjMwNS43NjUtLjczMSAxLjI1NS0xLjEyIDEuODQyYy0xLjEwMSAxLjQzNC0yLjYxOCA3LjM4NyAyMS4xOTEgNC43NDZjLjczNi.MzA0LjI2NyAxLjMwMSAuNzQzIDEuMjA5IDEuMzUy<bos>1.NzUxLjUzNGMxLjA0NS.MzA0LjkyMyAxLjQ1NSAyLjUxOSAxLjE0Mi 0.MzA0LjAwOS0uMjcxLjExOS0uNjAyLjIwNy0uOTY0LjI4N3oiLz48L3BhdGg+PC9zdmc+">
-      <h3>Automatización</h3>
-      <p>Deja que la IA gestione citas, pedidos y pagos para que te enfoques en tu negocio.</p>
-    </div>
-  </div>
-</section>
+    <header id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-lines-and-dots-in-blue-27715-large.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="max-w-5xl mx-auto px-6 text-center z-10">
+            <div class="inline-block px-4 py-1.5 mb-8 border border-cyan-500/30 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-black tracking-widest uppercase animate-pulse">
+                La Revolución del Social Commerce
+            </div>
+            <h1 class="text-5xl md:text-8xl font-extrabold mb-8 leading-tight italic">
+                Liamsanova <span class="text-gradient glow-text">IA</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+                No es un chatbot. Es tu <span class="text-white font-semibold">vendedor estrella</span>, disponible 24/7. Atiende, califica y cierra ventas en WhatsApp automáticamente, <span class="text-accent font-semibold">mientras tú escalas tu negocio.</span>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="#planes" class="glow-button px-12 py-5 rounded-2xl text-xl font-black italic shadow-2xl">Impulsar mi Facturación</a>
+                <a href="#demo" class="bg-white/5 border border-white/10 px-12 py-5 rounded-2xl text-lg font-bold hover:bg-white/10 transition backdrop-blur-md">Ver Demostración Actual</a>
+            </div>
+        </div>
+    </header>
 
-<!-- SECCIÓN CÓMO FUNCIONA -->
-<section id="como-funciona">
-  <div class="titulo">
-    <h2>¿Cómo funciona LiamsaNova IA?</h2>
-    <p>Tu negocio en piloto automático en 3 pasos sencillos</p>
-  </div>
-  <div class="grid">
-    <div class="card como-funciona-item animate-on-scroll">
-      <h3><span>1️⃣</span> El cliente escribe</h3>
-      <p>El usuario contacta tu WhatsApp desde anuncios, redes o web, y la IA recibe la conversación.</p>
-    </div>
-    <div class="card como-funciona-item animate-on-scroll">
-      <h3><span>2️⃣</span> La IA interactúa</h3>
-      <p>Nuestra IA conversa, agenda citas, toma pedidos, responde FAQs y procesa pagos al instante.</p>
-    </div>
-    <div class="card como-funciona-item animate-on-scroll">
-      <h3><span>3️⃣</span> Tú ganas</h3>
-      <p>Disfruta de ventas y atenciones automatizadas 24/7, aumentando ingresos y fidelizando clientes.</p>
-    </div>
-  </div>
-</section>
+    <section class="py-16 bg-slate-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div class="p-6">
+                <i class="fas fa-chart-line text-4xl text-accent mb-3"></i>
+                <p class="text-5xl font-extrabold text-white glow-text mb-1">45%</p>
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Aumento en Conversión</p>
+            </div>
+            <div class="p-6 border-l border-white/5">
+                <i class="fas fa-stopwatch text-4xl text-secondary mb-3"></i>
+                <p class="text-5xl font-extrabold text-white glow-text mb-1">0.8s</p>
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Tiempo de Respuesta</p>
+            </div>
+            <div class="p-6 border-l border-white/5">
+                <i class="fas fa-users-cog text-4xl text-primary mb-3"></i>
+                <p class="text-5xl font-extrabold text-white glow-text mb-1">10X</p>
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Productividad de Equipo</p>
+            </div>
+            <div class="p-6 border-l border-white/5">
+                <i class="fas fa-headset text-4xl text-accent mb-3"></i>
+                <p class="text-5xl font-extrabold text-white glow-text mb-1">24/7</p>
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Disponibilidad Total</p>
+            </div>
+        </div>
+    </section>
 
-<!-- SECCIÓN DEMO CHAT -->
-<section id="demo-chat">
-  <div class="titulo">
-    <h2>Así conversa tu WhatsApp con LiamsaNova IA</h2>
-    <p>Simulación de una interacción real para que veas la magia</p>
-  </div>
-  <div class="grid">
-    <div class="card animate-on-scroll">
-      <p><strong>Cliente:</strong> Hola, ¿tienen mesas para 2 personas hoy a las 8pm?</p>
-      <p><strong>LiamsaNova IA:</strong> ✅ ¡Hola! Claro que sí. Confirmamos tu reserva para 2 personas hoy a las 8:00 PM.</p>
-      <p><strong>Cliente:</strong> ¡Genial, gracias!</p>
-      <p><strong>LiamsaNova IA:</strong> 🚀 Tu reserva está lista. ¿Deseas añadir algún extra o realizar un pago anticipado?</p>
-      <p><strong>Cliente:</strong> Pago anticipado del 20%</p>
-      <p><strong>LiamsaNova IA:</strong> 💳 En breve recibirás el enlace de pago seguro. ¡Gracias!</p>
-    </div>
-    <div class="card animate-on-scroll">
-      <h3>✅ Diálogos Inteligentes</h3>
-      <p>Respuestas naturales y contextualmente correctas que encantan a tus clientes.</p>
-      <h3>✅ Gestión Completa</h3>
-      <p>Desde la primera pregunta hasta el cobro final, todo automatizado.</p>
-      <p style="margin-top: 20px;">La IA se adapta a tu negocio: Restaurante, Clínica, Tienda, ¡lo que necesites!</p>
-    </div>
-  </div>
-</section>
+    <section id="funciones" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-20 uppercase italic tracking-tighter">Beneficios de <span class="text-secondary">Clase Mundial</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-premium p-10 rounded-[2.5rem]">
+                    <i class="fas fa-bolt text-4xl text-violet-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4 italic text-white">Respuestas Al Instante</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Nuestra infraestructura ultra-rápida garantiza respuestas en microsegundos. Elimina la fricción y retén al cliente potencial.</p>
+                </div>
+                <div class="card-premium p-10 rounded-[2.5rem]">
+                    <i class="fas fa-brain text-4xl text-cyan-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4 italic text-white">IA Generativa Avanzada</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">No es un bot de menús rígidos. Entiende el contexto, el sentimiento del cliente y maneja objeciones complejas con fluidez humana.</p>
+                </div>
+                <div class="card-premium p-10 rounded-[2.5rem]">
+                    <i class="fas fa-network-wired text-4xl text-emerald-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold mb-4 italic text-white">Multicanal y Multitarea</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm">Gestiona miles de conversaciones simultáneas en WhatsApp, Instagram y Facebook desde un solo panel inteligente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- SECCIÓN DE PLANES -->
-<section id="planes">
-  <div class="titulo">
-    <h2>Planes Diseñados para Crecer</h2>
-    <p>Elige la opción que mejor se ajuste a tu negocio</p>
-  </div>
-  <div class="grid">
-    <div class="card plan-card animate-on-scroll">
-      <h3>Básico</h3>
-      <p class="precio">$29<span>/mes</span></p>
-      <p>Ideal para iniciar la automatización.</p>
-      <ul>
-        <li>✅ Respuesta a FAQs</li>
-        <li>✅ Captura de leads</li>
-        <li>✅ Soporte por chat</li>
-      </ul>
-      <a href="https://wa.me/0000000000" class="btn">Empezar Ahora</a>
-    </div>
-    <div class="card plan-card animate-on-scroll" style="border: 2px solid var(--secundario);"> <!-- Plan destacado -->
-      <h3>Pro</h3>
-      <p class="precio">$59<span>/mes</span></p>
-      <p>La solución completa para ventas y reservas.</p>
-      <ul>
-        <li>✅ Todo de Básico</li>
-        <li>✅ Gestión de citas/reservas</li>
-        <li>✅ Toma de pedidos</li>
-        <li>✅ Pagos integrados</li>
-      </ul>
-      <a href="https://wa.me/0000000000" class="btn">El Más Vendido</a>
-    </div>
-    <div class="card plan-card animate-on-scroll">
-      <h3>Empresa</h3>
-      <p class="precio">$99<span>/mes</span></p>
-      <p>Automatización avanzada con soporte dedicado.</p>
-      <ul>
-        <li>✅ Todo de Pro</li>
-        <li>✅ IA Personalizada</li>
-        <li>✅ Soporte premium 24/7</li>
-        <li>✅ Reportes avanzados</li>
-      </ul>
-      <a href="https://wa.me/0000000000" class="btn">Contratar</a>
-    </div>
-  </div>
-</section>
+    <section class="py-24 bg-slate-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <h2 class="text-4xl md:text-6xl font-black italic leading-tight">Configura tu imperio <span class="text-gradient">en 3 minutos</span></h2>
+                <div class="space-y-8">
+                    <div class="flex gap-6 items-start">
+                        <span class="bg-cyan-500/10 text-cyan-400 w-12 h-12 rounded-full flex items-center justify-center font-black flex-shrink-0 border border-cyan-500/20 shadow-lg">1</span>
+                        <div><h4 class="text-xl font-bold italic">Sincronización QR</h4><p class="text-gray-500">Escanea el código QR oficial de WhatsApp. Sin apps complicadas ni hardware adicional.</p></div>
+                    </div>
+                    <div class="flex gap-6 items-start">
+                        <span class="bg-cyan-500/10 text-cyan-400 w-12 h-12 rounded-full flex items-center justify-center font-black flex-shrink-0 border border-cyan-500/20 shadow-lg">2</span>
+                        <div><h4 class="text-xl font-bold italic">Carga de Conocimiento</h4><p class="text-gray-500">Sube PDFs, Excel, URLs o texto plano. La IA aprende tu negocio, precios y FAQs al instante.</p></div>
+                    </div>
+                    <div class="flex gap-6 items-start">
+                        <span class="bg-cyan-500/10 text-cyan-400 w-12 h-12 rounded-full flex items-center justify-center font-black flex-shrink-0 border border-cyan-500/20 shadow-lg">3</span>
+                        <div><h4 class="text-xl font-bold italic">Activación y Venta</h4><p class="text-gray-500">Define el tono, los horarios y activa el bot. Mira cómo caen los pedidos en automático.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative floating" data-aos="zoom-in">
+                <div class="absolute -inset-1 bg-gradient-to-r from-violet-600 to-cyan-600 rounded-[3rem] blur-2xl opacity-20"></div>
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80" class="relative rounded-[3rem] shadow-2xl border border-white/10" alt="Dashboard de Liamsanova">
+            </div>
+        </div>
+    </section>
 
-<!-- SECCIÓN DE TESTIMONIOS -->
-<section id="testimonios">
-  <div class="titulo">
-    <h2>Lo que nuestros clientes dicen</h2>
-    <p>Historias de éxito que inspiran</p>
-  </div>
-  <div class="grid">
-    <div class="card animate-on-scroll">
-      <p class="testimonio-text">“LiamsaNova IA es un game-changer. Las reservas se gestionan solas y mis clientes están encantados con la rapidez.”</p>
-      <p class="testimonio-autor"><strong>- Ana García, Dueña de "Spa Bienestar"</strong></p>
-    </div>
-    <div class="card animate-on-scroll">
-      <p class="testimonio-text">“Hemos visto un aumento del 40% en ventas directas desde que integramos la IA. ¡Impresionante!”</p>
-      <p class="testimonio-autor"><strong>- Carlos López, Gerente de "Gourmet Express"</strong></p>
-    </div>
-    <div class="card animate-on-scroll">
-      <p class="testimonio-text">“La automatización de pagos ha sido la clave. Cobramos todo sin fricción y los clientes lo agradecen.”</p>
-      <p class="testimonio-autor"><strong>- Sofía Martínez, Directora de "TechStore Online"</strong></p>
-    </div>
-  </div>
-</section>
+    <section class="py-24">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">Sectores <span class="text-cyan-400">Optimizados</span></h2>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card-premium overflow-hidden rounded-3xl">
+                <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=400&q=80" class="w-full h-40 object-cover" alt="Real Estate">
+                <div class="p-6">
+                    <h4 class="font-black text-cyan-400 mb-3 text-lg uppercase italic">Inmobiliarias</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Calificación de leads, envío de catálogos y agendamiento de visitas automático.</p>
+                </div>
+            </div>
+            <div class="card-premium overflow-hidden rounded-3xl">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80" class="w-full h-40 object-cover" alt="Restaurant">
+                <div class="p-6">
+                    <h4 class="font-black text-cyan-400 mb-3 text-lg uppercase italic">Restaurantes</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Gestión de reservas, toma de pedidos para delivery y respuestas sobre el menú.</p>
+                </div>
+            </div>
+            <div class="card-premium overflow-hidden rounded-3xl">
+                <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=400&q=80" class="w-full h-40 object-cover" alt="Clinic">
+                <div class="p-6">
+                    <h4 class="font-black text-cyan-400 mb-3 text-lg uppercase italic">Clínicas</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Agendamiento de turnos, recordatorios automáticos y FAQs sobre servicios médicos.</p>
+                </div>
+            </div>
+            <div class="card-premium overflow-hidden rounded-3xl">
+                <img src="https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&w=400&q=80" class="w-full h-40 object-cover" alt="Ecommerce">
+                <div class="p-6">
+                    <h4 class="font-black text-cyan-400 mb-3 text-lg uppercase italic">E-commerce</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Resolución de dudas sobre envíos, stock y recuperación de carritos abandonados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- SECCIÓN DE CONFIANZA / LOGOS -->
-<section>
-  <div class="titulo">
-    <h2>Confía en LiamsaNova IA</h2>
-    <p>Somos la solución elegida por líderes en diversos sectores</p>
-  </div>
-  <div class="icon-list">
-    <div class="icon-card animate-on-scroll">🏥 Clínicas y Doctores</div>
-    <div class="icon-card animate-on-scroll">🍽 Restaurantes y Cafeterías</div>
-    <div class="icon-card animate-on-scroll">🛒 Tiendas Online y E-commerce</div>
-    <div class="icon-card animate-on-scroll">🏢 Agencias y Servicios</div>
-    <div class="icon-card animate-on-scroll">🚗 Talleres y Servicios Automotrices</div>
-    <div class="icon-card animate-on-scroll">💄 Salones de Belleza y Estética</div>
-  </div>
-</section>
+    <section id="demo" class="py-24 bg-slate-950 border-y border-white/5 relative">
+        <div class="absolute -top-10 right-20 w-72 h-72 bg-violet-600/10 rounded-full blur-3xl opacity-30"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-16 italic tracking-tighter text-white glow-text">Mira a Liamsanova <span class="text-secondary">En Vivo</span></h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center bg-black/50 p-6 rounded-[3rem] border border-white/10 shadow-2xl relative">
+                <div class="bg-black rounded-[2.8rem] p-4 border-[10px] border-gray-900 shadow-inner max-w-sm mx-auto floating">
+                    <div class="bg-[#e5ddd5] h-[550px] rounded-[2rem] overflow-hidden flex flex-col font-sans">
+                        <div class="bg-[#075e54] p-4 flex items-center gap-3 border-b border-black/10">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 text-xl font-bold">L</div>
+                            <div>
+                                <p class="text-white font-bold text-sm">Liamsanova Bot</p>
+                                <p class="text-white/70 text-xs">● en línea</p>
+                            </div>
+                            <i class="fas fa-ellipsis-v text-white/70 ml-auto"></i>
+                        </div>
+                        <div class="flex-1 p-5 space-y-5 overflow-y-auto text-[13px] leading-relaxed">
+                            <div class="flex justify-start">
+                                <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-gray-800">Hola! Quisiera saber el precio de la suscripción Pro. ¿Tienen descuento anual?</div>
+                            </div>
+                            <div class="flex justify-end">
+                                <div class="bg-[#dcf8c6] p-3.5 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-gray-800 font-medium">¡Hola! 😊 El plan Pro cuesta $79/mes. Si eliges el pago anual, te regalamos <span class="font-bold text-emerald-700">2 meses GRATIS</span>. ¿Te envío el link de pago?</div>
+                            </div>
+                            <div class="flex justify-start">
+                                <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-gray-800 italic">Sí, por favor. ¿Aceptan tarjeta?</div>
+                            </div>
+                            <div class="flex justify-end">
+                                <div class="bg-[#dcf8c6] p-3.5 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-gray-800 font-bold">¡Claro! 💳 Aceptamos todas las tarjetas. Aquí tienes el link seguro: <span class="text-blue-700 underline decoration-blue-700/50">liamsanova.com/pay-pro</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-left space-y-6">
+                    <h4 class="text-2xl font-extrabold italic text-white leading-snug">Una conversación fluida, <span class="text-accent">que cierra ventas.</span></h4>
+                    <p class="text-gray-400 leading-relaxed text-sm">Observa cómo nuestra IA comprende la pregunta, maneja la objeción del precio ofreciendo el descuento anual y cierra la venta enviando el link de pago, todo en segundos.</p>
+                    <a href="https://wa.me/TUNUMERO" class="glow-button px-10 py-4 rounded-xl text-lg font-black italic inline-block shadow-lg">Pruébalo Tú Mismo Ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 LiamsaNova IA – Automatización Inteligente de WhatsApp</p>
-  <p>Hecho con ❤️ por el equipo de LiamsaNova IA</p>
-  <p>Contacto: <a href="mailto:info@liamsanova.com">info@liamsanova.com</a> | <a href="#">Política de Privacidad</a> | <a href="#">Términos del Servicio</a></p>
-</footer>
+    <section id="planes" class="py-32 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-20 relative">
+            <h2 class="text-5xl font-extrabold italic mb-4 uppercase tracking-tighter text-white glow-text">Inversión Inteligente</h2>
+            <p class="text-gray-500 font-bold uppercase tracking-widest text-xs">Aumenta tu ROI desde el primer día</p>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-10 max-w-6xl mx-auto items-center">
+            <div class="card-premium p-12 rounded-[3rem] text-center border-white/5 opacity-80 hover:opacity-100">
+                <h3 class="font-black text-gray-500 uppercase tracking-widest text-xs mb-6">Starter</h3>
+                <div class="text-6xl font-black mb-8 italic text-white">$29<span class="text-lg font-normal text-gray-600">/mes</span></div>
+                <ul class="text-gray-400 text-sm space-y-4 mb-10 font-medium not-italic text-left max-w-xs mx-auto">
+                    <li><i class="fas fa-check text-cyan-400 mr-2"></i> 1 Canal de WhatsApp</li>
+                    <li><i class="fas fa-check text-cyan-400 mr-2"></i> 1.000 Mensajes IA</li>
+                    <li><i class="fas fa-check text-cyan-400 mr-2"></i> Soporte vía Ticket</li>
+                </ul>
+                <button class="w-full py-4 border border-white/10 rounded-2xl font-black hover:bg-white/5 transition italic text-white uppercase text-sm tracking-widest">Elegir Plan</button>
+            </div>
+            
+            <div class="bg-gradient-to-br from-violet-700 to-cyan-700 p-12 rounded-[3.5rem] text-center scale-105 shadow-2xl relative border-4 border-cyan-400/30">
+                <span class="absolute -top-5 left-1/2 -translate-x-1/2 bg-cyan-400 text-black px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-xl">Más Rentable</span>
+                <h3 class="font-black text-white/70 uppercase tracking-widest text-xs mb-6">Professional</h3>
+                <div class="text-6xl font-black mb-8 italic text-white">$79<span class="text-lg font-normal text-white/50">/mes</span></div>
+                <ul class="text-white text-sm space-y-4 mb-10 font-bold italic text-left max-w-xs mx-auto">
+                    <li><i class="fas fa-check text-white mr-2"></i> Canales Ilimitados</li>
+                    <li><i class="fas fa-check text-white mr-2"></i> Mensajes Ilimitados</li>
+                    <li><i class="fas fa-check text-white mr-2"></i> Entrenamiento con PDF</li>
+                    <li><i class="fas fa-check text-white mr-2"></i> Soporte VIP 24/7</li>
+                </ul>
+                <button class="w-full py-4 bg-white text-black rounded-2xl font-black shadow-xl hover:scale-105 transition italic text-lg">Comenzar Ahora</button>
+            </div>
+            
+            <div class="card-premium p-12 rounded-[3rem] text-center border-white/5 opacity-80 hover:opacity-100">
+                <h3 class="font-black text-gray-500 uppercase tracking-widest text-xs mb-6">Enterprise</h3>
+                <div class="text-6xl font-black mb-8 italic text-white">$199<span class="text-lg font-normal text-gray-600">/mes</span></div>
+                <ul class="text-gray-400 text-sm space-y-4 mb-10 font-medium not-italic text-left max-w-xs mx-auto">
+                    <li><i class="fas fa-check text-cyan-400 mr-2"></i> Infraestructura Dedicada</li>
+                    <li><i class="fas fa-check text-cyan-400 mr-2"></i> Integración API Directa</li>
+                    <li><i class="fas fa-check text-cyan-400 mr-2"></i> Marca Blanca</li>
+                </ul>
+                <button class="w-full py-4 border border-white/10 rounded-2xl font-black hover:bg-white/5 transition italic text-white uppercase text-sm tracking-widest">Contactar Ventas</button>
+            </div>
+        </div>
+    </section>
 
-<!-- BOTÓN WHATSAPP FLOTANTE ADICIONAL -->
-<div class="whatsapp-float">
-  <a href="https://wa.me/0000000000?text=Hola%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20LiamsaNova%20IA." target="_blank" aria-label="Chat en WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="35px" height="35px">
-      <path d="M20.1 7.9c-2.1-2.2-4.7-3.5-7.7-3.5-5.6 0-10 4.4-10 10s4.4 10 10 10c3.1 0 5.7-1.3 7.7-3.5l-2.1-2.1c-1.1 1-2.4 1.6-3.9 1.6-3.3 0-6-2.7-6-6s2.7-6 6-6c1.5 0 2.8.6 3.9 1.6l2.1-2.1z"/>
-    </svg>
-  </a>
-</div>
+    <section class="py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-xs font-black tracking-[0.4em] uppercase text-gray-600 mb-12 italic">Integración Nativa con Tu Ecosistema</p>
+            <div class="flex flex-wrap justify-center gap-16 text-5xl text-gray-700">
+                <i class="fab fa-google hover:text-white transition duration-300"></i>
+                <i class="fab fa-shopify hover:text-white transition duration-300"></i>
+                <i class="fab fa-wordpress hover:text-white transition duration-300"></i>
+                <i class="fab fa-slack hover:text-white transition duration-300"></i>
+                <i class="fab fa-hubspot hover:text-white transition duration-300"></i>
+                <i class="fab fa-mailchimp hover:text-white transition duration-300"></i>
+            </div>
+        </div>
+    </section>
 
-<!-- MENÚ TORTUGA (SOLO MÓVIL) -->
-<div class="menu-tortuga">
-  <div class="menu-items" id="menu">
-    <a href="#home">Inicio</a>
-    <a href="#beneficios">Beneficios</a>
-    <a href="#como-funciona">Cómo Funciona</a>
-    <a href="#demo-chat">Demo</a>
-    <a href="#planes">Planes</a>
-    <a href="#testimonios">Testimonios</a>
-  </div>
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
-</div>
+    <section class="py-24 bg-slate-950 border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-16 italic uppercase text-white glow-text">El Nuevo Estándar</h2>
+            <div class="space-y-5">
+                <div class="flex justify-between items-center p-7 bg-white/5 rounded-2xl border border-cyan-500/20 shadow-lg">
+                    <span class="font-extrabold italic uppercase text-white">Comprensión de Contexto y Emoción</span>
+                    <i class="fas fa-check-circle text-accent text-3xl"></i>
+                </div>
+                <div class="flex justify-between items-center p-7 bg-white/5 rounded-2xl opacity-60">
+                    <span class="font-extrabold italic uppercase text-gray-300">Respuestas de Menú de Botones</span>
+                    <i class="fas fa-times-circle text-red-500 text-3xl"></i>
+                </div>
+                <div class="flex justify-between items-center p-7 bg-white/5 rounded-2xl border border-cyan-500/20 shadow-lg">
+                    <span class="font-extrabold italic uppercase text-white">Entrenamiento con PDFs Propios</span>
+                    <i class="fas fa-check-circle text-accent text-3xl"></i>
+                </div>
+                <div class="flex justify-between items-center p-7 bg-white/5 rounded-2xl border border-cyan-500/20 shadow-lg">
+                    <span class="font-extrabold italic uppercase text-white">Agendamiento de Citas Automatizado</span>
+                    <i class="fas fa-check-circle text-accent text-3xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-// Script para el Menú Tortuga
-function toggleMenu(){
-  const menu = document.getElementById("menu");
-  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-}
+    <section id="faq" class="py-24">
+        <div class="max-w-3xl mx-auto px-6 relative">
+            <div class="absolute -top-10 left-10 w-64 h-64 bg-cyan-600/10 rounded-full blur-3xl opacity-30"></div>
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 italic uppercase tracking-tighter text-cyan-400 glow-text">Dudas Resueltas</h2>
+            <div class="space-y-5 font-bold italic text-white text-lg">
+                <details class="group border border-white/5 rounded-2xl p-7 bg-white/5 cursor-pointer hover:bg-white/10 transition shadow-lg">
+                    <summary class="flex justify-between items-center uppercase tracking-tight">¿ES SEGURO USAR MI NÚMERO ACTUAL?<span class="text-cyan-400 group-open:rotate-180 transition-transform font-black">↑</span></summary>
+                    <p class="mt-5 text-gray-500 font-medium not-italic text-base leading-relaxed">Totalmente. Utilizamos los protocolos oficiales y seguros para garantizar la integridad de tu línea de WhatsApp Business.</p>
+                </details>
+                <details class="group border border-white/5 rounded-2xl p-7 bg-white/5 cursor-pointer hover:bg-white/10 transition shadow-lg">
+                    <summary class="flex justify-between items-center uppercase tracking-tight">¿NECESITO CONOCIMIENTOS TÉCNICOS?<span class="text-cyan-400 group-open:rotate-180 transition-transform font-black">↑</span></summary>
+                    <p class="mt-5 text-gray-500 font-medium not-italic text-base leading-relaxed">Para nada. Liamsanova es una plataforma No-Code. Si sabes usar WhatsApp Web, sabes usar Liamsanova.</p>
+                </details>
+                <details class="group border border-white/5 rounded-2xl p-7 bg-white/5 cursor-pointer hover:bg-white/10 transition shadow-lg">
+                    <summary class="flex justify-between items-center uppercase tracking-tight">¿QUÉ PASA SI LA IA NO SABE RESPONDER?<span class="text-cyan-400 group-open:rotate-180 transition-transform font-black">↑</span></summary>
+                    <p class="mt-5 text-gray-500 font-medium not-italic text-base leading-relaxed">La IA está entrenada para derivar la conversación a un agente humano de forma transparente si detecta que no tiene la información necesaria.</p>
+                </details>
+            </div>
+        </div>
+    </section>
 
-// Script para las animaciones de Scroll
-document.addEventListener('DOMContentLoaded', function() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      }
-    });
-  }, { threshold: 0.1 }); // Ajusta el umbral si quieres que aparezca antes/después
+    <section class="py-32 text-center bg-gradient-to-t from-cyan-900/30 to-transparent relative border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-6xl md:text-8xl font-black mb-12 italic leading-none text-white glow-text uppercase tracking-tighter">No pierdas <br><span class="text-gradient">más dinero</span></h2>
+            <p class="text-xl md:text-2xl text-gray-400 mb-16 max-w-2xl mx-auto leading-relaxed font-light">
+                Cada mensaje no respondido a tiempo es una venta perdida. Únete a las empresas líderes que ya automatizan su WhatsApp con Liamsanova IA.
+            </p>
+            <a href="#planes" class="glow-button px-16 py-7 rounded-[2rem] text-3xl font-black italic inline-block animate-pulse shadow-2xl shadow-cyan-500/40">EMPEZAR MI PRUEBA GRATIS</a>
+        </div>
+    </section>
 
-  const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-  elementsToAnimate.forEach(element => {
-    observer.observe(element);
-  });
-});
-</script>
+    <footer class="py-16 border-t border-white/5 bg-black text-gray-600">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-center md:text-left">
+                <span class="text-2xl font-black italic tracking-tighter text-white glow-text uppercase">LIAMSANOVA <span class="text-cyan-400 italic">IA</span></span>
+                <p class="text-sm mt-3 max-w-xs font-light">Escalando empresas a través del poder de la IA conversacional nativa.</p>
+            </div>
+            <div class="flex gap-10 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
+                <a href="#" class="hover:text-white transition">Privacidad</a>
+                <a href="#" class="hover:text-white transition">Términos</a>
+                <a href="#" class="hover:text-white transition">Afiliados</a>
+            </div>
+            <p class="text-[11px] font-bold uppercase tracking-widest italic">© 2026 Powered by Liamsanova Tech Group</p>
+        </div>
+    </footer>
 
+    <a href="https://wa.me/TUNUMERO" class="fixed bottom-10 right-10 w-16 h-16 bg-[#25d366] rounded-full flex items-center justify-center text-4xl shadow-[0_0_40px_rgba(37,211,102,0.5)] hover:scale-110 transition z-[200]">
+        <i class="fab fa-whatsapp text-white"></i>
+    </a>
+
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const nav = document.getElementById('mobile-nav');
+
+        btn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+        });
+
+        // Cerrar menú al hacer clic en un link (para mejor UX móvil)
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
