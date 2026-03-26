@@ -174,7 +174,7 @@ body{
 
 /* SECCIONES GENERALES */
 section{
-  padding:100px 10%; /* Espacio vertical generoso */
+  padding:60px 10%; /* Espacio vertical generoso */
   position:relative;
   overflow:hidden; /* Para contener animaciones */
 }
