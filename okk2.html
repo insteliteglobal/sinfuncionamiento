@@ -474,36 +474,47 @@ section {
     </div>
 </nav>
 
-<header class="hero-section">
-        
-        <div class="hero-overlay-mask"></div>
+<header class="hero-section" style="position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1920&auto=format&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed;">
+    
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,7,18,0.85) 0%, rgba(3,7,18,0.7) 50%, rgba(3,7,18,1) 100%); z-index: 1;"></div>
 
-        <div class="hero-content-safe">
-            
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
-                <span class="w-2 h-2 bg-[#25D366] rounded-full animate-ping"></span>
-                <span class="text-[10px] font-black uppercase tracking-widest text-slate-300">SISTEMA NEURAL V.4.0 ACTIVADO</span>
-            </div>
-            
-            <h1 class="text-5xl md:text-8xl font-black italic uppercase leading-[0.9] tracking-tighter mb-8 text-white">
-                LiamsaNova <span class="text-gradient-wa">IA</span> <br>
-                <span class="text-3xl md:text-5xl font-light normal-case tracking-tight text-slate-400">Ventas en piloto automático.</span>
-            </h1>
-            
-            <p class="text-lg md:text-2xl text-slate-300 max-w-3xl mx-auto mb-12 font-light leading-relaxed">
-                Transformamos tu WhatsApp en una <span class="text-white font-bold underline decoration-[#25D366]">máquina de facturación</span> con Inteligencia Artificial que piensa, siente y vende.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <button class="btn-glow px-12 py-5 rounded-2xl text-sm font-black uppercase tracking-widest italic text-white transform hover:scale-105 transition duration-300">
-                    Adquirir LiamsaNova IA
-                </button>
-                <button class="glass-card px-12 py-5 rounded-2xl text-sm font-black uppercase tracking-widest border border-white/10 text-white transform hover:scale-105 transition duration-300">
-                    Agendar Consultoría
-                </button>
-            </div>
+    <div class="hero-content-safe" style="position: relative; z-index: 10; text-align: center; width: 100%; max-width: 80rem; padding: 0 1.5rem;">
+        
+        <div style="display: inline-flex; align-items: center; gap: 8px; px: 16px; padding: 8px 16px; border-radius: 9999px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); margin-bottom: 32px;">
+            <span style="width: 8px; height: 8px; background: #25D366; border-radius: 50%; box-shadow: 0 0 10px #25D366;"></span>
+            <span style="font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.2em; color: #cbd5e1;">SISTEMA NEURAL V.4.0 ACTIVADO</span>
         </div>
-    </header>
+        
+        <h1 style="font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; font-style: italic; text-transform: uppercase; line-height: 1; letter-spacing: -0.05em; margin-bottom: 16px; color: white;">
+            LiamsaNova <span style="background: linear-gradient(to right, #25D366, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">IA</span>
+        </h1>
+
+        <h2 style="font-size: clamp(1.5rem, 4vw, 3rem); font-weight: 300; font-style: italic; letter-spacing: -0.02em; color: #94a3b8; margin-bottom: 32px;">
+            Ventas en piloto automático.
+        </h2>
+        
+        <p style="font-size: clamp(1rem, 2vw, 1.25rem); color: #94a3b8; max-width: 48rem; margin: 0 auto 48px auto; font-weight: 300; line-height: 1.6;">
+            Transformamos tu WhatsApp en una <span style="color: white; font-weight: 700; text-decoration: underline; text-decoration-color: #25D366;">máquina de facturación</span> con Inteligencia Artificial que piensa, siente y vende.
+        </p>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; align-items: center;">
+            <button class="btn-primary-nova" style="background: linear-gradient(135deg, #25D366, #3b82f6); color: white; padding: 20px 40px; border-radius: 16px; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; font-style: italic; border: none; cursor: pointer; box-shadow: 0 0 25px rgba(37, 211, 102, 0.5); transition: 0.3s;">
+                Adquirir LiamsaNova IA
+            </button>
+            <button style="background: rgba(255, 255, 255, 0.03); color: white; padding: 20px 40px; border-radius: 16px; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); cursor: pointer; transition: 0.3s;">
+                Agendar Consultoría
+            </button>
+        </div>
+    </div>
+</header>
+
+<style>
+    /* Este pequeño ajuste es para que el botón brille al pasar el mouse */
+    .btn-primary-nova:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(37, 211, 102, 0.8) !important;
+    }
+</style>
 
 
 <section id="metricas-elite" class="py-24 bg-slate-950 px-6 relative overflow-hidden">
