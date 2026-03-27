@@ -6,7 +6,7 @@
     <title>LiamsaNova IA | Automatización de WhatsApp Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
+ <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
         
         :root {
@@ -20,62 +20,89 @@
             background-color: var(--dark-bg); 
             color: #f8fafc; 
             overflow-x: hidden; 
+            margin: 0;
         }
 
-        /* --- CABECERA CON IMAGEN DE FONDO PREMIUM --- */
+        /* --- SECCIÓN HERO PREMIUM --- */
         .hero-section {
             position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-top: 5rem; /* pt-20 */
+            padding-top: 5rem;
             overflow: hidden;
-            background-color: #030712; /* Fondo de seguridad oscuro */
-            
-            /* IMAGEN DE FONDO RELACIONADA CON IA Y DATOS */
-            /* Usamos una imagen abstracta de conexiones neuronales/datos cibernéticos */
+            background-color: var(--dark-bg);
             background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed; /* Efecto Parallax sutil */
+            background-attachment: fixed;
         }
 
-        /* Máscara oscura superpuesta para garantizar legibilidad del texto */
         .hero-overlay-mask {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                180deg, 
-                rgba(3, 7, 18, 0.85) 0%,   /* Más oscuro arriba cerca del nav */
-                rgba(3, 7, 18, 0.70) 50%,  /* Medio en el centro */
-                rgba(3, 7, 18, 1) 100%     /* Negro total abajo para fundir con la siguiente sección */
-            );
+            background: linear-gradient(180deg, rgba(3,7,18,0.85) 0%, rgba(3,7,18,0.7) 50%, rgba(3,7,18,1) 100%);
             z-index: 1;
         }
 
-        /* Aseguramos que el contenido esté por encima de la máscara */
         .hero-content-safe {
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 0 1.5rem; /* px-6 */
-            max-width: 64rem; /* max-w-5xl */
+            padding: 0 1.5rem;
+            max-width: 64rem;
         }
 
-        /* --- EFECTOS PREMIUM --- */
-        .glass-card {
+        /* --- ESTILOS DE TARJETAS (ULTRA PREMIUM) --- */
+        
+        /* Clase Global para todas las tarjetas tipo Vidrio */
+        .glass-card, .glass-pro-card, .neon-border-card {
+            position: relative;
             background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
         }
-        .glass-card:hover {
-            border-color: var(--wa-green);
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(37, 211, 102, 0.03);
+
+        /* Brillo de borde Neon para todas las tarjetas */
+        .glass-card::before, .glass-pro-card::before, .neon-border-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 2rem;
+            padding: 1.5px; /* Grosor del borde de luz */
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(37,211,102,0.2) 40%, rgba(59,130,246,0.2) 60%, rgba(255,255,255,0.05));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
         }
+
+        .glass-card:hover, .glass-pro-card:hover, .neon-border-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(37, 211, 102, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* --- ELEMENTOS VISUALES ADICIONALES --- */
+        
+        .aurora-bg {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .aurora-green { background-color: var(--wa-green); }
+        .aurora-blue { background-color: var(--ai-blue); }
 
         .text-gradient-wa {
             background: linear-gradient(to right, #25D366, #3b82f6);
@@ -83,37 +110,32 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .btn-glow {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
-            transition: 0.3s;
+        .btn-glow-premium {
+            background: linear-gradient(135deg, #25D366, #3b82f6);
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: white;
+            font-weight: 800;
         }
-        .btn-glow:hover {
-            box-shadow: 0 0 40px rgba(37, 211, 102, 0.7);
-            transform: scale(1.05);
+        .btn-glow-premium:hover {
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.6);
+            transform: translateY(-2px) scale(1.05);
         }
 
-        /* Simulación WhatsApp */
-        .wa-chat-bg {
-            background-color: #e5ddd5;
-            background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+        /* Soporte móvil y utilidades */
+        @media (min-width: 1024px) {
+            body { cursor: crosshair; }
+            a, button { cursor: pointer; }
         }
-/* Solo para desktop */
-@media (min-width: 1024px) {
-    body { cursor: crosshair; }
-    a, button { cursor: pointer; }
-}
 
-/* Efecto de selección de texto */
-::selection {
-    background: #25D366;
-    color: #000;
-}
+        ::selection {
+            background: var(--wa-green);
+            color: #000;
+        }
 
-#mobile-menu {
-    transition: all 0.3s ease-in-out;
-}
-
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -180,54 +202,78 @@
     </header>
 
 
-<section id="metricas" class="py-24 bg-slate-950 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass-card p-8 rounded-3xl border border-white/5 bg-white/[0.02]">
-            <div class="text-[#25D366] mb-4 text-3xl"><i class="fas fa-bolt"></i></div>
-            <h3 class="text-4xl font-black italic italic uppercase tracking-tighter text-white">0.3s</h3>
-            <p class="text-slate-400 font-medium uppercase text-[10px] tracking-widest mt-2">Tiempo de Respuesta IA</p>
+<section id="metricas-elite" class="py-24 bg-slate-950 px-6 relative overflow-hidden">
+    <div class="aurora-bg aurora-green -top-20 -left-20"></div>
+    <div class="aurora-bg aurora-blue -bottom-20 -right-20 opacity-10"></div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+        <div class="neon-border-card p-10 flex flex-col justify-between h-full group">
+            <div class="text-[#25D366] mb-6 text-4xl opacity-80 group-hover:opacity-100 transition"><i class="fas fa-microchip"></i></div>
+            <div>
+                <h3 class="text-5xl font-extrabold italic uppercase tracking-tighter text-white">0.3<span class="text-2xl font-normal text-slate-500">s</span></h3>
+                <p class="text-slate-400 font-bold uppercase text-[10px] tracking-[0.3em] mt-3">Latencia Neural Media</p>
+            </div>
         </div>
-        <div class="glass-card p-8 rounded-3xl border border-[#25D366]/20 bg-[#25D366]/5 relative overflow-hidden">
-            <div class="text-white mb-4 text-3xl"><i class="fas fa-chart-line"></i></div>
-            <h3 class="text-4xl font-black italic uppercase tracking-tighter text-white">+412%</h3>
-            <p class="text-slate-300 font-medium uppercase text-[10px] tracking-widest mt-2">Incremento en Conversión</p>
-            <div class="absolute -right-4 -bottom-4 opacity-10 text-8xl text-white italic font-black">ROI</div>
+        
+        <div class="neon-border-card p-10 flex flex-col justify-between h-full border-[#25D366]/20 bg-[#25D366]/5 shadow-[0_0_40px_rgba(37,211,102,0.05)]">
+            <div class="text-white mb-6 text-4xl"><i class="fas fa-rocket"></i></div>
+            <div>
+                <h3 class="text-5xl font-extrabold italic uppercase tracking-tighter text-white">+315<span class="text-2xl font-normal">%</span></h3>
+                <p class="text-white font-bold uppercase text-[10px] tracking-[0.3em] mt-3">Conversión Comercial Promedio</p>
+            </div>
+            <div class="absolute inset-0 bg-[#25D366]/10 blur-[60px] rounded-full opacity-50"></div>
         </div>
-        <div class="glass-card p-8 rounded-3xl border border-white/5 bg-white/[0.02]">
-            <div class="text-blue-500 mb-4 text-3xl"><i class="fas fa-shield-halved"></i></div>
-            <h3 class="text-4xl font-black italic uppercase tracking-tighter text-white">256-bit</h3>
-            <p class="text-slate-400 font-medium uppercase text-[10px] tracking-widest mt-2">Encriptación de Datos</p>
+        
+        <div class="neon-border-card p-10 flex flex-col justify-between h-full group">
+            <div class="text-blue-500 mb-6 text-4xl opacity-80 group-hover:opacity-100 transition"><i class="fas fa-server"></i></div>
+            <div>
+                <h3 class="text-5xl font-extrabold italic uppercase tracking-tighter text-white">2048<span class="text-2xl font-normal">bit</span></h3>
+                <p class="text-slate-400 font-bold uppercase text-[10px] tracking-[0.3em] mt-3">Encriptación Cuántica de Datos</p>
+            </div>
         </div>
     </div>
 </section>
 
 
 
-<section id="como-funciona" class="py-32 bg-slate-950 relative overflow-hidden">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px]"></div>
+<section id="ingenieria-neural" class="py-32 bg-slate-950 px-6 relative overflow-hidden">
+    <div class="aurora-bg aurora-blue top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-10 blur-[150px]"></div>
 
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="text-center mb-20">
-            <h2 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter text-white">Ingeniería <span class="text-gradient-wa text-7xl">Neural</span></h2>
-            <p class="text-slate-500 mt-4 tracking-widest uppercase text-xs">Tres capas de procesamiento para ventas perfectas</p>
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-24">
+            <div class="inline-block px-3 py-1 rounded-full border border-[#25D366]/20 bg-[#25D366]/5 text-[#25D366] text-[9px] font-black uppercase tracking-[0.3em] mb-4">Arquitectura de IA</div>
+            <h2 class="text-5xl md:text-7xl font-extrabold italic uppercase tracking-tighter text-white leading-none">Flujo de <span class="text-gradient-wa text-8xl">Inteligencia</span></h2>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div class="relative group">
-                <div class="text-8xl font-black text-white/5 absolute -top-12 -left-4 group-hover:text-[#25D366]/10 transition">01</div>
-                <h4 class="text-xl font-bold text-white mb-4 italic uppercase">Entrenamiento Local</h4>
-                <p class="text-slate-400 leading-relaxed">La IA absorbe tus PDFs, audios y catálogos. No solo responde, conoce tu negocio mejor que un humano.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+            
+            <div class="glass-pro-card p-10 rounded-[2.5rem] relative group h-full">
+                <div class="absolute -top-16 -left-6 text-[150px] font-extrabold text-white/[0.03] group-hover:text-[#25D366]/[0.05] transition-all duration-700 italic">1</div>
+                <div class="relative z-10">
+                    <h4 class="text-xs font-black text-slate-300 mb-4 uppercase tracking-[0.2em]">01 / Adquisición de Datos</h4>
+                    <h3 class="text-2xl font-bold text-white mb-6 italic uppercase tracking-tight">Entrenamiento Local Profundo</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Arrastra tus PDFs, URLs y catálogos. Nuestra IA absorbe el conocimiento específico de tu marca en minutos con precisión quirúrgica.</p>
+                </div>
             </div>
-            <div class="relative group">
-                <div class="text-8xl font-black text-white/5 absolute -top-12 -left-4 group-hover:text-[#25D366]/10 transition">02</div>
-                <h4 class="text-xl font-bold text-white mb-4 italic uppercase">Análisis Empático</h4>
-                <p class="text-slate-400 leading-relaxed">Detecta el humor del cliente. Si detecta urgencia, acelera el cierre; si detecta duda, educa con paciencia.</p>
+
+            <div class="glass-pro-card p-10 rounded-[2.5rem] relative group h-full border-[#25D366]/10 bg-[#25D366]/[0.01]">
+                <div class="absolute -top-16 -left-6 text-[150px] font-extrabold text-white/[0.03] group-hover:text-blue-500/[0.05] transition-all duration-700 italic">2</div>
+                <div class="relative z-10">
+                    <h4 class="text-xs font-black text-slate-300 mb-4 uppercase tracking-[0.2em]">02 / Procesamiento Neural</h4>
+                    <h3 class="text-2xl font-bold text-white mb-6 italic uppercase tracking-tight">Análisis de Intención Empática</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">No solo responde palabras. Detecta el humor del cliente, nivel de urgencia y dudas ocultas para adaptar la persuasión en tiempo real.</p>
+                </div>
             </div>
-            <div class="relative group">
-                <div class="text-8xl font-black text-white/5 absolute -top-12 -left-4 group-hover:text-[#25D366]/10 transition">03</div>
-                <h4 class="text-xl font-bold text-white mb-4 italic uppercase">Cierre Autónomo</h4>
-                <p class="text-slate-400 leading-relaxed">Genera enlaces de pago, agenda citas en tu calendario y califica al prospecto en tu CRM.</p>
+
+            <div class="glass-pro-card p-10 rounded-[2.5rem] relative group h-full">
+                <div class="absolute -top-16 -left-6 text-[150px] font-extrabold text-white/[0.03] group-hover:text-[#25D366]/[0.05] transition-all duration-700 italic">3</div>
+                <div class="relative z-10">
+                    <h4 class="text-xs font-black text-slate-300 mb-4 uppercase tracking-[0.2em]">03 / Ejecución Autónoma</h4>
+                    <h3 class="text-2xl font-bold text-white mb-6 italic uppercase tracking-tight">Cierre de Ventas y Agendamiento</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Genera enlaces de pago seguros (Stripe/PayPal), agenda citas en tu calendario y actualiza tu CRM automáticamente sin intervención humana.</p>
+                </div>
             </div>
+
         </div>
     </div>
 </section>
@@ -313,478 +359,1126 @@
     </section>
 
 ---
-<section class="py-20 px-5 bg-slate-900/10">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-            <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500">Infraestructura Neural</h3>
+<section class="relative py-24 px-6 bg-slate-950 overflow-hidden border-t border-white/5">
+    <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(#25D366 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+            <h3 class="text-[11px] font-black uppercase tracking-[0.6em] text-slate-500 italic">Core de Operaciones</h3>
+            <h2 class="text-4xl font-black italic uppercase tracking-tighter text-white mt-2">Infraestructura <span class="text-gradient-wa">Neural</span></h2>
         </div>
+
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="text-center p-6 glass-card rounded-3xl">
-                <i class="fas fa-microchip text-2xl text-blue-500 mb-4"></i>
-                <h5 class="text-[10px] font-black uppercase tracking-widest text-white">NLP Engine</h5>
-                <p class="text-[8px] text-slate-500 mt-2 uppercase">Procesamiento de Lenguaje Natural avanzado.</p>
+            <div class="text-center p-8 glass-card rounded-[2.5rem] group hover:bg-blue-500/[0.03] transition-all duration-500">
+                <div class="relative inline-block mb-6">
+                    <div class="absolute inset-0 bg-blue-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <i class="fas fa-microchip text-3xl text-blue-500 relative z-10"></i>
+                </div>
+                <h5 class="text-[11px] font-black uppercase tracking-widest text-white italic">NLP Engine v3</h5>
+                <p class="text-[9px] text-slate-500 mt-3 uppercase font-bold tracking-tighter leading-relaxed">Procesamiento de Lenguaje Natural de última generación.</p>
             </div>
-            <div class="text-center p-6 glass-card rounded-3xl border-b-2 border-[#25D366]">
-                <i class="fas fa-network-wired text-2xl text-[#25D366] mb-4"></i>
-                <h5 class="text-[10px] font-black uppercase tracking-widest text-white">Neural Learning</h5>
-                <p class="text-[8px] text-slate-500 mt-2 uppercase">Aprende de cada interacción en vivo.</p>
+
+            <div class="text-center p-8 glass-card rounded-[2.5rem] group hover:bg-[#25D366]/[0.03] transition-all duration-500 border-b-2 border-[#25D366]/30">
+                <div class="relative inline-block mb-6">
+                    <div class="absolute inset-0 bg-[#25D366]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <i class="fas fa-network-wired text-3xl text-[#25D366] relative z-10"></i>
+                </div>
+                <h5 class="text-[11px] font-black uppercase tracking-widest text-white italic">Neural Learning</h5>
+                <p class="text-[9px] text-slate-500 mt-3 uppercase font-bold tracking-tighter leading-relaxed">Auto-optimización basada en feedback humano real.</p>
             </div>
-            <div class="text-center p-6 glass-card rounded-3xl">
-                <i class="fas fa-database text-2xl text-blue-500 mb-4"></i>
-                <h5 class="text-[10px] font-black uppercase tracking-widest text-white">Smart Storage</h5>
-                <p class="text-[8px] text-slate-500 mt-2 uppercase">Memoria a largo plazo de tus leads.</p>
+
+            <div class="text-center p-8 glass-card rounded-[2.5rem] group hover:bg-blue-500/[0.03] transition-all duration-500">
+                <div class="relative inline-block mb-6">
+                    <div class="absolute inset-0 bg-blue-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <i class="fas fa-database text-3xl text-blue-500 relative z-10"></i>
+                </div>
+                <h5 class="text-[11px] font-black uppercase tracking-widest text-white italic">Smart Storage</h5>
+                <p class="text-[9px] text-slate-500 mt-3 uppercase font-bold tracking-tighter leading-relaxed">Bases de datos vectoriales para memoria infinita.</p>
             </div>
-            <div class="text-center p-6 glass-card rounded-3xl border-b-2 border-[#25D366]">
-                <i class="fas fa-code-branch text-2xl text-[#25D366] mb-4"></i>
-                <h5 class="text-[10px] font-black uppercase tracking-widest text-white">API Webhooks</h5>
-                <p class="text-[8px] text-slate-500 mt-2 uppercase">Conexión total con tu ecosistema.</p>
+
+            <div class="text-center p-8 glass-card rounded-[2.5rem] group hover:bg-[#25D366]/[0.03] transition-all duration-500 border-b-2 border-[#25D366]/30">
+                <div class="relative inline-block mb-6">
+                    <div class="absolute inset-0 bg-[#25D366]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <i class="fas fa-code-branch text-3xl text-[#25D366] relative z-10"></i>
+                </div>
+                <h5 class="text-[11px] font-black uppercase tracking-widest text-white italic">API Webhooks</h5>
+                <p class="text-[9px] text-slate-500 mt-3 uppercase font-bold tracking-tighter leading-relaxed">Interconexión instantánea con cualquier CRM.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section id="planes" class="py-32 px-6 bg-[#25D366]">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20">
-            <h2 class="text-5xl md:text-7xl font-black uppercase italic text-slate-950 tracking-tighter">Planes <span class="text-white underline">LiamsaNova</span></h2>
-            <p class="text-slate-900 font-bold uppercase tracking-widest mt-4">Inversión inteligente para resultados masivos.</p>
+---
+<section class="relative py-20 px-6 bg-slate-950 overflow-hidden border-y border-white/5">
+    
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
+        
+        <div class="glass-card group p-8 rounded-[2.5rem] text-center border-t border-white/10 hover:bg-white/[0.03] transition-all duration-500 overflow-hidden">
+            <div class="relative inline-block">
+                <div class="text-4xl md:text-5xl font-black text-white italic tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500">
+                    98.2<span class="text-lg text-[#25D366] ml-1">%</span>
+                </div>
+                <div class="h-[2px] w-12 bg-[#25D366] mx-auto rounded-full shadow-[0_0_15px_#25D366] opacity-50 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mt-6 group-hover:text-slate-300 transition-colors">Precisión Neural</p>
         </div>
-        <div class="grid md:grid-cols-3 gap-10 items-center">
-            <div class="bg-slate-950 p-12 rounded-[4rem] text-center shadow-2xl">
-                <span class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">Essential</span>
-                <div class="text-5xl font-black my-8 italic text-white">$110.000<span class="text-sm font-normal opacity-40">/mo</span></div>
-                <ul class="text-[11px] font-bold uppercase text-slate-400 space-y-4 mb-12">
-                    <li>1 Canal de WhatsApp</li>
-                    <li>Entrenamiento IA Base</li>
-                    <li>Soporte vía Ticket</li>
-                </ul>
-                <button class="w-full py-5 border border-white/10 rounded-2xl hover:bg-white/5 transition font-black uppercase text-[10px] tracking-widest text-white">Elegir Plan</button>
+
+        <div class="glass-card group p-8 rounded-[2.5rem] text-center border-t border-white/10 hover:bg-white/[0.03] transition-all duration-500 overflow-hidden">
+            <div class="relative inline-block">
+                <div class="text-4xl md:text-5xl font-black text-white italic tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500">
+                    -40<span class="text-lg text-blue-500 ml-1">%</span>
+                </div>
+                <div class="h-[2px] w-12 bg-blue-500 mx-auto rounded-full shadow-[0_0_15px_#3b82f6] opacity-50 group-hover:opacity-100 transition-opacity"></div>
             </div>
-            <div class="bg-white p-14 rounded-[4rem] text-center shadow-[0_40px_80px_rgba(0,0,0,0.3)] scale-110 relative z-10 border-4 border-blue-600">
-                <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Recomendado</div>
-                <span class="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em]">Unlimited AI</span>
-                <div class="text-5xl font-black my-8 italic text-slate-950">$180.000<span class="text-sm font-normal text-slate-400">/mo</span></div>
-                <ul class="text-[11px] font-bold uppercase text-slate-600 space-y-4 mb-12">
-                    <li>Canales Ilimitados</li>
-                    <li>Entrenamiento Neural Full</li>
-                    <li>Cierre de Pagos Stripe/PayPal</li>
-                    <li>Soporte 24/7 VIP</li>
-                </ul>
-                <button class="w-full py-5 bg-blue-600 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest shadow-xl">Obtener Ahora</button>
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mt-6 group-hover:text-slate-300 transition-colors">Costo Operativo</p>
+        </div>
+
+        <div class="glass-card group p-8 rounded-[2.5rem] text-center border-t border-white/10 hover:bg-white/[0.03] transition-all duration-500 overflow-hidden">
+            <div class="relative inline-block">
+                <div class="text-4xl md:text-5xl font-black text-white italic tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500">
+                    3.5<span class="text-lg text-[#25D366] ml-1">s</span>
+                </div>
+                <div class="h-[2px] w-12 bg-[#25D366] mx-auto rounded-full shadow-[0_0_15px_#25D366] opacity-50 group-hover:opacity-100 transition-opacity"></div>
             </div>
-            <div class="bg-slate-900 p-12 rounded-[4rem] text-center shadow-2xl">
-                <span class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">Enterprise</span>
-                <div class="text-5xl font-black my-8 italic text-white">$350.000<span class="text-sm font-normal opacity-40">/mo</span></div>
-                <ul class="text-[11px] font-bold uppercase text-slate-400 space-y-4 mb-12">
-                    <li>Solución White Label</li>
-                    <li>API Dedicada</li>
-                    <li>Manager de Cuenta Propio</li>
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mt-6 group-hover:text-slate-300 transition-colors">Tiempo Respuesta</p>
+        </div>
+
+        <div class="glass-card group p-8 rounded-[2.5rem] text-center border-t border-white/10 hover:bg-white/[0.03] transition-all duration-500 overflow-hidden">
+            <div class="relative inline-block">
+                <div class="text-4xl md:text-5xl font-black text-white italic tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500">
+                    24/7
+                </div>
+                <div class="h-[2px] w-12 bg-blue-500 mx-auto rounded-full shadow-[0_0_15px_#3b82f6] opacity-50 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mt-6 group-hover:text-slate-300 transition-colors">Uptime Garantizado</p>
+        </div>
+
+    </div>
+</section>
+--
+<section class="relative py-32 px-6 bg-slate-950 overflow-hidden border-t border-white/5">
+    
+    <div class="absolute -right-20 top-1/2 -translate-y-1/2 aurora-bg aurora-green opacity-10 blur-[150px]"></div>
+
+    <div class="max-w-5xl mx-auto relative z-10">
+        
+        <div class="text-center mb-16">
+            <h3 class="text-[11px] font-black uppercase tracking-[0.6em] text-slate-500 mb-4">Benchmark de Eficiencia</h3>
+            <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter text-white leading-none">
+                La Evolución del <span class="text-gradient-wa">Chat</span>
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-0 rounded-[3rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-slate-900/20 backdrop-blur-sm">
+            
+            <div class="p-10 md:p-14 bg-slate-950/50 group relative">
+                <div class="absolute inset-0 bg-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="w-8 h-[1px] bg-slate-700"></div>
+                    <h4 class="text-slate-500 font-black uppercase text-[10px] tracking-[0.3em] italic">Old Paradigm</h4>
+                </div>
+
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4 group/item">
+                        <i class="fas fa-minus-circle text-red-900 mt-1 transition group-hover/item:text-red-500"></i>
+                        <div class="space-y-1">
+                            <p class="text-xs font-black uppercase tracking-widest text-slate-500">Capacidad Limitada</p>
+                            <p class="text-[10px] font-bold text-slate-600">Sufre de agotamiento, descansos y horario de oficina.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4 group/item">
+                        <i class="fas fa-minus-circle text-red-900 mt-1 transition group-hover/item:text-red-500"></i>
+                        <div class="space-y-1">
+                            <p class="text-xs font-black uppercase tracking-widest text-slate-500">Inconsistencia Técnica</p>
+                            <p class="text-[10px] font-bold text-slate-600">Errores de ortografía y tono variable según el humor.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4 group/item">
+                        <i class="fas fa-minus-circle text-red-900 mt-1 transition group-hover/item:text-red-500"></i>
+                        <div class="space-y-1">
+                            <p class="text-xs font-black uppercase tracking-widest text-slate-500">Fuga de Prospectos</p>
+                            <p class="text-[10px] font-bold text-slate-600">Olvida leads en el chat y pierde el hilo de la venta.</p>
+                        </div>
+                    </li>
                 </ul>
-                <button class="w-full py-5 border border-white/10 rounded-2xl hover:bg-white/5 transition font-black uppercase text-[10px] tracking-widest text-white">Contactar</button>
+            </div>
+
+            <div class="p-10 md:p-14 bg-[#25D366]/5 border-l border-white/10 relative group overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#25D366]/10 to-transparent opacity-50"></div>
+                
+                <div class="flex items-center gap-3 mb-10 relative z-10">
+                    <div class="w-8 h-[1px] bg-[#25D366]"></div>
+                    <h4 class="text-[#25D366] font-black uppercase text-[10px] tracking-[0.3em] italic">LiamsaNova Core</h4>
+                </div>
+
+                <ul class="space-y-6 relative z-10">
+                    <li class="flex items-start gap-4 group/item">
+                        <div class="w-5 h-5 rounded-full bg-[#25D366]/20 flex items-center justify-center mt-0.5 shadow-[0_0_10px_rgba(37,211,102,0.2)]">
+                            <i class="fas fa-check text-[8px] text-[#25D366]"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-xs font-black uppercase tracking-widest text-white">Disponibilidad 24/7/365</p>
+                            <p class="text-[10px] font-bold text-[#25D366]/70 uppercase tracking-tight italic">Nunca duerme, nunca para, nunca se queja.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4 group/item">
+                        <div class="w-5 h-5 rounded-full bg-[#25D366]/20 flex items-center justify-center mt-0.5 shadow-[0_0_10px_rgba(37,211,102,0.2)]">
+                            <i class="fas fa-check text-[8px] text-[#25D366]"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-xs font-black uppercase tracking-widest text-white">Persuasión Algorítmica</p>
+                            <p class="text-[10px] font-bold text-[#25D366]/70 uppercase tracking-tight italic">Lenguaje impecable diseñado para cerrar ventas.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4 group/item">
+                        <div class="w-5 h-5 rounded-full bg-[#25D366]/20 flex items-center justify-center mt-0.5 shadow-[0_0_10px_rgba(37,211,102,0.2)]">
+                            <i class="fas fa-check text-[8px] text-[#25D366]"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-xs font-black uppercase tracking-widest text-white">Memoria de Neural_Link</p>
+                            <p class="text-[10px] font-bold text-[#25D366]/70 uppercase tracking-tight italic">Recuerda cada detalle de cada cliente para siempre.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="absolute -bottom-4 -right-4 bg-[#25D366] text-slate-950 text-[8px] font-black px-8 py-6 rotate-[-45deg] tracking-[0.5em] shadow-2xl">
+                    WINNER
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="py-12 px-5 bg-slate-950 border-y border-white/5">
-    <div class="max-w-5xl mx-auto glass-card p-10 rounded-[3rem] border-brand-whatsapp/30 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-        <div class="w-24 h-24 bg-[#25D366]/20 rounded-full flex items-center justify-center text-4xl text-[#25D366] shadow-[0_0_40px_rgba(37,211,102,0.2)]">
-            <i class="fas fa-undo-alt"></i>
+--
+<section class="relative py-32 px-6 bg-slate-950 overflow-hidden border-t border-white/5">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white/5 rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto text-center relative z-10">
+        
+        <div class="mb-20">
+            <h3 class="text-[11px] font-black uppercase tracking-[0.6em] text-slate-500 mb-4 italic">Control Total del Ecosistema</h3>
+            <div class="h-1 w-20 bg-gradient-to-r from-transparent via-[#25D366] to-transparent mx-auto"></div>
         </div>
-        <div class="flex-1">
-            <h4 class="text-xl font-black uppercase italic tracking-tighter mb-2 text-white">Garantía de Satisfacción <span class="text-[#25D366]">LiamsaNova IA</span></h4>
-            <p class="text-xs text-slate-500 font-bold uppercase tracking-widest leading-relaxed">
-                Pruébala por 14 días. Si la IA no responde como esperabas o no ves una mejora en tu flujo de atención, te devolvemos el 100% de tu suscripción. **Sin preguntas, sin fricción.**
+
+        <div class="relative flex justify-center items-center py-20 min-h-[400px]">
+            
+            <div class="relative group z-20">
+                <div class="absolute inset-0 bg-[#25D366]/20 blur-[60px] rounded-full animate-pulse group-hover:bg-[#25D366]/40 transition-all duration-1000"></div>
+                
+                <div class="w-40 h-40 md:w-56 md:h-56 rounded-full bg-black border-2 border-[#25D366]/30 flex flex-col items-center justify-center relative shadow-[0_0_40px_rgba(37,211,102,0.2)]">
+                    <div class="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,#25D366_0%,transparent_30%)] animate-[spin_4s_linear_infinite] opacity-30"></div>
+                    <span class="text-[10px] text-[#25D366] font-black uppercase tracking-[0.3em] mb-2 opacity-60">Neural Core</span>
+                    <span class="text-white font-black text-xl md:text-2xl italic tracking-tighter">LiamsaNova <span class="text-[#25D366]">IA</span></span>
+                </div>
+            </div>
+
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="absolute -translate-y-32 -translate-x-28 md:-translate-y-44 md:-translate-x-56 animate-bounce opacity-40 hover:opacity-100 transition-all duration-700">
+                    <div class="glass-card p-4 rounded-2xl border-white/10 hover:border-[#25D366]/40">
+                        <i class="fab fa-shopify text-3xl md:text-4xl text-slate-400 group-hover:text-white"></i>
+                    </div>
+                </div>
+                <div class="absolute -translate-y-32 translate-x-28 md:-translate-y-44 md:translate-x-56 animate-[bounce_3s_infinite] opacity-40 hover:opacity-100 transition-all duration-700">
+                    <div class="glass-card p-4 rounded-2xl border-white/10 hover:border-blue-500/40">
+                        <i class="fab fa-stripe text-3xl md:text-4xl text-slate-400 group-hover:text-white"></i>
+                    </div>
+                </div>
+                <div class="absolute translate-y-32 -translate-x-28 md:translate-y-44 md:-translate-x-56 animate-[bounce_4s_infinite] opacity-40 hover:opacity-100 transition-all duration-700">
+                    <div class="glass-card p-4 rounded-2xl border-white/10 hover:border-orange-500/40">
+                        <i class="fab fa-hubspot text-3xl md:text-4xl text-slate-400 group-hover:text-white"></i>
+                    </div>
+                </div>
+                <div class="absolute translate-y-32 translate-x-28 md:translate-y-44 md:translate-x-56 animate-bounce opacity-40 hover:opacity-100 transition-all duration-700">
+                    <div class="glass-card p-4 rounded-2xl border-white/10 hover:border-blue-400/40">
+                        <i class="fab fa-google-drive text-3xl md:text-4xl text-slate-400 group-hover:text-white"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-20 space-y-4">
+            <p class="text-[11px] font-black text-white uppercase tracking-[0.5em] italic">Sincronización Total <span class="text-[#25D366]">Real-Time</span></p>
+            <p class="text-xs text-slate-600 font-bold uppercase tracking-widest max-w-lg mx-auto leading-relaxed">
+                Conectividad instantánea con tu stack tecnológico actual mediante <span class="text-slate-400">Webhooks y API Privada</span>.
             </p>
         </div>
-        <div class="flex flex-col items-center">
-            <div class="text-[8px] font-black uppercase opacity-30 mb-2 text-white">Sello de Confianza</div>
-            <i class="fas fa-shield-check text-3xl opacity-20 text-white"></i>
-        </div>
-    </div>
-</section>
----
-<section class="py-12 px-5 bg-slate-900/50 border-y border-white/5">
-    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="glass-card p-6 rounded-3xl text-center border-b-2 border-brand-whatsapp">
-            <div class="text-3xl font-black brand-whatsapp mb-1">98.2%</div>
-            <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Precisión Neural</p>
-        </div>
-        <div class="glass-card p-6 rounded-3xl text-center border-b-2 border-brand-accent">
-            <div class="text-3xl font-black brand-accent mb-1">-40%</div>
-            <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Costo Operativo</p>
-        </div>
-        <div class="glass-card p-6 rounded-3xl text-center border-b-2 border-brand-whatsapp">
-            <div class="text-3xl font-black brand-whatsapp mb-1">3.5s</div>
-            <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Tiempo Respuesta</p>
-        </div>
-        <div class="glass-card p-6 rounded-3xl text-center border-b-2 border-brand-accent">
-            <div class="text-3xl font-black brand-accent mb-1">24/7</div>
-            <p class="text-[9px] font-bold uppercase tracking-widest text-slate-500">Uptime Garantizado</p>
-        </div>
-    </div>
-</section>
---
-<section class="py-16 px-5 bg-slate-950">
-    <div class="max-w-5xl mx-auto">
-        <h3 class="text-center text-xl font-black uppercase italic mb-10 tracking-tighter">La Evolución del <span class="brand-whatsapp">Chat</span></h3>
-        <div class="grid md:grid-cols-2 gap-0 rounded-[3rem] overflow-hidden border border-white/10">
-            <div class="p-8 bg-slate-900/50">
-                <h4 class="text-slate-500 font-black uppercase text-xs mb-6 italic">Sistema Tradicional</h4>
-                <ul class="space-y-4 text-xs font-bold text-slate-400">
-                    <li><i class="fas fa-times-circle text-red-500 mr-2"></i> Duerme y descansa</li>
-                    <li><i class="fas fa-times-circle text-red-500 mr-2"></i> Errores de ortografía</li>
-                    <li><i class="fas fa-times-circle text-red-500 mr-2"></i> Se distrae y olvida leads</li>
-                    <li><i class="fas fa-times-circle text-red-500 mr-2"></i> Sueldo y vacaciones</li>
-                </ul>
-            </div>
-            <div class="p-8 bg-brand-whatsapp/10 border-l border-brand-whatsapp/20">
-                <h4 class="brand-whatsapp font-black uppercase text-xs mb-6 italic">LiamsaNova IA</h4>
-                <ul class="space-y-4 text-xs font-bold text-white">
-                    <li><i class="fas fa-check-circle brand-whatsapp mr-2"></i> Nunca duerme, nunca para</li>
-                    <li><i class="fas fa-check-circle brand-whatsapp mr-2"></i> Lenguaje perfecto y persuasivo</li>
-                    <li><i class="fas fa-check-circle brand-whatsapp mr-2"></i> Memoria infinita de clientes</li>
-                    <li><i class="fas fa-check-circle brand-whatsapp mr-2"></i> Pago único mensual escalable</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
---
-<section class="py-16 px-5 bg-white text-slate-950">
-    <div class="max-w-7xl mx-auto text-center">
-        <h3 class="text-2xl font-black uppercase italic mb-12">Control Total <span class="brand-accent">Ecosistema</span></h3>
-        <div class="relative flex justify-center items-center py-10">
-            <div class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-slate-950 flex items-center justify-center z-10 shadow-2xl animate-pulse">
-                <span class="brand-whatsapp font-black text-xs md:text-lg italic">LiamsaNova IA</span>
-            </div>
-            <div class="absolute w-full flex justify-around opacity-20 pointer-events-none">
-                <i class="fab fa-shopify text-6xl"></i>
-                <i class="fab fa-stripe text-6xl"></i>
-                <i class="fab fa-google-drive text-6xl"></i>
-                <i class="fab fa-hubspot text-6xl"></i>
-            </div>
-        </div>
-        <p class="mt-8 text-xs font-bold text-slate-400 uppercase tracking-widest">Sincronización instantánea con más de 200 herramientas</p>
     </div>
 </section>
 
 --
-<section class="py-16 px-5 bg-slate-900">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row gap-4">
-            <div class="glass-card p-6 rounded-3xl flex-1">
-                <div class="flex gap-1 text-yellow-500 text-[8px] mb-3">
+<section class="relative py-24 px-6 bg-slate-950 overflow-hidden">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aurora-bg aurora-green opacity-5 blur-[200px]"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        
+        <div class="text-center mb-16">
+            <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500 mb-4">Historias de Éxito</h3>
+            <h2 class="text-4xl font-black italic uppercase tracking-tighter text-white">Resultados <span class="text-gradient-wa">Reales</span></h2>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            
+            <div class="glass-card p-10 rounded-[2.5rem] flex-1 border-white/5 hover:border-[#25D366]/30 transition-all duration-500 group relative overflow-hidden">
+                <i class="fas fa-quote-right absolute top-6 right-8 text-4xl text-white/5 group-hover:text-[#25D366]/10 transition-colors"></i>
+                
+                <div class="flex gap-1.5 text-[#25D366] text-[10px] mb-6 drop-shadow-[0_0_5px_rgba(37,211,102,0.3)]">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
-                <p class="text-xs italic mb-4 leading-relaxed">"Incrementamos las citas médicas en un 200% el primer mes. La IA agenda sin errores."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-brand-accent"></div>
-                    <span class="text-[10px] font-black uppercase">Dr. Mario - Salud Global</span>
+                
+                <p class="text-sm italic mb-8 leading-relaxed text-slate-300 font-light tracking-wide">
+                    "Incrementamos las citas médicas en un <span class="text-white font-bold italic">200% el primer mes</span>. La IA agenda sin errores y libera a mi equipo de recepción."
+                </p>
+                
+                <div class="flex items-center gap-4 border-t border-white/5 pt-6">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+                            <i class="fas fa-user-md text-xl"></i>
+                        </div>
+                        <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-[#25D366] rounded-full border-2 border-slate-950 flex items-center justify-center">
+                            <i class="fas fa-check text-[8px] text-slate-950"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] font-black uppercase tracking-widest text-white">Dr. Mario</span>
+                        <span class="block text-[9px] font-bold text-slate-500 uppercase tracking-tighter">CEO - Salud Global</span>
+                    </div>
                 </div>
             </div>
-            <div class="glass-card p-6 rounded-3xl flex-1">
-                <div class="flex gap-1 text-yellow-500 text-[8px] mb-3">
+
+            <div class="glass-card p-10 rounded-[2.5rem] flex-1 border-white/5 hover:border-[#25D366]/30 transition-all duration-500 group relative overflow-hidden">
+                <i class="fas fa-quote-right absolute top-6 right-8 text-4xl text-white/5 group-hover:text-[#25D366]/10 transition-colors"></i>
+
+                <div class="flex gap-1.5 text-[#25D366] text-[10px] mb-6 drop-shadow-[0_0_5px_rgba(37,211,102,0.3)]">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
-                <p class="text-xs italic mb-4 leading-relaxed">"La recuperación de carritos por WhatsApp es automática. Vendemos mientras dormimos."</p>
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-brand-whatsapp"></div>
-                    <span class="text-[10px] font-black uppercase">Karla G. - E-com Pro</span>
+                
+                <p class="text-sm italic mb-8 leading-relaxed text-slate-300 font-light tracking-wide">
+                    "La recuperación de carritos por WhatsApp es <span class="text-[#25D366] font-bold">totalmente automática</span>. Vendemos literalmente mientras dormimos."
+                </p>
+                
+                <div class="flex items-center gap-4 border-t border-white/5 pt-6">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#25D366] to-[#128C7E] flex items-center justify-center text-white shadow-lg shadow-[#25D366]/20">
+                            <i class="fas fa-shopping-cart text-xl"></i>
+                        </div>
+                        <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-[#25D366] rounded-full border-2 border-slate-950 flex items-center justify-center">
+                            <i class="fas fa-check text-[8px] text-slate-950"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] font-black uppercase tracking-widest text-white">Karla G.</span>
+                        <span class="block text-[9px] font-bold text-slate-500 uppercase tracking-tighter">Founder - E-com Pro</span>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 
 --
-<section class="py-16 px-5 bg-slate-950">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-        <div class="relative rounded-[2.5rem] overflow-hidden border border-white/5">
-            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" class="opacity-40" alt="IA Training">
-            <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                <div class="w-full bg-white/5 h-2 rounded-full mb-4 overflow-hidden">
-                    <div class="bg-brand-whatsapp h-full animate-load" style="width: 85%"></div>
-                </div>
-                <p class="text-[10px] font-black uppercase text-brand-whatsapp">Procesando Base de Datos de Ventas...</p>
-            </div>
+<section id="planes-pro" class="py-32 bg-slate-950 px-6 relative overflow-hidden">
+    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#25D366]/10 blur-[180px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-24">
+            <div class="inline-block px-4 py-1.5 rounded-full border border-[#25D366]/20 bg-[#25D366]/5 text-[#25D366] text-[9px] font-black uppercase tracking-[0.4em] mb-6">Inversión Tecnológica</div>
+            <h2 class="text-6xl md:text-8xl font-black italic uppercase tracking-tighter text-white leading-none">Inversión <br><span class="text-gradient-wa">Estratégica</span></h2>
+            <p class="text-slate-500 mt-6 tracking-[0.3em] uppercase text-[10px] font-bold">Escala tu facturación con el respaldo de LiamsaNova IA</p>
         </div>
-        <div class="space-y-6">
-            <h2 class="text-3xl font-black italic uppercase tracking-tighter leading-none">Entrenamiento <br><span class="brand-accent">Personalizado</span></h2>
-            <p class="text-sm text-slate-400 leading-relaxed">Simplemente arrastra tus catálogos PDF, URLs de tu web o históricos de chat. **LiamsaNova IA** absorbe el conocimiento en minutos y empieza a responder con el tono exacto de tu marca.</p>
-            <button class="text-xs font-black uppercase brand-whatsapp border-b-2 border-brand-whatsapp pb-1 hover:text-white transition">Ver proceso técnico -></button>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-end">
+            
+            <div class="glass-card p-12 rounded-[3rem] border border-white/5 flex flex-col h-full hover:border-white/20 transition-all duration-700 group">
+                <h4 class="text-slate-500 font-black uppercase tracking-[0.3em] text-[10px] mb-4 italic group-hover:text-slate-300">Fuerza Inicial</h4>
+                <h3 class="text-4xl font-black text-white mb-8 italic uppercase tracking-tight">Starter</h3>
+                <div class="flex items-baseline gap-2 mb-10">
+                    <span class="text-6xl font-black text-white">$49</span>
+                    <span class="text-slate-600 font-bold text-sm uppercase italic">/ mes</span>
+                </div>
+                <ul class="space-y-5 mb-12 flex-grow">
+                    <li class="flex items-center gap-3 text-[13px] text-slate-400 font-medium italic"><i class="fas fa-check text-[#25D366]"></i> 1 Agente IA Especializado</li>
+                    <li class="flex items-center gap-3 text-[13px] text-slate-400 font-medium italic"><i class="fas fa-check text-[#25D366]"></i> Entrenamiento (5 PDFs / URLs)</li>
+                    <li class="flex items-center gap-3 text-[13px] text-slate-400 font-medium italic"><i class="fas fa-check text-[#25D366]"></i> Soporte Estándar vía Chat</li>
+                </ul>
+                <button class="w-full py-5 rounded-2xl border border-white/10 text-white font-black uppercase tracking-widest text-[10px] hover:bg-white/10 transition-all">Seleccionar Plan</button>
+            </div>
+
+            <div class="relative group transform lg:scale-110 z-20">
+                <div class="absolute inset-0 bg-gradient-to-tr from-[#25D366] to-blue-600 rounded-[3rem] blur-[40px] opacity-10 group-hover:opacity-25 transition-all duration-1000"></div>
+                
+                <div class="relative p-[2px] rounded-[3rem] bg-gradient-to-b from-[#25D366] via-blue-500 to-transparent">
+                    <div class="bg-slate-950 p-12 rounded-[2.9rem] h-full flex flex-col relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-[#25D366] text-slate-950 font-black text-[9px] px-8 py-2 rotate-[45deg] translate-x-6 translate-y-3 tracking-widest uppercase italic shadow-2xl">Más Popular</div>
+                        
+                        <h4 class="text-[#25D366] font-black uppercase tracking-[0.4em] text-[10px] mb-4 italic">High Velocity</h4>
+                        <h3 class="text-4xl font-black text-white mb-8 italic uppercase tracking-tight">Business</h3>
+                        <div class="flex items-baseline gap-2 mb-10">
+                            <span class="text-7xl font-black text-white">$99</span>
+                            <span class="text-slate-500 font-bold text-sm uppercase italic">/ mes</span>
+                        </div>
+                        <ul class="space-y-5 mb-12 flex-grow">
+                            <li class="flex items-center gap-4 text-sm text-white font-black italic tracking-wide"><i class="fas fa-bolt text-[#25D366]"></i> 3 Agentes IA Multitarea</li>
+                            <li class="flex items-center gap-4 text-sm text-white font-black italic tracking-wide"><i class="fas fa-bolt text-[#25D366]"></i> Entrenamiento Ilimitado</li>
+                            <li class="flex items-center gap-4 text-sm text-white font-black italic tracking-wide"><i class="fas fa-bolt text-[#25D366]"></i> Análisis de Sentimiento</li>
+                            <li class="flex items-center gap-4 text-sm text-white font-black italic tracking-wide"><i class="fas fa-bolt text-[#25D366]"></i> Integración CRM / APIs</li>
+                        </ul>
+                        <button class="btn-glow-premium w-full py-6 rounded-2xl text-slate-950 font-black uppercase tracking-[0.2em] text-[12px] italic shadow-[0_0_30px_rgba(37,211,102,0.4)]">Dominar el Mercado</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-12 rounded-[3rem] border border-white/5 flex flex-col h-full hover:border-white/20 transition-all duration-700 group">
+                <h4 class="text-slate-500 font-black uppercase tracking-[0.3em] text-[10px] mb-4 italic group-hover:text-slate-300">Enterprise Solution</h4>
+                <h3 class="text-4xl font-black text-white mb-8 italic uppercase tracking-tight">Elite</h3>
+                <div class="flex items-baseline gap-2 mb-10">
+                    <span class="text-6xl font-black text-white">$249</span>
+                    <span class="text-slate-600 font-bold text-sm uppercase italic">/ mes</span>
+                </div>
+                <ul class="space-y-5 mb-12 flex-grow">
+                    <li class="flex items-center gap-3 text-[13px] text-slate-400 font-medium italic"><i class="fas fa-check text-[#25D366]"></i> Agentes Ilimitados</li>
+                    <li class="flex items-center gap-3 text-[13px] text-slate-400 font-medium italic"><i class="fas fa-check text-[#25D366]"></i> Clonación de Voz (WA)</li>
+                    <li class="flex items-center gap-3 text-[13px] text-slate-400 font-medium italic"><i class="fas fa-check text-[#25D366]"></i> Soporte VIP 24/7</li>
+                    <li class="flex items-center gap-3 text-[13px] text-slate-400 font-medium italic"><i class="fas fa-check text-[#25D366]"></i> Infraestructura Cloud Privada</li>
+                </ul>
+                <button class="w-full py-5 rounded-2xl border border-white/10 text-white font-black uppercase tracking-widest text-[10px] hover:bg-white/10 transition-all">Consultar Enterprise</button>
+            </div>
+
         </div>
     </div>
 </section>
 --
-<section class="py-12 px-5 bg-slate-950 border-b border-white/5">
-    <div class="max-w-4xl mx-auto glass-card rounded-[2rem] p-6 overflow-hidden relative">
-        <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center gap-2">
-                <span class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
-                <h4 class="text-[10px] font-black uppercase tracking-widest">Actividad de LiamsaNova IA en Vivo</h4>
+
+<section class="relative py-32 px-6 bg-slate-950 overflow-hidden border-t border-white/5">
+    
+    <div class="absolute -right-20 top-1/2 -translate-y-1/2 aurora-bg aurora-blue opacity-10 blur-[180px]"></div>
+
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
+        
+        <div class="relative group">
+            <div class="absolute inset-0 bg-blue-600/10 blur-[60px] rounded-[3rem] opacity-50 group-hover:opacity-80 transition-all duration-1000"></div>
+            
+            <div class="relative rounded-[3rem] overflow-hidden border border-white/10 bg-black/40 aspect-video md:aspect-square flex items-center justify-center">
+                
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" 
+                     class="absolute inset-0 w-full h-full object-cover opacity-30 grayscale group-hover:scale-110 transition-transform duration-[3000ms]" 
+                     alt="IA Training Core">
+                
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-[#25D366] shadow-[0_0_20px_#25D366] animate-[scan_3s_ease-in-out_infinite] z-20"></div>
+
+                <div class="relative z-30 w-full max-w-xs px-8 text-center">
+                    <div class="w-full bg-white/5 backdrop-blur-md h-3 rounded-full mb-6 overflow-hidden border border-white/10 p-[2px]">
+                        <div class="bg-gradient-to-r from-[#25D366] to-blue-400 h-full rounded-full animate-[progress_5s_infinite_ease-in-out]" style="width: 85%"></div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <p class="text-[10px] font-black uppercase tracking-[0.4em] text-[#25D366] drop-shadow-sm">Procesando Base de Datos</p>
+                        <p class="text-[9px] font-mono text-slate-500 uppercase tracking-widest italic">Neural_Map: 85.4% Optimized</p>
+                    </div>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></div>
             </div>
-            <span class="text-[9px] font-bold text-slate-500">SERVER: LATAM-01</span>
+        </div>
+
+        <div class="space-y-10">
+            <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-[9px] font-black uppercase tracking-[0.3em]">
+                Ingeniería de Conocimiento
+            </div>
+            
+            <h2 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-none text-white">
+                Entrenamiento <br><span class="text-gradient-wa">Personalizado</span>
+            </h2>
+            
+            <p class="text-lg text-slate-400 leading-relaxed font-light max-w-lg">
+                Simplemente arrastra tus catálogos PDF, URLs de tu web o históricos de chat. <span class="text-white font-bold italic text-xl">LiamsaNova IA</span> absorbe el conocimiento en minutos y empieza a vender con el <span class="text-[#25D366]">tono exacto</span> de tu marca.
+            </p>
+            
+            <div class="pt-6">
+                <button class="group flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-white/60 hover:text-[#25D366] transition-all">
+                    <span>Ver proceso técnico</span>
+                    <div class="w-12 h-[1px] bg-white/20 group-hover:w-20 group-hover:bg-[#25D366] transition-all duration-500"></div>
+                    <i class="fas fa-arrow-right text-[10px] group-hover:translate-x-2 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes scan {
+    0%, 100% { top: 0%; opacity: 0; }
+    50% { top: 100%; opacity: 1; }
+}
+@keyframes progress {
+    0% { width: 10%; }
+    50% { width: 95%; }
+    100% { width: 85%; }
+}
+</style>
+
+--
+<section class="relative py-24 px-6 bg-slate-950 overflow-hidden border-b border-white/5">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aurora-bg aurora-green opacity-5 blur-[150px]"></div>
+
+    <div class="max-w-4xl mx-auto relative z-10">
+        
+        <div class="glass-card rounded-[2.5rem] p-10 md:p-14 overflow-hidden relative border-white/10 bg-black/40 shadow-[0_0_50px_rgba(37,211,102,0.05)]">
+            
+            <div class="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                 style="background-image: radial-gradient(#25D366 1px, transparent 1px); background-size: 30px 30px;">
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between mb-12 gap-4 relative z-10">
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <span class="w-3 h-3 bg-[#25D366] rounded-full animate-ping absolute inset-0"></span>
+                        <span class="relative block w-3 h-3 bg-[#25D366] rounded-full shadow-[0_0_10px_#25D366]"></span>
+                    </div>
+                    <h4 class="text-[11px] font-black uppercase tracking-[0.4em] text-white">Actividad Neural en Tiempo Real</h4>
+                </div>
+                <div class="px-3 py-1 rounded bg-white/5 border border-white/10">
+                    <span class="text-[9px] font-mono text-slate-500 uppercase tracking-widest">Core: <span class="text-[#25D366]">Liamsa-Nova-01</span></span>
+                </div>
+            </div>
+            
+            <div class="space-y-6 relative z-10">
+                
+                <div class="flex flex-col md:flex-row md:items-center gap-4 text-[11px] font-mono border-b border-white/5 pb-4 group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-[#25D366]/60 group-hover:text-[#25D366] transition">[10:42:15]</span>
+                        <span class="text-slate-300">Lead <span class="text-white font-bold">#8293</span> analizado exitosamente...</span>
+                    </div>
+                    <div class="md:ml-auto">
+                        <span class="bg-[#25D366]/10 text-[#25D366] px-2 py-1 rounded text-[9px] font-black uppercase tracking-tighter italic">Intención: Compra Alta</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row md:items-center gap-4 text-[11px] font-mono border-b border-white/5 pb-4 group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-[#25D366]/60 group-hover:text-[#25D366] transition">[10:42:20]</span>
+                        <span class="text-slate-300">Respuesta generada en <span class="text-white font-bold">1.2s</span>...</span>
+                    </div>
+                    <div class="md:ml-auto">
+                        <span class="bg-blue-500/10 text-blue-400 px-2 py-1 rounded text-[9px] font-black uppercase tracking-tighter italic">Análisis: Humano 100%</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row md:items-center gap-4 text-[11px] font-mono border-b border-white/5 pb-4 group opacity-40 hover:opacity-100 transition-opacity">
+                    <div class="flex items-center gap-3">
+                        <span class="text-[#25D366]/60">[10:42:28]</span>
+                        <span class="text-slate-300">Enlace de pago dinámico generado...</span>
+                    </div>
+                    <div class="md:ml-auto">
+                        <span class="bg-white/5 text-white/50 px-2 py-1 rounded text-[9px] font-black uppercase tracking-tighter italic">Gateway: Stripe_API</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 text-[#25D366] font-mono text-[11px] mt-8">
+                    <span class="animate-pulse">_</span>
+                    <span class="uppercase tracking-widest text-[9px] font-black opacity-50">Sincronizando con base de datos global...</span>
+                </div>
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
         </div>
         
-        <div class="space-y-3 opacity-80">
-            <div class="flex items-center gap-4 text-[10px] font-mono border-b border-white/5 pb-2">
-                <span class="text-brand-whatsapp">[10:42:15]</span>
-                <span class="text-white">Lead #8293 analizado...</span>
-                <span class="brand-accent ml-auto">Intención: Compra Alta</span>
-            </div>
-            <div class="flex items-center gap-4 text-[10px] font-mono border-b border-white/5 pb-2">
-                <span class="text-brand-whatsapp">[10:42:20]</span>
-                <span class="text-white">Respuesta generada en 1.2s...</span>
-                <span class="text-green-400 ml-auto italic">Humano 100%</span>
-            </div>
-            <div class="flex items-center gap-4 text-[10px] font-mono border-b border-white/5 pb-2 opacity-50">
-                <span class="text-brand-whatsapp">[10:42:28]</span>
-                <span class="text-white">Enlace de pago enviado...</span>
-                <span class="brand-accent ml-auto">Stripe Connect</span>
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-slate-950 to-transparent"></div>
+        <p class="text-center mt-8 text-[9px] font-black text-slate-600 uppercase tracking-[0.4em]">Protegido por encriptación end-to-end</p>
     </div>
 </section>
 
 --
-<section class="py-16 px-5 bg-slate-900/30">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+<section class="relative py-32 px-6 bg-slate-950 overflow-hidden border-t border-white/5">
+    
+    <div class="absolute -left-20 top-1/2 -translate-y-1/2 aurora-bg aurora-green opacity-10"></div>
+
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
+        
         <div class="order-2 md:order-1 flex justify-center">
-            <div class="w-full max-w-sm h-64 flex items-end gap-3 px-6 border-b border-l border-white/10 relative">
-                <div class="w-full bg-slate-800 h-[20%] rounded-t-lg relative group">
-                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-[8px] font-bold opacity-0 group-hover:opacity-100 transition">Sin IA</span>
+            <div class="glass-card w-full max-w-md p-10 pt-16 relative overflow-hidden">
+                
+                <div class="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                     style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 40px 40px;">
                 </div>
-                <div class="w-full bg-slate-700 h-[35%] rounded-t-lg"></div>
-                <div class="w-full bg-brand-accent h-[55%] rounded-t-lg"></div>
-                <div class="w-full bg-brand-whatsapp h-[90%] rounded-t-lg shadow-[0_0_20px_rgba(37,211,102,0.3)] relative group">
-                    <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] font-black brand-whatsapp">LiamsaNova IA</span>
+
+                <div class="relative h-64 flex items-end justify-between gap-4 border-b border-white/10 pb-1">
+                    
+                    <div class="w-full bg-slate-800/50 h-[15%] rounded-t-xl relative group transition-all duration-500 hover:h-[20%]">
+                        <span class="absolute -top-10 left-1/2 -translate-x-1/2 text-[9px] font-black text-slate-500 opacity-0 group-hover:opacity-100 transition tracking-widest uppercase text-center">Sin IA<br>(Humano)</span>
+                    </div>
+                    
+                    <div class="w-full bg-slate-700/50 h-[35%] rounded-t-xl relative group transition-all duration-500 hover:h-[40%]">
+                        <span class="absolute -top-8 left-1/2 -translate-x-1/2 text-[9px] font-black text-slate-400 opacity-0 group-hover:opacity-100 transition tracking-widest uppercase">Estandar</span>
+                    </div>
+                    
+                    <div class="w-full bg-blue-500/30 h-[60%] rounded-t-xl relative group border-t border-blue-400/30">
+                        <div class="absolute inset-0 bg-blue-500/10 blur-md"></div>
+                    </div>
+                    
+                    <div class="w-full bg-gradient-to-t from-[#25D366]/40 to-[#25D366] h-[92%] rounded-t-xl relative group shadow-[0_0_30px_rgba(37,211,102,0.4)] animate-[pulse_3s_infinite]">
+                        <div class="absolute -top-2 left-0 right-0 h-1 bg-white/40 blur-[2px] rounded-full"></div>
+                        <span class="absolute -top-12 left-1/2 -translate-x-1/2 text-[11px] font-black text-[#25D366] whitespace-nowrap tracking-tighter uppercase italic">
+                            LiamsaNova <span class="text-white">Elite</span>
+                        </span>
+                    </div>
+
                 </div>
-                <p class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] font-black uppercase text-slate-500 tracking-[0.2em]">Retorno de Inversión (ROI)</p>
+                
+                <div class="mt-8 flex justify-center">
+                    <p class="text-[10px] font-black uppercase text-slate-500 tracking-[0.4em] italic">Retorno de Inversión (ROI)</p>
+                </div>
             </div>
         </div>
-        <div class="order-1 md:order-2 space-y-6">
-            <h3 class="text-3xl font-black uppercase italic tracking-tighter">Escalabilidad <br><span class="brand-whatsapp underline">Sin Límites</span></h3>
-            <p class="text-sm text-slate-400 leading-relaxed">Mientras un humano puede atender 3 chats a la vez, **LiamsaNova IA** gestiona 1,000 conversaciones simultáneas sin perder el tono persuasivo ni la calidad del servicio.</p>
+
+        <div class="order-1 md:order-2 space-y-8">
+            <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full border border-[#25D366]/20 bg-[#25D366]/5 text-[#25D366] text-[9px] font-black uppercase tracking-[0.3em]">
+                <span class="w-1.5 h-1.5 bg-[#25D366] rounded-full animate-pulse"></span> Alto Rendimiento
+            </div>
+            
+            <h3 class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter leading-none text-white">
+                Escalabilidad <br><span class="text-gradient-wa">Sin Límites</span>
+            </h3>
+            
+            <p class="text-lg text-slate-400 leading-relaxed font-light">
+                Mientras un equipo humano se satura con 3 chats, <span class="text-white font-bold italic">LiamsaNova IA</span> gestiona <span class="text-[#25D366] underline decoration-white/20 underline-offset-8">1,000 conversaciones</span> simultáneas sin perder el tono persuasivo ni la calidad del servicio.
+            </p>
+
+            <div class="pt-6">
+                <div class="flex items-center gap-4 text-white/50 hover:text-white transition cursor-default">
+                    <i class="fas fa-chart-network text-2xl text-[#25D366]"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Crecimiento Exponencial Garantizado</span>
+                </div>
+            </div>
         </div>
+
     </div>
 </section>
 
 --
-<section class="py-10 bg-white">
-    <div class="max-w-7xl mx-auto px-5">
-        <p class="text-center text-[9px] font-black uppercase tracking-[0.5em] text-slate-400 mb-10">Conectividad de Grado Empresarial</p>
-        <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-            <i class="fab fa-stripe text-3xl text-slate-900"></i>
-            <i class="fab fa-paypal text-3xl text-slate-900"></i>
-            <i class="fab fa-salesforce text-3xl text-slate-900"></i>
-            <i class="fab fa-mailchimp text-3xl text-slate-900"></i>
-            <i class="fab fa-whatsapp-square text-3xl text-slate-900"></i>
-            <i class="fab fa-amazon-pay text-3xl text-slate-900"></i>
+<section class="relative py-16 px-6 bg-slate-950 overflow-hidden border-t border-white/5">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aurora-bg aurora-blue opacity-5 blur-[150px]"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10 text-center">
+        
+        <p class="text-[10px] font-black uppercase tracking-[0.6em] text-slate-500 mb-12">
+            Ecosistema de Conectividad <span class="text-white/20">|</span> Grado Empresarial
+        </p>
+
+        <div class="flex flex-wrap justify-center items-center gap-10 md:gap-20">
+            
+            <div class="group relative">
+                <i class="fab fa-stripe text-4xl text-slate-600 transition-all duration-500 group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"></i>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-blue-500 transition-all duration-500 group-hover:w-full opacity-0 group-hover:opacity-100"></div>
+            </div>
+
+            <div class="group relative">
+                <i class="fab fa-paypal text-3xl text-slate-600 transition-all duration-500 group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"></i>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[#25D366] transition-all duration-500 group-hover:w-full opacity-0 group-hover:opacity-100"></div>
+            </div>
+
+            <div class="group relative">
+                <i class="fab fa-salesforce text-4xl text-slate-600 transition-all duration-500 group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"></i>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-blue-400 transition-all duration-500 group-hover:w-full opacity-0 group-hover:opacity-100"></div>
+            </div>
+
+            <div class="group relative">
+                <i class="fab fa-mailchimp text-4xl text-slate-600 transition-all duration-500 group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"></i>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-yellow-400 transition-all duration-500 group-hover:w-full opacity-0 group-hover:opacity-100"></div>
+            </div>
+
+            <div class="group relative">
+                <i class="fab fa-whatsapp text-4xl text-slate-600 transition-all duration-500 group-hover:text-[#25D366] group-hover:drop-shadow-[0_0_15px_rgba(37,211,102,0.4)]"></i>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[#25D366] transition-all duration-500 group-hover:w-full opacity-0 group-hover:opacity-100"></div>
+            </div>
+
+            <div class="group relative">
+                <i class="fab fa-amazon-pay text-4xl text-slate-600 transition-all duration-500 group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"></i>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-orange-400 transition-all duration-500 group-hover:w-full opacity-0 group-hover:opacity-100"></div>
+            </div>
+
         </div>
+
+        <div class="mt-16 h-[1px] w-full bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
     </div>
 </section>
 
 --
-<section class="py-16 px-5 bg-slate-950">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-8 border border-white/5 rounded-[2.5rem] flex items-center gap-4">
-            <div class="text-3xl brand-accent"><i class="fas fa-shield-virus"></i></div>
+<section class="relative py-20 px-6 bg-slate-950 overflow-hidden border-t border-white/5">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aurora-bg aurora-green opacity-5 blur-[180px]"></div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+        
+        <div class="glass-card p-8 flex items-center gap-6 group hover:bg-white/[0.03] transition-all duration-500">
+            <div class="relative">
+                <div class="absolute inset-0 bg-blue-500/20 blur-xl rounded-full group-hover:bg-blue-500/40 transition-all"></div>
+                <div class="relative text-3xl text-blue-500 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]">
+                    <i class="fas fa-shield-virus"></i>
+                </div>
+            </div>
             <div>
-                <h5 class="text-xs font-black uppercase tracking-widest">Anti-Spam Pro</h5>
-                <p class="text-[10px] text-slate-500 mt-1">Algoritmos de intervalo humano para evitar bloqueos.</p>
+                <h5 class="text-[11px] font-black uppercase tracking-[0.2em] text-white italic">Anti-Spam Pro</h5>
+                <p class="text-[10px] text-slate-500 mt-2 font-medium leading-relaxed uppercase tracking-wider">
+                    Algoritmos de intervalo humano para evitar bloqueos.
+                </p>
             </div>
         </div>
-        <div class="p-8 border border-white/5 rounded-[2.5rem] flex items-center gap-4">
-            <div class="text-3xl brand-whatsapp"><i class="fas fa-fingerprint"></i></div>
+
+        <div class="glass-card p-8 flex items-center gap-6 group hover:bg-white/[0.03] transition-all duration-500">
+            <div class="relative">
+                <div class="absolute inset-0 bg-[#25D366]/20 blur-xl rounded-full group-hover:bg-[#25D366]/40 transition-all"></div>
+                <div class="relative text-3xl text-[#25D366] drop-shadow-[0_0_8px_rgba(37,211,102,0.5)]">
+                    <i class="fas fa-fingerprint"></i>
+                </div>
+            </div>
             <div>
-                <h5 class="text-xs font-black uppercase tracking-widest">Privacidad GDPR</h5>
-                <p class="text-[10px] text-slate-500 mt-1">Cumplimos con las leyes internacionales de datos.</p>
+                <h5 class="text-[11px] font-black uppercase tracking-[0.2em] text-white italic">Privacidad GDPR</h5>
+                <p class="text-[10px] text-slate-500 mt-2 font-medium leading-relaxed uppercase tracking-wider">
+                    Cumplimos con las leyes internacionales de datos.
+                </p>
             </div>
         </div>
-        <div class="p-8 border border-white/5 rounded-[2.5rem] flex items-center gap-4">
-            <div class="text-3xl brand-accent"><i class="fas fa-history"></i></div>
+
+        <div class="glass-card p-8 flex items-center gap-6 group hover:bg-white/[0.03] transition-all duration-500">
+            <div class="relative">
+                <div class="absolute inset-0 bg-blue-500/20 blur-xl rounded-full group-hover:bg-blue-500/40 transition-all"></div>
+                <div class="relative text-3xl text-blue-500 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]">
+                    <i class="fas fa-history"></i>
+                </div>
+            </div>
             <div>
-                <h5 class="text-xs font-black uppercase tracking-widest">Backups Diarios</h5>
-                <p class="text-[10px] text-slate-500 mt-1">Tu entrenamiento neural siempre respaldado.</p>
+                <h5 class="text-[11px] font-black uppercase tracking-[0.2em] text-white italic">Backups Diarios</h5>
+                <p class="text-[10px] text-slate-500 mt-2 font-medium leading-relaxed uppercase tracking-wider">
+                    Tu entrenamiento neural siempre respaldado.
+                </p>
             </div>
         </div>
+
     </div>
 </section>
 
 --
 <script src="https://unpkg.com/scrollreveal"></script>
+
 <script>
-    ScrollReveal().reveal('.glass-card, section h2, section h3, .grid > div', {
-        delay: 200,
-        distance: '30px',
-        duration: 800,
-        origin: 'bottom',
+    // Configuración Base
+    const revealConfig = {
+        distance: '40px',
+        duration: 1000,
         opacity: 0,
-        interval: 100,
-        easing: 'cubic-bezier(0.5, 0, 0, 1)'
+        easing: 'cubic-bezier(0.23, 1, 0.32, 1)', // Curva de movimiento tipo "Elite"
+        mobile: true
+    };
+
+    // 1. Revelado para los Títulos (Aparecen desde arriba sutilmente)
+    ScrollReveal().reveal('section h2, section h3', {
+        ...revealConfig,
+        origin: 'top',
+        delay: 100
+    });
+
+    // 2. Revelado para las Tarjetas y Módulos (Aparecen desde abajo con intervalo)
+    ScrollReveal().reveal('.glass-card, .glass-pro-card, .neon-border-card, .grid > div', {
+        ...revealConfig,
+        origin: 'bottom',
+        delay: 200,
+        interval: 150 // Hace que las tarjetas aparezcan una tras otra (efecto cascada)
+    });
+
+    // 3. Revelado especial para la Terminal de Código (Efecto de escala)
+    ScrollReveal().reveal('.font-mono', {
+        ...revealConfig,
+        scale: 0.95,
+        delay: 400
+    });
+
+    // 4. Revelado para los botones de acción
+    ScrollReveal().reveal('button, .btn-glow-premium', {
+        ...revealConfig,
+        distance: '20px',
+        delay: 500,
+        origin: 'bottom'
     });
 </script>
-
 --
-<section class="py-20 px-5 bg-slate-950">
-    <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-black uppercase italic tracking-tighter text-center mb-12">Consultas <span class="brand-whatsapp underline">Frecuentes</span></h2>
-        <div class="space-y-4">
-            <div class="glass-card p-6 rounded-3xl cursor-pointer group">
-                <div class="flex justify-between items-center">
-                    <h4 class="text-xs font-black uppercase tracking-widest text-white">¿Pueden bloquear mi número de WhatsApp?</h4>
-                    <i class="fas fa-plus text-[10px] brand-whatsapp group-hover:rotate-45 transition-transform"></i>
-                </div>
-                <p class="hidden group-hover:block mt-4 text-[11px] text-slate-400 leading-relaxed">
-                    No. **LiamsaNova IA** utiliza la API oficial y algoritmos de latencia humana que imitan pausas y tiempos de escritura reales, manteniendo tu cuenta 100% segura.
-                </p>
-            </div>
-            <div class="glass-card p-6 rounded-3xl cursor-pointer group">
-                <div class="flex justify-between items-center">
-                    <h4 class="text-xs font-black uppercase tracking-widest text-white">¿Necesito saber programar para usarla?</h4>
-                    <i class="fas fa-plus text-[10px] brand-whatsapp group-hover:rotate-45 transition-transform"></i>
-                </div>
-                <p class="hidden group-hover:block mt-4 text-[11px] text-slate-400 leading-relaxed">
-                    Absolutamente no. Nuestra interfaz es "Drag & Drop". Solo subes tus archivos de texto y la IA aprende de ellos automáticamente.
-                </p>
-            </div>
-            <div class="glass-card p-6 rounded-3xl cursor-pointer group">
-                <div class="flex justify-between items-center">
-                    <h4 class="text-xs font-black uppercase tracking-widest text-white">¿Se integra con mi CRM actual?</h4>
-                    <i class="fas fa-plus text-[10px] brand-whatsapp group-hover:rotate-45 transition-transform"></i>
-                </div>
-                <p class="hidden group-hover:block mt-4 text-[11px] text-slate-400 leading-relaxed">
-                    Sí. Mediante Webhooks y Zapier nos conectamos con más de 5,000 aplicaciones incluyendo Salesforce, HubSpot y Google Sheets.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+<section class="relative py-32 px-6 bg-slate-950 overflow-hidden">
+    
+    <div class="absolute -left-20 top-1/4 aurora-bg aurora-green opacity-10"></div>
 
-
---
-<section class="py-20 px-5 bg-slate-900/40 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto text-center relative z-10">
-        <h3 class="text-xs font-black uppercase tracking-[0.5em] text-slate-500 mb-6">Infraestructura Global</h3>
-        <h2 class="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-12">Vende en cualquier <br><span class="brand-accent">Rincón del Planeta</span></h2>
+    <div class="max-w-3xl mx-auto relative z-10">
         
-        <div class="relative inline-block">
-            <img src="https://www.transparenttextures.com/patterns/world-map.png" class="opacity-10 max-w-full invert" alt="Mapa">
-            <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-brand-whatsapp rounded-full animate-ping"></div>
-            <div class="absolute top-1/2 left-1/3 w-2 h-2 bg-brand-accent rounded-full animate-ping"></div>
-            <div class="absolute top-1/3 right-1/4 w-2 h-2 bg-brand-whatsapp rounded-full animate-ping"></div>
+        <div class="text-center mb-20">
+            <h3 class="text-[10px] font-black uppercase tracking-[0.6em] text-slate-500 mb-4">Soporte Técnico Especializado</h3>
+            <h2 class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter text-white leading-none">
+                Consultas <span class="text-gradient-wa">Frecuentes</span>
+            </h2>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
-            <div>
-                <div class="text-xl font-black text-white">+50</div>
-                <p class="text-[9px] font-bold uppercase text-slate-600">Idiomas Nativos</p>
-            </div>
-            <div>
-                <div class="text-xl font-black text-white">0.8s</div>
-                <p class="text-[9px] font-bold uppercase text-slate-600">Latencia Global</p>
-            </div>
-            <div>
-                <div class="text-xl font-black text-white">99.9%</div>
-                <p class="text-[9px] font-bold uppercase text-slate-600">Disponibilidad</p>
-            </div>
-            <div>
-                <div class="text-xl font-black text-white">256-bit</div>
-                <p class="text-[9px] font-bold uppercase text-slate-600">Encriptación AES</p>
-            </div>
-        </div>
-    </div>
-</section>
-
---
-<section class="py-24 px-5 bg-gradient-to-br from-brand-whatsapp to-brand-accent text-center">
-    <div class="max-w-4xl mx-auto">
-        <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter text-slate-950 mb-8 leading-none">
-            ¿Listo para que <br>LiamsaNova IA trabaje para ti?
-        </h2>
-        <p class="text-slate-950 font-bold text-sm md:text-lg mb-12 opacity-80 uppercase tracking-widest">
-            Únete a las +500 empresas que ya están facturando en piloto automático.
-        </p>
-        <div class="flex flex-col md:flex-row gap-4 justify-center">
-            <button class="bg-slate-950 text-white px-12 py-6 rounded-2xl font-black uppercase italic tracking-[0.2em] shadow-2xl hover:scale-105 transition active:scale-95">
-                ¡EMPEZAR AHORA MISMO!
-            </button>
-            <button class="border-2 border-slate-950 text-slate-950 px-12 py-6 rounded-2xl font-black uppercase italic tracking-[0.2em] hover:bg-slate-950 hover:text-white transition">
-                HABLAR CON UN EXPERTO
-            </button>
-        </div>
-    </div>
-</section>
-
---
-<section class="py-16 px-5 bg-slate-950 border-t border-white/5">
-    <div class="max-w-7xl mx-auto">
-        <h3 class="text-[10px] font-black uppercase tracking-[0.5em] text-center text-slate-500 mb-12">La ventaja competitiva</h3>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="glass-card p-8 rounded-[3rem] opacity-50 relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 font-mono text-xs">00:15:42</div>
-                <h4 class="text-xs font-black uppercase mb-4 tracking-widest">Respuesta Humana Promedio</h4>
-                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
-                    <div class="bg-red-500 h-full w-[20%]"></div>
-                </div>
-                <p class="text-[10px] mt-4 text-slate-500 font-bold uppercase">Pérdida de interés del lead: ALTA</p>
-            </div>
-            <div class="glass-card p-8 rounded-[3rem] border-brand-whatsapp border-2 shadow-[0_0_30px_rgba(37,211,102,0.1)] relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 font-mono text-xs brand-whatsapp">00:00:02</div>
-                <h4 class="text-xs font-black uppercase mb-4 tracking-widest text-white">LiamsaNova IA Response</h4>
-                <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
-                    <div class="bg-brand-whatsapp h-full w-full animate-pulse"></div>
-                </div>
-                <p class="text-[10px] mt-4 brand-whatsapp font-black uppercase tracking-widest">Probabilidad de Cierre: 99%</p>
-            </div>
-        </div>
-    </div>
-</section>
-
---
-<section class="py-20 px-5 bg-slate-900/20">
-    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <div class="space-y-6">
-            <h2 class="text-3xl font-black italic uppercase tracking-tighter">Entrenamiento <br><span class="brand-accent">Cero Alucinaciones</span></h2>
-            <p class="text-sm text-slate-400 leading-relaxed">Nuestra tecnología **Neural-Scan** procesa tus manuales de venta y PDFs con precisión quirúrgica. La IA solo responde basándose en la información oficial de tu empresa.</p>
-            <div class="flex gap-4">
-                <div class="px-4 py-2 bg-white/5 rounded-full text-[9px] font-black uppercase border border-white/10 italic">PDF Scan OK</div>
-                <div class="px-4 py-2 bg-white/5 rounded-full text-[9px] font-black uppercase border border-white/10 italic">Web Scraping OK</div>
+            
+            <div class="glass-card p-8 cursor-pointer group hover:bg-white/[0.03] transition-all duration-500 border-white/5">
+                <div class="flex justify-between items-center gap-6">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-mono text-[#25D366]/40 group-hover:text-[#25D366] transition">01</span>
+                        <h4 class="text-sm font-black uppercase tracking-[0.15em] text-slate-200 group-hover:text-white transition">
+                            ¿Pueden bloquear mi número de WhatsApp?
+                        </h4>
+                    </div>
+                    <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#25D366]/50 transition-all">
+                        <i class="fas fa-plus text-[10px] text-[#25D366] group-hover:rotate-45 transition-transform duration-500"></i>
+                    </div>
+                </div>
+                <div class="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-700 ease-in-out">
+                    <p class="pt-6 text-sm text-slate-400 leading-relaxed font-light border-t border-white/5 mt-6">
+                        No. <span class="text-white font-bold italic">LiamsaNova IA</span> utiliza la API oficial y algoritmos de latencia humana que imitan pausas y tiempos de escritura reales, manteniendo tu cuenta <span class="text-[#25D366]">100% segura</span>.
+                    </p>
+                </div>
             </div>
+
+            <div class="glass-card p-8 cursor-pointer group hover:bg-white/[0.03] transition-all duration-500 border-white/5">
+                <div class="flex justify-between items-center gap-6">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-mono text-[#25D366]/40 group-hover:text-[#25D366] transition">02</span>
+                        <h4 class="text-sm font-black uppercase tracking-[0.15em] text-slate-200 group-hover:text-white transition">
+                            ¿Necesito saber programar para usarla?
+                        </h4>
+                    </div>
+                    <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#25D366]/50 transition-all">
+                        <i class="fas fa-plus text-[10px] text-[#25D366] group-hover:rotate-45 transition-transform duration-500"></i>
+                    </div>
+                </div>
+                <div class="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-700 ease-in-out">
+                    <p class="pt-6 text-sm text-slate-400 leading-relaxed font-light border-t border-white/5 mt-6">
+                        Absolutamente no. Nuestra interfaz es <span class="text-white font-bold italic">"Drag & Drop"</span>. Solo subes tus archivos de texto y la IA asimila el conocimiento en segundos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 cursor-pointer group hover:bg-white/[0.03] transition-all duration-500 border-white/5">
+                <div class="flex justify-between items-center gap-6">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[10px] font-mono text-[#25D366]/40 group-hover:text-[#25D366] transition">03</span>
+                        <h4 class="text-sm font-black uppercase tracking-[0.15em] text-slate-200 group-hover:text-white transition">
+                            ¿Se integra con mi CRM actual?
+                        </h4>
+                    </div>
+                    <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#25D366]/50 transition-all">
+                        <i class="fas fa-plus text-[10px] text-[#25D366] group-hover:rotate-45 transition-transform duration-500"></i>
+                    </div>
+                </div>
+                <div class="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-700 ease-in-out">
+                    <p class="pt-6 text-sm text-slate-400 leading-relaxed font-light border-t border-white/5 mt-6">
+                        Sí. Mediante <span class="text-white font-bold italic">Webhooks y Zapier</span> nos conectamos con más de 5,000 aplicaciones incluyendo Salesforce, HubSpot y Google Sheets.
+                    </p>
+                </div>
+            </div>
+
         </div>
-        <div class="glass-card p-6 rounded-[2rem] bg-black/50 font-mono text-[10px] relative overflow-hidden">
-            <div class="text-brand-whatsapp mb-2">>>> ANALYZING_DOCUMENT: catalogo_2026.pdf</div>
-            <div class="text-slate-500">"El precio del servicio premium es de $500..."</div>
-            <div class="bg-brand-whatsapp/20 text-white p-1 inline-block">Extracting: Price_Point = 500</div>
-            <div class="text-slate-500 mt-2">"Garantía de 12 meses incluida..."</div>
-            <div class="bg-brand-accent/20 text-white p-1 inline-block">Extracting: Guarantee_Period = 12m</div>
-            <div class="mt-4 text-brand-whatsapp animate-pulse">| CONTEXTO ASIMILADO EXITOSAMENTE _</div>
+    </div>
+</section>
+
+
+--
+<section class="relative py-32 px-6 bg-slate-950 overflow-hidden">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto text-center relative z-10">
+        
+        <div class="inline-block px-4 py-1.5 rounded-full border border-white/5 bg-white/5 backdrop-blur-md mb-8">
+            <h3 class="text-[10px] font-black uppercase tracking-[0.6em] text-slate-400">Infraestructura Global 2026</h3>
+        </div>
+
+        <h2 class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter mb-16 text-white leading-none">
+            Vende en cualquier <br><span class="text-gradient-wa">Rincón del Planeta</span>
+        </h2>
+        
+        <div class="relative inline-block group">
+            <div class="absolute inset-0 bg-gradient-to-tr from-[#25D366]/5 to-blue-500/5 blur-3xl rounded-full scale-110"></div>
+            
+            <img src="https://www.transparenttextures.com/patterns/world-map.png" 
+                 class="opacity-20 max-w-full invert grayscale brightness-200 transition-all duration-1000 group-hover:opacity-40" 
+                 alt="Mapa de Conectividad">
+            
+            <div class="absolute top-[28%] left-[25%] group">
+                <div class="w-3 h-3 bg-[#25D366] rounded-full animate-ping absolute"></div>
+                <div class="w-3 h-3 bg-[#25D366] rounded-full shadow-[0_0_15px_#25D366]"></div>
+                <span class="absolute top-5 left-0 text-[8px] font-black text-white/40 tracking-widest uppercase opacity-0 group-hover:opacity-100 transition">LATAM_NODE</span>
+            </div>
+
+            <div class="absolute top-[55%] left-[38%] group">
+                <div class="w-3 h-3 bg-blue-500 rounded-full animate-ping absolute"></div>
+                <div class="w-3 h-3 bg-blue-500 rounded-full shadow-[0_0_15px_#3b82f6]"></div>
+            </div>
+
+            <div class="absolute top-[35%] right-[22%] group">
+                <div class="w-3 h-3 bg-[#25D366] rounded-full animate-ping absolute"></div>
+                <div class="w-3 h-3 bg-[#25D366] rounded-full shadow-[0_0_15px_#25D366]"></div>
+                <span class="absolute top-5 right-0 text-[8px] font-black text-white/40 tracking-widest uppercase opacity-0 group-hover:opacity-100 transition">APAC_CLUSTER</span>
+            </div>
+            
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#25D366]/20 to-transparent animate-[bounce_4s_infinite] pointer-events-none"></div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-24">
+            
+            <div class="glass-card p-8 border-white/5 hover:bg-white/5 transition-all">
+                <div class="text-4xl font-black text-white italic tracking-tighter mb-2">+50</div>
+                <div class="h-[1px] w-8 bg-[#25D366] mx-auto mb-4 opacity-50"></div>
+                <p class="text-[10px] font-bold uppercase text-slate-500 tracking-[0.3em]">Idiomas Nativos</p>
+            </div>
+
+            <div class="glass-card p-8 border-white/5 hover:bg-white/5 transition-all">
+                <div class="text-4xl font-black text-white italic tracking-tighter mb-2">0.8<span class="text-lg text-slate-500 ml-1">s</span></div>
+                <div class="h-[1px] w-8 bg-blue-500 mx-auto mb-4 opacity-50"></div>
+                <p class="text-[10px] font-bold uppercase text-slate-500 tracking-[0.3em]">Latencia Global</p>
+            </div>
+
+            <div class="glass-card p-8 border-white/5 hover:bg-white/5 transition-all">
+                <div class="text-4xl font-black text-white italic tracking-tighter mb-2">99.9<span class="text-lg text-slate-500">%</span></div>
+                <div class="h-[1px] w-8 bg-[#25D366] mx-auto mb-4 opacity-50"></div>
+                <p class="text-[10px] font-bold uppercase text-slate-500 tracking-[0.3em]">Disponibilidad</p>
+            </div>
+
+            <div class="glass-card p-8 border-white/5 hover:bg-white/5 transition-all">
+                <div class="text-4xl font-black text-white italic tracking-tighter mb-2">256<span class="text-lg text-slate-500 ml-1">bit</span></div>
+                <div class="h-[1px] w-8 bg-blue-500 mx-auto mb-4 opacity-50"></div>
+                <p class="text-[10px] font-bold uppercase text-slate-500 tracking-[0.3em]">Encriptación AES</p>
+            </div>
+
         </div>
     </div>
 </section>
 
 --
-<section class="py-20 px-5 bg-white text-slate-950">
-    <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl font-black italic uppercase tracking-tighter mb-4">Calcula tu <span class="brand-accent">Ahorro Mensual</span></h2>
-        <div class="bg-slate-50 p-8 rounded-[3rem] border-2 border-slate-100 shadow-xl">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <p class="text-[9px] font-black uppercase text-slate-400 mb-2">Equipo de Ventas</p>
-                    <div class="text-2xl font-black">3 Personas</div>
+<section class="relative py-32 px-6 overflow-hidden">
+    
+    <div class="absolute inset-0 bg-slate-950"></div>
+    <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,_var(--wa-green)_0%,_transparent_70%)]"></div>
+    
+    <div class="aurora-bg aurora-green -bottom-40 -left-40 opacity-20 blur-[150px]"></div>
+    <div class="aurora-bg aurora-blue -top-40 -right-40 opacity-20 blur-[150px]"></div>
+
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+        
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-10">
+            <div class="flex -space-x-2">
+                <div class="w-6 h-6 rounded-full bg-slate-800 border border-slate-950"></div>
+                <div class="w-6 h-6 rounded-full bg-slate-700 border border-slate-950"></div>
+                <div class="w-6 h-6 rounded-full bg-slate-600 border border-slate-950"></div>
+            </div>
+            <span class="text-[9px] font-black uppercase tracking-[0.2em] text-slate-300">+500 Empresas en Piloto Automático</span>
+        </div>
+
+        <h2 class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter text-white mb-10 leading-[0.9]">
+            ¿Listo para que <br><span class="text-gradient-wa">LiamsaNova IA</span> <br>trabaje para ti?
+        </h2>
+        
+        <p class="text-slate-400 font-medium text-sm md:text-xl mb-16 max-w-2xl mx-auto leading-relaxed uppercase tracking-[0.1em]">
+            No dejes que tus leads se enfríen. Activa tu fuerza de ventas inteligente hoy mismo.
+        </p>
+
+        <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+            
+            <button class="btn-glow-premium group relative px-12 py-7 rounded-2xl overflow-hidden transition-all duration-300 w-full md:w-auto">
+                <span class="relative z-10 flex items-center justify-center gap-3 text-[12px] font-black uppercase tracking-[0.2em] italic text-slate-950">
+                    ¡EMPEZAR AHORA MISMO! <i class="fas fa-chevron-right text-[10px] group-hover:translate-x-1 transition"></i>
+                </span>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-1000"></div>
+            </button>
+
+            <button class="glass-card px-12 py-7 rounded-2xl group hover:border-[#25D366]/40 transition-all duration-500 w-full md:w-auto">
+                <span class="text-[12px] font-black uppercase tracking-[0.2em] italic text-white flex items-center justify-center gap-3">
+                    HABLAR CON UN EXPERTO <i class="fab fa-whatsapp text-[#25D366]"></i>
+                </span>
+            </button>
+
+        </div>
+
+        <p class="mt-12 text-[10px] text-slate-600 font-bold uppercase tracking-[0.3em]">
+            <i class="fas fa-shield-check mr-2"></i> Implementación Express en menos de 24 horas
+        </p>
+    </div>
+</section>
+
+--
+<section class="relative py-32 px-6 bg-slate-950 overflow-hidden border-t border-white/5">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aurora-bg aurora-green opacity-5"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-20">
+            <h3 class="text-[11px] font-black uppercase tracking-[0.6em] text-slate-500 mb-4">La ventaja competitiva</h3>
+            <div class="h-1 w-12 bg-gradient-to-r from-[#25D366] to-blue-600 mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            
+            <div class="glass-card p-10 rounded-[3rem] opacity-30 grayscale hover:grayscale-0 transition-all duration-700 group border-red-500/10">
+                <div class="absolute top-0 right-0 p-6 font-mono text-sm text-red-500/50 group-hover:text-red-500 transition">00:15:42</div>
+                
+                <div class="mb-8">
+                    <i class="fas fa-user-clock text-2xl text-slate-600 mb-4"></i>
+                    <h4 class="text-sm font-black uppercase tracking-[0.2em] text-slate-400">Respuesta Humana Promedio</h4>
                 </div>
-                <div class="text-3xl font-light text-slate-200 hidden md:block">VS</div>
-                <div>
-                    <p class="text-[9px] font-black uppercase text-slate-400 mb-2">Costo LiamsaNova IA</p>
-                    <div class="text-2xl font-black brand-whatsapp">1 Licencia</div>
+
+                <div class="h-2 w-full bg-slate-900 rounded-full overflow-hidden border border-white/5">
+                    <div class="bg-red-950 h-full w-[15%] shadow-[0_0_10px_rgba(239,68,68,0.2)]"></div>
+                </div>
+                
+                <div class="flex items-center gap-2 mt-6">
+                    <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                    <p class="text-[10px] text-slate-600 font-black uppercase tracking-widest">Pérdida de interés del lead: CRÍTICA</p>
                 </div>
             </div>
-            <div class="mt-10 pt-10 border-t border-slate-200">
-                <div class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Ahorro anual proyectado</div>
-                <div class="text-5xl font-black text-slate-950 italic tracking-tighter">$12,400 USD*</div>
-                <p class="text-[8px] mt-4 text-slate-400 font-bold">*Basado en costos operativos promedio en Latinoamérica.</p>
+
+            <div class="relative group">
+                <div class="absolute inset-0 bg-[#25D366]/20 blur-[60px] rounded-[3.5rem] opacity-30 group-hover:opacity-60 transition-all duration-1000"></div>
+                
+                <div class="glass-card p-12 rounded-[3rem] border-[#25D366]/30 bg-gradient-to-br from-[#25D366]/10 to-transparent shadow-[0_0_50px_rgba(37,211,102,0.1)] relative overflow-hidden">
+                    
+                    <div class="absolute top-0 right-0 p-8 font-mono text-xl text-[#25D366] drop-shadow-[0_0_10px_rgba(37,211,102,0.5)]">
+                        00:00:02
+                    </div>
+                    
+                    <div class="mb-10">
+                        <div class="w-12 h-12 bg-[#25D366] rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(37,211,102,0.4)]">
+                            <i class="fas fa-bolt text-black text-xl"></i>
+                        </div>
+                        <h4 class="text-lg font-black uppercase tracking-[0.25em] text-white italic">LiamsaNova <span class="text-[#25D366]">IA</span> Response</h4>
+                    </div>
+
+                    <div class="h-3 w-full bg-slate-900 rounded-full overflow-hidden border border-[#25D366]/20">
+                        <div class="bg-gradient-to-r from-[#25D366] to-blue-500 h-full w-full animate-pulse shadow-[0_0_20px_rgba(37,211,102,0.6)]"></div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mt-8">
+                        <div class="flex items-center gap-3">
+                            <span class="w-2 h-2 bg-[#25D366] rounded-full animate-ping"></span>
+                            <p class="text-[11px] text-[#25D366] font-black uppercase tracking-[0.3em]">Probabilidad de Cierre: 99%</p>
+                        </div>
+                        <i class="fas fa-shield-check text-[#25D366] opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+--
+<section class="relative py-32 px-6 bg-slate-950 overflow-hidden">
+    
+    <div class="absolute -right-20 top-1/2 -translate-y-1/2 aurora-bg aurora-blue opacity-10"></div>
+
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative z-10">
+        
+        <div class="space-y-8">
+            <div class="inline-block px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-[9px] font-black uppercase tracking-[0.3em]">Módulo Neural-Scan</div>
+            
+            <h2 class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter leading-[0.85] text-white">
+                Entrenamiento <br><span class="text-gradient-wa">Cero Alucinaciones</span>
+            </h2>
+            
+            <p class="text-lg text-slate-400 leading-relaxed max-w-lg font-light">
+                Nuestra tecnología <span class="text-white font-bold italic">Neural-Scan</span> procesa tus manuales y PDFs con precisión quirúrgica. La IA solo responde basándose en la información <span class="underline decoration-[#25D366] decoration-2 underline-offset-4">oficial</span> de tu empresa.
+            </p>
+            
+            <div class="flex flex-wrap gap-4">
+                <div class="px-5 py-2 bg-white/5 rounded-xl text-[10px] font-black uppercase border border-white/10 italic tracking-widest text-slate-300 backdrop-blur-md">
+                    <i class="fas fa-file-pdf mr-2 text-red-500"></i> PDF Scan OK
+                </div>
+                <div class="px-5 py-2 bg-white/5 rounded-xl text-[10px] font-black uppercase border border-white/10 italic tracking-widest text-slate-300 backdrop-blur-md">
+                    <i class="fas fa-globe mr-2 text-blue-500"></i> Web Scraping OK
+                </div>
+            </div>
+        </div>
+
+        <div class="relative group">
+            <div class="absolute inset-0 bg-blue-600/10 blur-[50px] rounded-[2rem] group-hover:bg-[#25D366]/10 transition-all duration-1000"></div>
+            
+            <div class="glass-card p-8 md:p-12 font-mono text-[11px] leading-relaxed relative border-white/10 bg-black/60 shadow-2xl">
+                <div class="flex gap-2 mb-8">
+                    <div class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/40"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/40"></div>
+                    <div class="w-3 h-3 rounded-full bg-[#25D366]/20 border border-[#25D366]/40"></div>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="text-[#25D366] opacity-80"><span class="animate-pulse">>>></span> ANALYZING_DOCUMENT: <span class="text-white">catalogo_2026.pdf</span></div>
+                    
+                    <div class="pl-4 border-l border-white/10 text-slate-500 italic">
+                        "El precio del servicio premium es de $500..."
+                    </div>
+                    <div class="bg-[#25D366]/10 text-[#25D366] px-3 py-1 rounded inline-block font-black tracking-tighter uppercase text-[9px]">
+                        Extracting: Price_Point = <span class="text-white">500.00_USD</span>
+                    </div>
+
+                    <div class="pl-4 border-l border-white/10 text-slate-500 italic mt-6">
+                        "Garantía de 12 meses incluida en todos los planes..."
+                    </div>
+                    <div class="bg-blue-500/10 text-blue-400 px-3 py-1 rounded inline-block font-black tracking-tighter uppercase text-[9px]">
+                        Extracting: Guarantee = <span class="text-white">12_MONTHS</span>
+                    </div>
+
+                    <div class="mt-10 pt-6 border-t border-white/5">
+                        <div class="text-[#25D366] font-black tracking-[0.2em] animate-pulse">
+                            READY: CONTEXTO ASIMILADO EXITOSAMENTE _
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+--
+<section class="relative py-32 px-6 bg-slate-950 overflow-hidden">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#25D366]/10 blur-[130px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+        <h2 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter mb-12 text-white">
+            Calcula tu <span class="text-gradient-wa">Ahorro Mensual</span>
+        </h2>
+        
+        <div class="glass-card p-10 md:p-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div>
+                    <p class="text-[10px] font-black uppercase text-slate-500 mb-3 tracking-[0.2em]">Equipo de Ventas Humano</p>
+                    <div class="text-3xl font-extrabold text-white italic">3 Personas</div>
+                </div>
+                
+                <div class="flex justify-center">
+                    <div class="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-xs font-black text-slate-500 hidden md:flex">
+                        VS
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-[10px] font-black uppercase text-[#25D366] mb-3 tracking-[0.2em]">Costo LiamsaNova IA</p>
+                    <div class="text-3xl font-extrabold text-white italic">1 Licencia Elite</div>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-12 border-t border-white/5 relative">
+                <div class="text-[11px] font-black uppercase tracking-[0.4em] text-slate-500 mb-4">Ahorro anual proyectado</div>
+                
+                <div class="text-6xl md:text-8xl font-black text-white italic tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                    $12,400 <span class="text-2xl font-light text-slate-500">USD*</span>
+                </div>
+                
+                <p class="text-[9px] mt-8 text-slate-600 font-bold uppercase tracking-widest italic">
+                    *Basado en costos operativos promedio en Latinoamérica 2026.
+                </p>
             </div>
         </div>
     </div>
