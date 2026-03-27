@@ -110,27 +110,44 @@
     color: #000;
 }
 
+#mobile-menu {
+    transition: all 0.3s ease-in-out;
+}
+
     </style>
 </head>
 <body>
 
     <nav class="fixed w-full z-[100] border-b border-white/5 bg-slate-950/80 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-gradient-to-tr from-[#25D366] to-[#3b82f6] rounded-xl flex items-center justify-center">
-                    <i class="fab fa-whatsapp text-white text-xl"></i>
-                </div>
-                <span class="text-xl font-black uppercase tracking-tighter italic">LiamsaNova <span class="text-[#25D366]">IA</span></span>
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-gradient-to-tr from-[#25D366] to-[#3b82f6] rounded-xl flex items-center justify-center">
+                <i class="fab fa-whatsapp text-white text-xl"></i>
             </div>
-            <div class="hidden lg:flex gap-8 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
-                <a href="#soluciones" class="hover:text-white transition">Soluciones</a>
-                <a href="#como-funciona" class="hover:text-white transition">IA Training</a>
-                <a href="#planes" class="hover:text-white transition">Planes</a>
-                <a href="#seguridad" class="hover:text-white transition">Seguridad</a>
-            </div>
-            <a href="#planes" class="btn-glow px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Prueba Elite</a>
+            <span class="text-xl font-black uppercase tracking-tighter italic text-white">LiamsaNova <span class="text-[#25D366]">IA</span></span>
         </div>
-    </nav>
+
+        <div class="hidden lg:flex gap-8 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+            <a href="#soluciones" class="hover:text-white transition">Soluciones</a>
+            <a href="#como-funciona" class="hover:text-white transition">IA Training</a>
+            <a href="#planes" class="hover:text-white transition">Planes</a>
+        </div>
+
+        <button id="menu-btn" class="lg:hidden text-white text-2xl p-2">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <a href="#planes" class="hidden lg:block btn-glow px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest text-white">Prueba Elite</a>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-b border-white/5 px-6 py-8 flex flex-col gap-6 text-center">
+        <a href="#soluciones" class="text-slate-400 font-bold uppercase tracking-widest text-xs hover:text-[#25D366]">Soluciones</a>
+        <a href="#como-funciona" class="text-slate-400 font-bold uppercase tracking-widest text-xs hover:text-[#25D366]">IA Training</a>
+        <a href="#planes" class="text-slate-400 font-bold uppercase tracking-widest text-xs hover:text-[#25D366]">Planes</a>
+        <a href="#planes" class="btn-glow px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest text-white">Prueba Elite</a>
+    </div>
+</nav>
+
 <header class="hero-section">
         
         <div class="hero-overlay-mask"></div>
@@ -851,7 +868,32 @@
     }
 </style>
 --
+<script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
 
+    btn.addEventListener('click', () => {
+        // Alterna la clase 'hidden' para mostrar u ocultar el menú
+        menu.classList.toggle('hidden');
+        
+        // Cambia el icono de barras a una 'X' cuando esté abierto
+        const icon = btn.querySelector('i');
+        if (menu.classList.contains('hidden')) {
+            icon.classList.replace('fa-times', 'fa-bars');
+        } else {
+            icon.classList.replace('fa-bars', 'fa-times');
+        }
+    });
+
+    // Cerrar el menú automáticamente al hacer clic en un enlace
+    const links = menu.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.add('hidden');
+            btn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+        });
+    });
+</script>
 
 </body>
 </html>
