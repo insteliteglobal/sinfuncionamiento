@@ -421,5 +421,22 @@
         <i class="fab fa-whatsapp text-white"></i>
     </a>
 
+
+<script>
+        const btn = document.getElementById('menu-btn');
+        const nav = document.getElementById('mobile-nav');
+
+        // Alternar visibilidad al hacer clic en el botón
+        btn.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+        });
+
+        // Cerrar el menú automáticamente al hacer clic en un enlace
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
