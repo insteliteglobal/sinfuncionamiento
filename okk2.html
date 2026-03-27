@@ -307,6 +307,56 @@ section {
         text-align: center !important;
     }
 }
+    /* --- CONTROL MAESTRO DE ESTABILIDAD Y FLUIDEZ --- */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Corta cualquier cosa que intente salirse a la derecha */
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+  /* Escala de texto más agresiva para celulares pequeños */
+  --fluid-7xl: clamp(2.2rem, 10vw, 4.5rem);
+  --fluid-8xl: clamp(2.5rem, 12vw, 5.5rem);
+  --fluid-9xl: clamp(2.8rem, 15vw, 7rem);
+}
+
+/* Aplicación forzada a las clases de Tailwind */
+.text-5xl { font-size: clamp(1.8rem, 8vw, 3rem) !important; line-height: 1 !important; }
+.text-6xl { font-size: clamp(2rem, 9vw, 3.8rem) !important; line-height: 0.95 !important; }
+.text-7xl { font-size: var(--fluid-7xl) !important; line-height: 0.9 !important; }
+.text-8xl { font-size: var(--fluid-8xl) !important; line-height: 0.85 !important; }
+
+/* EVITAR EL DESLIZAMIENTO LATERAL (EL "BAILE") */
+section {
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden; /* Esto mata el scroll lateral de las auroras de fondo */
+    position: relative;
+}
+
+/* Ajuste para que las imágenes no empujen el ancho */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Corrección para contenedores Flex/Grid que se estiran */
+.max-w-7xl, .max-w-5xl {
+    max-width: 100% !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
+
+/* Forzar que las palabras largas se rompan si es necesario */
+h1, h2, h3, h4, p, span {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
     </style>
 </head>
 <body>
