@@ -243,12 +243,24 @@ section {
     max-width: 100vw !important;
     overflow: hidden !important;
 }
-        @media (max-width: 768px) {
-    .hero-content-safe h1 {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        line-height: 0.8 !important; /* Une un poco las dos líneas para que se vean compactas */
+     /* --- AJUSTE FINAL: UNA SOLA LÍNEA Y CENTRADO PERFECTO --- */
+.hero-content-safe h1 {
+    display: block !important;
+    text-align: center !important;
+    white-space: nowrap !important; /* <--- Esto obliga a que IA suba a la misma línea */
+    width: 100% !important;
+    margin: 0 auto !important;
+}
+
+.hero-content-safe h1 span {
+    display: inline !important; /* <--- Evita que el gradiente se comporte como bloque */
+}
+
+@media (max-width: 768px) {
+    .hero-content-safe .text-9xl {
+        /* Ajuste de tamaño exacto para que "LiamsaNova IA" quepa en el ancho del celular */
+        font-size: clamp(2.2rem, 12vw, 4rem) !important; 
+        text-align: center !important;
     }
 }
 </style>
