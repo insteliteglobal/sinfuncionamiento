@@ -130,47 +130,65 @@
         .grid {
             width: 100% !important;
         }
-    /* --- PARCHE DE SEGURIDAD PARA MÓVIL (PEGA ESTO AL FINAL DE TU STYLE) --- */
+    /* =======================================================
+   NUEVO PARCHE DE SEGURIDAD GENERAL (RESPETANDO PORTADA)
+   ======================================================= */
 
-/* 1. Evita que la pantalla se mueva hacia los lados */
+/* 1. Evita que la pantalla BAIE lateralmente en Móviles */
 html, body {
     width: 100% !important;
     max-width: 100vw !important;
-    overflow-x: hidden !important;
+    overflow-x: hidden !important; /* BLOQUEO CRÍTICO */
     margin: 0 !important;
     padding: 0 !important;
+    position: relative;
 }
 
-/* 2. Escala los títulos gigantes SOLO en celulares */
-@media (max-width: 768px) {
-    /* Ajustamos los tamaños de Tailwind para que quepan en el ancho del iPhone/Android */
-    .text-5xl, .text-6xl { font-size: 2.2rem !important; line-height: 1 !important; }
-    .text-7xl { font-size: 2.6rem !important; line-height: 1 !important; }
-    .text-8xl { font-size: 3rem !important; line-height: 0.9 !important; }
-    .text-9xl { font-size: 3.5rem !important; line-height: 0.9 !important; }
+/* 2. Forzamos que las secciones NO dejen espacios vacíos */
+section {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow: hidden !important; /* Corta auroras y textos desbordados */
+    position: relative;
+}
 
-    /* Forzamos que las secciones no dejen espacios vacíos a la derecha */
-    section {
-        width: 100% !important;
-        max-width: 100vw !important;
-        overflow: hidden !important;
+/* =======================================================
+   3. AJUSTE EXCLUSIVO PARA EL NOMBRE EN LA PORTADA
+   ======================================================= */
+/* Buscamos el h1 que tiene el texto gigante en la portada */
+.hero-content-safe h1 {
+    word-break: break-word !important; /* Rompe la palabra si es necesario */
+    overflow-wrap: break-word !important;
+}
+
+@media (max-width: 768px) {
+    /* ACHICAMOS EL TEXTO GIGANTE SOLO EN MÓVIL */
+    .hero-content-safe .text-9xl {
+        font-size: 3rem !important; /* Aproximadamente text-5xl */
+        line-height: 1 !important;
+        letter-spacing: -0.05em !important;
     }
-    
+}
+
+/* =======================================================
+   4. AJUSTE DE TÍTULOS GENERALES (PARA EL RESTO DEL SITIO)
+   ======================================================= */
+@media (max-width: 768px) {
+    /* Ajustamos el resto de tamaños de Tailwind para que quepan */
+    .text-5xl { font-size: 2.2rem !important; line-height: 1 !important; }
+    .text-6xl { font-size: 2.5rem !important; line-height: 1 !important; }
+    .text-7xl { font-size: 2.8rem !important; line-height: 0.9 !important; }
+    .text-8xl { font-size: 3.2rem !important; line-height: 0.9 !important; }
+
     /* Evita que los padding de Tailwind empujen el diseño hacia afuera */
     .px-5, .px-6, .px-12 {
-        padding-left: 1.2rem !important;
-        padding-right: 1.2rem !important;
-    }
-
-    /* Asegura que los botones y tarjetas no se estiren más de la cuenta */
-    .glass-card, .neon-border-card {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 }
 
-/* 3. Rompe palabras extremadamente largas para que no empujen el borde */
-h1, h2, h3, h4, h5, span {
+/* 5. Rompe palabras extremadamente largas en todo el sitio */
+h1, h2, h3, h4, h5, span, p {
     overflow-wrap: break-word !important;
     word-wrap: break-word !important;
 }
