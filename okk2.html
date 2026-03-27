@@ -7,6 +7,31 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
  <style>
+/* --- MOTOR DE TIPOGRAFÍA FLUIDA ULTRA-PREMIUM --- */
+:root {
+  /* Esta fórmula calcula el tamaño ideal entre 2rem (móvil) y 8rem (escritorio) */
+  --fluid-7xl: clamp(2.5rem, 8vw + 1rem, 5rem);
+  --fluid-8xl: clamp(3rem, 10vw + 1rem, 7rem);
+  --fluid-9xl: clamp(3.5rem, 12vw + 1rem, 9rem);
+}
+
+/* Aplicación automática a las clases de Tailwind */
+.text-7xl { font-size: var(--fluid-7xl) !important; line-height: 0.9 !important; }
+.text-8xl { font-size: var(--fluid-8xl) !important; line-height: 0.85 !important; }
+.text-9xl { font-size: var(--fluid-9xl) !important; line-height: 0.8 !important; }
+
+/* Corrección de interlineado para evitar que las letras choquen en móvil */
+h2, h3 {
+    letter-spacing: -0.05em;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Ajuste de contenedores para que nada se salga */
+section, div {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
         
         :root {
