@@ -136,6 +136,20 @@
         #mobile-menu {
             transition: all 0.3s ease-in-out;
         }
+/* Esto evita que CUALQUIER texto rompa el diseño en móviles */
+h1, h2, h3 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Ajuste automático de títulos gigantes en pantallas pequeñas */
+@media (max-width: 768px) {
+    .text-7xl, .text-8xl, .text-9xl {
+        font-size: 2.5rem !important; /* Aproximadamente text-4xl */
+        line-height: 1 !important;
+    }
+}
     </style>
 </head>
 <body>
