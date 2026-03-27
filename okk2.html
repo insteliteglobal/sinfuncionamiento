@@ -423,20 +423,36 @@
 
 
 <script>
-        const btn = document.getElementById('menu-btn');
-        const nav = document.getElementById('mobile-nav');
+    const btn = document.getElementById('menu-btn');
+    const nav = document.getElementById('mobile-nav');
+    const icon = btn.querySelector('i');
 
-        // Alternar visibilidad al hacer clic en el botón
-        btn.addEventListener('click', () => {
-            nav.classList.toggle('hidden');
-        });
+    btn.addEventListener('click', () => {
+        if (nav.classList.contains('hidden')) {
+            // Abrir menú
+            nav.classList.remove('hidden');
+            setTimeout(() => {
+                nav.classList.add('opacity-100', 'translate-y-0');
+                nav.classList.remove('opacity-0', '-translate-y-4');
+            }, 10);
+            icon.classList.replace('fa-bars', 'fa-times');
+        } else {
+            // Cerrar menú
+            nav.classList.add('opacity-0', '-translate-y-4');
+            nav.classList.remove('opacity-100', 'translate-y-0');
+            icon.classList.replace('fa-times', 'fa-bars');
+            setTimeout(() => nav.classList.add('hidden'), 300);
+        }
+    });
 
-        // Cerrar el menú automáticamente al hacer clic en un enlace
-        document.querySelectorAll('#mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.add('hidden');
-            });
+    // Cerrar automáticamente al tocar un enlace
+    document.querySelectorAll('#mobile-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.add('opacity-0', '-translate-y-4');
+            icon.classList.replace('fa-times', 'fa-bars');
+            setTimeout(() => nav.classList.add('hidden'), 300);
         });
-    </script>
+    });
+</script>
 </body>
 </html>
