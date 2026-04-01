@@ -216,44 +216,44 @@
 
 <nav class="fixed w-full z-[100] border-b border-white/5 bg-slate-950/80 backdrop-blur-xl">
     <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        
         <div class="flex items-center gap-3 group cursor-pointer">
-            <div class="w-10 h-10 bg-gradient-to-tr from-[#25D366] to-[#3b82f6] rounded-xl flex items-center justify-center">
+            <div class="w-10 h-10 bg-gradient-to-tr from-[#25D366] to-[#3b82f6] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.2)]">
                 <i class="fab fa-whatsapp text-white text-xl"></i>
             </div>
-            <span class="text-xl font-black normal-case tracking-tight text-white">LiamsaNova <span class="text-[#25D366]">IA</span></span>
+            <span class="text-lg md:text-xl font-black normal-case tracking-tight text-white">
+                LiamsaNova <span class="text-[#25D366]">IA</span>
+            </span>
         </div>
 
         <div class="hidden lg:flex gap-8 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
-            <a href="#soluciones" class="hover:text-white transition">Soluciones</a>
-            <a href="#como-funciona" class="hover:text-white transition">IA Training</a>
-            <a href="#planes" class="hover:text-white transition">Planes</a>
+            <a href="#soluciones" class="hover:text-white transition-colors">Soluciones</a>
+            <a href="#como-funciona" class="hover:text-white transition-colors">IA Training</a>
+            <a href="#planes" class="hover:text-white transition-colors">Planes</a>
         </div>
 
-        <button id="menu-btn" class="lg:hidden text-white text-2xl p-2 hover:text-[#25D366] transition-colors">
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <div class="hidden lg:flex items-center gap-8">
+        <div class="flex items-center gap-3 md:gap-6">
             <a href="https://chatbot.liamsanova.com" target="_blank" 
-               class="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">
-                Ingresar
+               class="px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest text-[#25D366] border border-[#25D366]/30 bg-[#25D366]/5 hover:bg-[#25D366] hover:text-white transition-all duration-300">
+               Ingresar
             </a>
 
-            <a href="#planes" class="btn-glow px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest text-white transform hover:scale-105 transition-all duration-300">
+            <a href="#planes" class="hidden md:block btn-glow px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest text-white transform hover:scale-105 transition-all">
                 Prueba Elite
             </a>
+
+            <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 focus:outline-none group">
+                <div class="w-6 h-0.5 bg-white transition-all duration-300 group-hover:bg-[#25D366]"></div>
+                <div class="w-4 h-0.5 bg-white self-end transition-all duration-300 group-hover:bg-[#25D366]"></div>
+            </button>
         </div>
     </div>
 
-    <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-b border-white/5 px-6 py-8 flex flex-col gap-6 text-center">
-        <a href="#soluciones" class="text-slate-400 font-bold uppercase tracking-widest text-xs hover:text-[#25D366]">Soluciones</a>
-        <a href="#como-funciona" class="text-slate-400 font-bold uppercase tracking-widest text-xs hover:text-[#25D366]">IA Training</a>
-        <a href="#planes" class="text-slate-400 font-bold uppercase tracking-widest text-xs hover:text-[#25D366]">Planes</a>
-        
-        <div class="h-[1px] bg-white/5 w-full"></div>
-        <a href="https://chatbot.liamsanova.com" target="_blank" class="text-slate-500 font-bold uppercase tracking-widest text-[10px]">Acceso Clientes</a>
-        
-        <a href="#planes" class="btn-glow px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest text-white">Prueba Elite</a>
+    <div id="mobile-menu" class="hidden lg:hidden bg-slate-950/95 backdrop-blur-2xl border-b border-white/5 px-6 py-10 flex flex-col gap-8 text-center animate-fade-in-down">
+        <a href="#soluciones" class="text-slate-300 font-bold uppercase tracking-[0.3em] text-xs hover:text-[#25D366]">Soluciones</a>
+        <a href="#como-funciona" class="text-slate-300 font-bold uppercase tracking-[0.3em] text-xs hover:text-[#25D366]">IA Training</a>
+        <a href="#planes" class="text-slate-300 font-bold uppercase tracking-[0.3em] text-xs hover:text-[#25D366]">Planes</a>
+        <a href="#planes" class="btn-glow px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest text-white mt-4">Prueba Elite</a>
     </div>
 </nav>
 <header class="hero-section relative py-20 md:py-32 px-6 bg-slate-950 overflow-hidden">
