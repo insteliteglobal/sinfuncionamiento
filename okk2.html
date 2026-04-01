@@ -1658,49 +1658,6 @@
     </div>
 </section>
 
-    </section>
-
-    <footer class="bg-black pt-32 pb-12 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-16 mb-24">
-            <div class="col-span-2">
-                <span class="text-2xl font-black uppercase italic tracking-tighter">LiamsaNova <span class="text-[#25D366]">IA</span></span>
-                <p class="text-slate-500 mt-6 text-sm max-w-sm leading-relaxed">
-                    La plataforma líder en automatización neural para empresas que buscan dominar el comercio conversacional en 2026.
-                </p>
-                <div class="flex gap-6 mt-8 text-2xl text-slate-700">
-                    <i class="fab fa-instagram hover:text-[#25D366] transition cursor-pointer"></i>
-                    <i class="fab fa-linkedin hover:text-[#3b82f6] transition cursor-pointer"></i>
-                    <i class="fab fa-youtube hover:text-red-500 transition cursor-pointer"></i>
-                </div>
-            </div>
-            <div>
-                <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-white mb-8">Tecnología</h5>
-                <ul class="text-xs space-y-4 text-slate-600 font-bold uppercase">
-                    <li><a href="#" class="hover:text-[#25D366]">Neural Engine</a></li>
-                    <li><a href="#" class="hover:text-[#25D366]">Integraciones</a></li>
-                    <li><a href="#" class="hover:text-[#25D366]">Seguridad</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-white mb-8">Recursos</h5>
-                <ul class="text-xs space-y-4 text-slate-600 font-bold uppercase">
-                    <li><a href="#" class="hover:text-[#25D366]">Documentación</a></li>
-                    <li><a href="#" class="hover:text-[#25D366]">Casos de Éxito</a></li>
-                    <li><a href="#" class="hover:text-[#25D366]">Soporte</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-white mb-8">Legal</h5>
-                <ul class="text-xs space-y-4 text-slate-600 font-bold uppercase">
-                    <li><a href="#" class="hover:text-[#25D366]">Privacidad</a></li>
-                    <li><a href="#" class="hover:text-[#25D366]">Términos</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="text-center pt-12 border-t border-white/5 text-[9px] font-black uppercase tracking-[0.5em] text-slate-800">
-            © 2026 LIAMSANOVA IA - REVOLUCIONANDO EL COMERCIO CONVERSACIONAL
-        </div>
-    </footer>
 
     <a href="#" class="fixed bottom-10 right-10 w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center text-3xl text-slate-950 shadow-[0_0_30px_rgba(37,211,102,0.5)] z-[200] hover:scale-110 transition active:scale-95">
         <i class="fab fa-whatsapp"></i>
@@ -1812,12 +1769,72 @@
         glow.style.top = e.clientY - 200 + 'px';
     });
 </script>
-body {
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
-    background-color: #020617; /* Slate 950 */
-}
+
+<footer class="relative bg-black pt-32 pb-12 px-6 border-t border-white/5 overflow-hidden">
+    
+    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#25D366]/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-16 mb-24">
+            
+            <div class="col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-8 h-8 bg-gradient-to-tr from-[#25D366] to-[#3b82f6] rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(37,211,102,0.3)]">
+                        <i class="fab fa-whatsapp text-white text-sm"></i>
+                    </div>
+                    <span class="text-2xl font-black uppercase tracking-tighter text-white">
+                        LiamsaNova <span class="text-gradient-wa">IA</span>
+                    </span>
+                </div>
+                
+                <p class="text-slate-400 mt-6 text-sm max-w-sm leading-relaxed font-light">
+                    Liderando la <span class="text-white font-medium">automatización neural</span>. Transformamos conversaciones en activos digitales de alto rendimiento.
+                </p>
+
+                <div class="flex gap-6 mt-10 text-xl text-slate-500">
+                    <a href="#" class="hover:text-[#25D366] transform hover:scale-110 transition-all duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-[#3b82f6] transform hover:scale-110 transition-all duration-300"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-white transform hover:scale-110 transition-all duration-300"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="hover:text-red-500 transform hover:scale-110 transition-all duration-300"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-[#25D366] mb-8">Tecnología</h5>
+                <ul class="text-[11px] space-y-4 text-slate-500 font-bold uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-white flex items-center gap-2 transition-all"><span class="w-1 h-1 bg-slate-800 rounded-full"></span> Neural Engine</a></li>
+                    <li><a href="#" class="hover:text-white flex items-center gap-2 transition-all"><span class="w-1 h-1 bg-slate-800 rounded-full"></span> Integraciones</a></li>
+                    <li><a href="#" class="hover:text-white flex items-center gap-2 transition-all"><span class="w-1 h-1 bg-slate-800 rounded-full"></span> Seguridad</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-[#25D366] mb-8">Recursos</h5>
+                <ul class="text-[11px] space-y-4 text-slate-500 font-bold uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-white flex items-center gap-2 transition-all"><span class="w-1 h-1 bg-slate-800 rounded-full"></span> API Docs</a></li>
+                    <li><a href="#" class="hover:text-white flex items-center gap-2 transition-all"><span class="w-1 h-1 bg-slate-800 rounded-full"></span> Casos Éxito</a></li>
+                    <li><a href="#" class="hover:text-white flex items-center gap-2 transition-all"><span class="w-1 h-1 bg-slate-800 rounded-full"></span> Soporte 24/7</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-[#25D366] mb-8">Legal</h5>
+                <ul class="text-[11px] space-y-4 text-slate-500 font-bold uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-white transition-all">Privacidad</a></li>
+                    <li><a href="#" class="hover:text-white transition-all">Términos</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center pt-12 border-t border-white/5">
+            <div class="inline-block px-6 py-2 rounded-full border border-white/5 bg-white/[0.02] mb-6">
+                <p class="text-[9px] font-black uppercase tracking-[0.5em] text-slate-500">
+                    © 2026 <span class="text-white">LiamsaNova IA</span> - Desatando el poder de la IA
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
